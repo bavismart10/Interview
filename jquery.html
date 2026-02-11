@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jQuery & AJAX Interview Notes</title>
+
+<link rel="stylesheet" href="public/style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>jQuery & AJAX Interview Questions</h1>
+
+<div class="section">
+<h2>jQuery Basics</h2>
+
+<div class="question">1. What is jQuery?</div>
+<div class="answer">jQuery is a fast, lightweight JavaScript library that simplifies DOM manipulation, event handling, animations, and AJAX.</div>
+
+<div class="question">2. Why use jQuery?</div>
+<div class="answer">It reduces JavaScript code, handles cross-browser issues, and makes AJAX calls easier.</div>
+
+<div class="question">3. Difference between JavaScript and jQuery?</div>
+<div class="answer">JavaScript is a programming language, while jQuery is a library built on JavaScript to simplify tasks.</div>
+
+<div class="question">4. What is $(document).ready()?</div>
+<div class="answer">It ensures the DOM is fully loaded before executing jQuery code.</div>
+
+<div class="question">5. How do you select elements in jQuery?</div>
+<div class="answer">Using CSS selectors like $('#id'), $('.class'), and $('tag').</div>
+
+<div class="question">6. Difference between id and class selector?</div>
+<div class="answer">id selects a unique element, class selects multiple elements.</div>
+
+<div class="question">7. What is chaining in jQuery?</div>
+<div class="answer">Chaining allows multiple jQuery methods to be called on the same element in one line.</div>
+
+<div class="question">8. Common jQuery methods?</div>
+<div class="answer">hide(), show(), toggle(), addClass(), removeClass(), css()</div>
+
+</div>
+
+<div class="section">
+<h2>AJAX Interview Questions</h2>
+
+<div class="question">9. What is AJAX?</div>
+<div class="answer">AJAX allows sending and receiving data from the server without reloading the web page.</div>
+
+<div class="question">10. Full form of AJAX?</div>
+<div class="answer">Asynchronous JavaScript and XML.</div>
+
+<div class="question">11. How AJAX works?</div>
+<div class="answer">AJAX sends a request to the server in the background and updates the page using the response.</div>
+
+<div class="question">12. Difference between synchronous and asynchronous?</div>
+<div class="answer">Synchronous waits for a response, asynchronous does not block page execution.</div>
+
+<div class="question">13. What is $.ajax()?</div>
+<div class="answer">$.ajax() is a jQuery method used to make AJAX requests with full control.</div>
+
+<div class="question">14. Difference between $.get() and $.post()?</div>
+<div class="answer">$.get() sends data via URL, $.post() sends data in request body.</div>
+
+<div class="question">15. What data formats are used in AJAX?</div>
+<div class="answer">JSON, XML, HTML, and plain text.</div>
+
+<div class="question">16. What is success and error callback?</div>
+<div class="answer">success runs when the request is successful, error runs when the request fails.</div>
+
+<h3>AJAX Code Example</h3>
+
+<pre>
+$.ajax({
+  url: "fetch.php",
+  type: "POST",
+  data: { id: 1 },
+  success: function(response) {
+    console.log(response);
+  },
+  error: function() {
+    alert("Error occurred");
+  }
+});
+</pre>
+
+</div>
+
+<div class="section">
+<h2>Advanced / Tricky Questions</h2>
+
+<div class="question">17. What is CORS in AJAX?</div>
+<div class="answer">CORS (Cross-Origin Resource Sharing) is a browser security feature that controls how resources are shared between different origins (domains).</div>
+
+<div class="question">18. What is event delegation?</div>
+<div class="answer">A parent element event listener handles events for its child elements.</div>
+
+<div class="question">19. What is dataType in AJAX?</div>
+<div class="answer">It specifies the type of data expected from the server, like JSON or HTML.</div>
+
+<div class="question">20. Difference between $.ajax() and fetch()?</div>
+<div class="answer">$.ajax() is jQuery-based, while fetch() is native JavaScript and promise-based.</div>
+
+<div class="question">21. What is Event Listener?</div>
+<div class="answer">An event listener is a function that waits for a specific event and executes code when that event occurs. Example: addEventListener()</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

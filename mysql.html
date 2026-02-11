@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL & MySQL Interview Questions</title>
+
+<link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+<div class="container">
+
+<h1>SQL & MySQL Interview Questions</h1>
+
+<!-- ================= BASIC ================= -->
+
+<div class="section">
+<h2>Basic Concepts</h2>
+
+<div class="question">1. What is SQL?</div>
+<div class="answer">
+SQL (Structured Query Language) is used to store, retrieve, update, and delete data from databases.
+</div>
+
+<pre>
+SELECT * FROM users;
+</pre>
+
+<div class="question">2. What is MySQL?</div>
+<div class="answer">
+MySQL is an open-source relational database management system used with web applications.
+</div>
+
+<div class="question">3. Difference between SQL and MySQL?</div>
+<div class="answer">
+SQL is a language.<br>
+MySQL is a database system that uses SQL.
+</div>
+
+</div>
+
+<!-- ================= QUERIES ================= -->
+
+<div class="section">
+<h2>Queries & Commands</h2>
+
+<div class="question">4. What is a Primary Key?</div>
+<div class="answer">
+A primary key uniquely identifies each record in a table and does not allow NULL values.
+</div>
+
+<pre>
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100)
+);
+</pre>
+
+<div class="question">5. What is a Foreign Key?</div>
+<div class="answer">
+A foreign key creates a relationship between two tables.
+</div>
+
+<pre>
+ALTER TABLE orders
+ADD CONSTRAINT fk_user
+FOREIGN KEY (user_id) REFERENCES users(id);
+</pre>
+
+<div class="question">6. Difference between DELETE, TRUNCATE, DROP?</div>
+<div class="answer">
+DELETE → Removes selected rows.<br>
+TRUNCATE → Removes all rows.<br>
+DROP → Deletes the entire table.
+</div>
+
+<pre>
+DELETE FROM users WHERE id = 1;
+TRUNCATE TABLE users;
+DROP TABLE users;
+</pre>
+
+<div class="question">7. What is WHERE clause?</div>
+<div class="answer">
+Filters records based on conditions.
+</div>
+
+<pre>
+SELECT * FROM users WHERE status = 1;
+</pre>
+
+<div class="question">8. Difference between WHERE and HAVING?</div>
+<div class="answer">
+WHERE filters rows before grouping.<br>
+HAVING filters after GROUP BY.
+</div>
+
+<pre>
+SELECT department, COUNT(*)
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 5;
+</pre>
+
+<div class="question">9. What is GROUP BY?</div>
+<div class="answer">
+Groups rows with the same values and is used with aggregate functions.
+</div>
+
+<div class="question">10. What are Aggregate Functions?</div>
+<div class="answer">
+COUNT(), SUM(), AVG(), MIN(), MAX()
+</div>
+
+<pre>
+SELECT COUNT(*), SUM(salary), AVG(salary)
+FROM employees;
+</pre>
+
+</div>
+
+<!-- ================= JOINS ================= -->
+
+<div class="section">
+<h2>Joins</h2>
+
+<div class="question">11. What is JOIN?</div>
+<div class="answer">
+JOIN combines rows from two or more tables based on a related column.
+</div>
+
+<pre>
+SELECT users.name, orders.amount
+FROM users
+INNER JOIN orders ON users.id = orders.user_id;
+</pre>
+
+<div class="question">12. Types of JOINs?</div>
+<div class="answer">
+INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN.
+</div>
+
+<div class="question">13. Difference between INNER JOIN and LEFT JOIN?</div>
+<div class="answer">
+INNER JOIN → Returns matching records only.<br>
+LEFT JOIN → Returns all records from left table.
+</div>
+
+<pre>
+SELECT *
+FROM users
+LEFT JOIN orders ON users.id = orders.user_id;
+</pre>
+
+</div>
+
+<!-- ================= PERFORMANCE ================= -->
+
+<div class="section">
+<h2>Indexes & Performance</h2>
+
+<div class="question">14. What is an Index?</div>
+<div class="answer">
+An index improves query performance by speeding up data retrieval.
+</div>
+
+<pre>
+CREATE INDEX idx_name ON users(name);
+</pre>
+
+<div class="question">15. What is Normalization?</div>
+<div class="answer">
+Normalization organizes data to reduce redundancy.
+</div>
+
+<div class="question">16. What is Denormalization?</div>
+<div class="answer">
+Denormalization improves read performance by adding redundancy.
+</div>
+
+</div>
+
+<!-- ================= SECURITY ================= -->
+
+<div class="section">
+<h2>Security & Transactions</h2>
+
+<div class="question">17. What is SQL Injection?</div>
+<div class="answer">
+A security attack where malicious SQL code is injected into queries.
+</div>
+
+<div class="question">18. How to prevent SQL Injection?</div>
+<div class="answer">
+Using prepared statements and parameterized queries.
+</div>
+
+<pre>
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+$stmt->execute([$email]);
+</pre>
+
+<div class="question">19. What is a Transaction?</div>
+<div class="answer">
+A transaction is a set of queries executed as a single unit.
+</div>
+
+<pre>
+START TRANSACTION;
+INSERT INTO orders VALUES (...);
+COMMIT;
+</pre>
+
+<div class="question">20. What are ACID Properties?</div>
+<div class="answer">
+Atomicity, Consistency, Isolation, Durability.
+</div>
+
+</div>
+
+<!-- ================= ADVANCED ================= -->
+
+<div class="section">
+<h2>Advanced / Tricky Questions</h2>
+
+<div class="question">21. Difference between UNION and UNION ALL?</div>
+<div class="answer">
+UNION removes duplicates.<br>
+UNION ALL keeps duplicates and is faster.
+</div>
+
+<pre>
+SELECT name FROM users
+UNION
+SELECT name FROM employees;
+</pre>
+
+<div class="question">22. What is Subquery?</div>
+<div class="answer">
+A query inside another query.
+</div>
+
+<pre>
+SELECT * FROM users
+WHERE id IN (SELECT user_id FROM orders);
+</pre>
+
+<div class="question">23. What is AUTO_INCREMENT?</div>
+<div class="answer">
+Automatically generates unique numbers for primary key columns.
+</div>
+
+<div class="question">24. Difference between CHAR and VARCHAR?</div>
+<div class="answer">
+CHAR → Fixed length.<br>
+VARCHAR → Variable length.
+</div>
+
+<div class="question">25. What is EXPLAIN?</div>
+<div class="answer">
+Used to analyze and optimize query performance.
+</div>
+
+<pre>
+EXPLAIN SELECT * FROM users WHERE name = 'John';
+</pre>
+
+</div>
+
+</div>
+</body>
+</html>

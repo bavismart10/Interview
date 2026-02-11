@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OAuth2 & JWT Authentication Interview Questions</title>
+
+<link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+<div class="container">
+
+<h1>OAuth2 & JWT Authentication Interview Questions</h1>
+
+<!-- ================= OAUTH2 ================= -->
+
+<div class="section">
+<h2>OAuth2 Authentication</h2>
+
+<div class="question">1. What is OAuth2?</div>
+<div class="answer">
+OAuth2 is an authorization framework that defines how tokens are issued, refreshed, and used.
+</div>
+
+<div class="question">2. Core Concepts in OAuth2</div>
+<div class="answer">
+Resource Owner → User<br>
+Client → Web/Mobile App<br>
+Authorization Server → Issues Tokens<br>
+Resource Server → API that validates tokens
+</div>
+
+<div class="question">3. Common OAuth2 Flows</div>
+<div class="answer">
+Authorization Code (Most secure & common)<br>
+Client Credentials (Machine-to-machine)<br>
+Password Grant (Legacy / Discouraged)<br>
+Refresh Token Flow
+</div>
+
+<div class="question">4. OAuth2 Example Flow</div>
+
+<pre>
+1. User logs in via Authorization Server
+2. Authorization Server issues Access Token
+3. Client sends token to API
+4. API validates token and returns data
+</pre>
+
+</div>
+
+<!-- ================= JWT ================= -->
+
+<div class="section">
+<h2>JWT (JSON Web Token)</h2>
+
+<div class="question">5. What is JWT?</div>
+<div class="answer">
+JWT is a secure token format used to carry authenticated user information in APIs.
+</div>
+
+<div class="question">6. JWT Structure</div>
+<div class="answer">
+HEADER.PAYLOAD.SIGNATURE
+</div>
+
+<div class="question">7. JWT Components</div>
+<div class="answer">
+Header → Algorithm & token type<br>
+Payload → Claims (id, role, exp, iss)<br>
+Signature → Ensures integrity and prevents tampering
+</div>
+
+<div class="question">8. Basic JWT Creation Example in PHP</div>
+
+<pre>
+$header = base64_encode(json_encode(["alg"=>"HS256","typ"=>"JWT"]));
+$payload = base64_encode(json_encode([
+    "id"=>1,
+    "role"=>"admin",
+    "exp"=>time()+3600
+]));
+$signature = hash_hmac("sha256", "$header.$payload", "secretKey", true);
+$jwt = "$header.$payload.".base64_encode($signature);
+echo $jwt;
+</pre>
+
+</div>
+
+<!-- ================= OAUTH2 VS JWT ================= -->
+
+<div class="section">
+<h2>OAuth2 vs JWT (Important Difference)</h2>
+
+<div class="question">9. Difference Between OAuth2 and JWT</div>
+<div class="answer">
+OAuth2 → Authorization framework<br>
+JWT → Token format<br><br>
+
+OAuth2 defines flows & roles<br>
+JWT encodes user data<br><br>
+
+OAuth2 can use JWT or opaque tokens<br>
+JWT is often used inside OAuth2
+</div>
+
+<div class="question">10. Important Notes</div>
+<div class="answer">
+• OAuth2 can exist without JWT<br>
+• JWT can exist without OAuth2
+</div>
+
+</div>
+
+<!-- ================= JWT VALIDATION ================= -->
+
+<div class="section">
+<h2>JWT Validation Process</h2>
+
+<div class="question">11. How JWT is Sent in API Request?</div>
+
+<pre>
+Authorization: Bearer &lt;JWT&gt;
+</pre>
+
+<div class="question">12. How Server Validates JWT?</div>
+<div class="answer">
+• Verify signature (secret/public key)<br>
+• Check expiration (exp)<br>
+• Validate claims (iss, aud, nbf)<br><br>
+
+If valid → Request proceeds<br>
+If invalid → 401 Unauthorized
+</div>
+
+</div>
+
+<!-- ================= TOKEN STORAGE ================= -->
+
+<div class="section">
+<h2>Token Storage Best Practices</h2>
+
+<div class="question">13. Where to Store Tokens?</div>
+<div class="answer">
+Access Token → Short-lived, sent via Authorization header<br>
+Refresh Token → Stored securely (HttpOnly cookie / secure storage)<br>
+Never expose refresh tokens to JavaScript
+</div>
+
+<div class="question">14. What is Access Token vs Refresh Token?</div>
+<div class="answer">
+Access Token → Used to access APIs (short lifespan)<br>
+Refresh Token → Used to generate new access tokens
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

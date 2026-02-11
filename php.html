@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHP Interview Questions</title>
+<link rel="stylesheet" href="public/style.css">
+<style>
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>PHP Interview Questions</h1>
+
+<!-- ================= SECURITY ================= -->
+
+<div class="section">
+<h2>Security</h2>
+
+<div class="question">1. What is SQL Injection?</div>
+<div class="answer">
+SQL Injection is a security vulnerability where an attacker injects malicious SQL code into database queries.
+</div>
+
+<div class="question">2. How to prevent SQL Injection?</div>
+<div class="answer">
+Use Prepared Statements (PDO/MySQLi), validate inputs, avoid direct query insertion, and limit DB privileges.
+</div>
+
+<div class="question">3. What is XSS?</div>
+<div class="answer">
+Cross-Site Scripting (XSS) is an attack where malicious scripts are injected into web pages.
+</div>
+
+<div class="question">4. How to prevent XSS?</div>
+<div class="answer">
+Use htmlspecialchars(), validate inputs, enable Content Security Policy (CSP), and escape output properly.
+</div>
+
+</div>
+
+<!-- ================= OOPS ================= -->
+
+<div class="section">
+<h2>OOPS in PHP</h2>
+
+<div class="question">5. What is OOPS?</div>
+<div class="answer">
+OOPS (Object-Oriented Programming System) is a programming approach where we write code using classes and objects.
+</div>
+
+<div class="question">6. What is Encapsulation?</div>
+<div class="answer">
+Encapsulation means wrapping data and methods inside a class and restricting direct access using access modifiers.
+</div>
+
+<div class="question">7. What is Inheritance?</div>
+<div class="answer">
+Inheritance allows one class to acquire properties and methods of another class using <b>extends</b>.
+Example: Base Model, Base Controller.
+</div>
+
+<div class="question">8. What is Polymorphism?</div>
+<div class="answer">
+Polymorphism means same method name but different behavior depending on the object.
+</div>
+
+<div class="question">9. What is Abstraction?</div>
+<div class="answer">
+Abstraction hides implementation details and shows only essential functionality.
+Example: Model called inside Controller.
+</div>
+
+<table>
+<tr>
+<th>Pillar</th>
+<th>Meaning</th>
+</tr>
+<tr>
+<td>Encapsulation</td>
+<td>Data hiding using access modifiers</td>
+</tr>
+<tr>
+<td>Inheritance</td>
+<td>Parent → Child relationship</td>
+</tr>
+<tr>
+<td>Polymorphism</td>
+<td>Same method, different behavior</td>
+</tr>
+<tr>
+<td>Abstraction</td>
+<td>Hide implementation details</td>
+</tr>
+</table>
+
+<div class="question">10. What are Access Modifiers?</div>
+<div class="answer">
+public → Accessible anywhere<br>
+protected → Class + Child class<br>
+private → Same class only
+</div>
+
+<div class="question">11. What is Constructor?</div>
+<div class="answer">
+Constructor (__construct) is automatically called when an object is created.
+</div>
+
+<div class="question">12. What is Destructor?</div>
+<div class="answer">
+Destructor (__destruct) is called when object is destroyed.
+</div>
+
+<div class="question">13. What is static?</div>
+<div class="answer">
+Static belongs to class, not object. Access using ::
+</div>
+
+<div class="question">14. What is Trait?</div>
+<div class="answer">
+Trait allows code reuse across multiple classes.
+</div>
+
+<div class="question">15. Difference between self and $this?</div>
+<div class="answer">
+$this → Refers to current object.<br>
+self:: → Refers to current class.
+</div>
+
+</div>
+
+<!-- ================= DESIGN PATTERNS ================= -->
+
+<div class="section">
+<h2>PHP Design Patterns</h2>
+
+<div class="question">16. What are Design Patterns?</div>
+<div class="answer">
+Design patterns are reusable solutions to common software design problems that improve maintainability, scalability, and testability.
+</div>
+
+<h3>Creational Patterns</h3>
+<div class="answer">
+Singleton → Ensures only one instance (Example: DB connection)<br>
+Factory → Creates objects without exposing logic (Example: Payment gateway)<br>
+Builder → Builds complex objects step by step
+</div>
+
+<h3>Structural Patterns</h3>
+<div class="answer">
+MVC → Separates Model, View, Controller<br>
+Adapter → Makes incompatible interfaces work together<br>
+Decorator → Adds behavior without modifying class<br>
+Facade → Simple interface to complex system
+</div>
+
+<h3>Behavioral Patterns</h3>
+<div class="answer">
+Observer → Event listeners / Notifications<br>
+Strategy → Change algorithm dynamically<br>
+Command → Encapsulates actions as objects
+</div>
+
+</div>
+
+<!-- ================= MAGIC CONSTANTS ================= -->
+
+<div class="section">
+<h2>Magic Constants</h2>
+
+<table>
+<tr>
+<th>Constant</th>
+<th>Meaning</th>
+</tr>
+<tr><td>__LINE__</td><td>Current line number</td></tr>
+<tr><td>__FILE__</td><td>Full file path</td></tr>
+<tr><td>__DIR__</td><td>Directory of file</td></tr>
+<tr><td>__FUNCTION__</td><td>Function name</td></tr>
+<tr><td>__CLASS__</td><td>Class name</td></tr>
+<tr><td>__METHOD__</td><td>Method name</td></tr>
+<tr><td>__NAMESPACE__</td><td>Current namespace</td></tr>
+</table>
+
+</div>
+
+<!-- ================= IMPORTANT FOR 3 YEARS ================= -->
+
+<div class="section">
+<h2>Important PHP Questions (3 Years Experience)</h2>
+
+<div class="question">17. Difference between include and require?</div>
+<div class="answer">
+include → Warning if file missing.<br>
+require → Fatal error if file missing.
+</div>
+
+<div class="question">18. What is Namespace?</div>
+<div class="answer">
+Namespace avoids class name conflicts in large applications.
+</div>
+
+<div class="question">19. What is Composer?</div>
+<div class="answer">
+Composer is a dependency manager for PHP.
+</div>
+
+<div class="question">20. What is Autoloading?</div>
+<div class="answer">
+Automatically loads class files using spl_autoload_register() or Composer PSR-4.
+</div>
+
+<div class="question">21. What is Session and Cookie?</div>
+<div class="answer">
+Session → Stored on server.<br>
+Cookie → Stored in browser.
+</div>
+
+<div class="question">22. What is REST API in PHP?</div>
+<div class="answer">
+REST API allows client-server communication using HTTP methods.
+</div>
+
+<div class="question">23. What is PDO?</div>
+<div class="answer">
+PDO (PHP Data Objects) provides secure database access using prepared statements.
+</div>
+
+<div class="question">24. What is Dependency Injection?</div>
+<div class="answer">
+Dependency Injection means passing required objects to a class instead of creating them inside.
+</div>
+
+<div class="question">25. How to improve PHP performance?</div>
+<div class="answer">
+Use caching, optimize queries, use indexes, enable OPcache, reduce DB calls, and avoid unnecessary loops.
+</div>
+
+</div>
+
+<!-- ================= MICROSERVICES ================= -->
+
+<div class="section">
+<h2>Microservices</h2>
+
+<div class="question">26. What is Microservices?</div>
+<div class="answer">
+Microservices is an architecture where an application is divided into small independent services that communicate via APIs.
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

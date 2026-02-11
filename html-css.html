@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML & CSS Interview Questions</title>
+
+<link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+<div class="container">
+
+<h1>HTML & CSS Interview Questions</h1>
+
+<!-- ================= HTML ================= -->
+
+<div class="section">
+<h2>HTML Questions</h2>
+
+<div class="question">1. What is HTML?</div>
+<div class="answer">
+HTML (HyperText Markup Language) is used to structure web pages.
+</div>
+
+<div class="question">2. Difference between HTML and HTML5?</div>
+<div class="answer">
+HTML5 supports semantic tags, audio/video, local storage, and better mobile support.
+</div>
+
+<div class="question">3. What are Semantic Tags?</div>
+<div class="answer">
+Semantic tags describe the meaning and purpose of the content.
+<br>
+Examples: &lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;footer&gt;, &lt;aside&gt;
+</div>
+
+<div class="question">4. Difference between div and span?</div>
+<div class="answer">
+div → Block-level element.<br>
+span → Inline-level element.
+</div>
+
+<div class="question">5. What is iframe?</div>
+<div class="answer">
+An iframe embeds another HTML page within the current page.
+</div>
+
+<div class="question">6. What are Meta Tags?</div>
+<div class="answer">
+Meta tags provide page information like description, charset, and viewport.
+<br>
+Example: &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+</div>
+
+<div class="question">7. What are block-level and inline elements?</div>
+<div class="answer">
+Block elements take full width (div, p, h1).<br>
+Inline elements take only required width (span, a, strong).
+</div>
+
+<div class="question">8. What is the difference between GET and POST?</div>
+<div class="answer">
+GET → Data sent via URL, less secure.<br>
+POST → Data sent in body, more secure.
+</div>
+
+<div class="question">9. What is localStorage and sessionStorage in HTML5?</div>
+<div class="answer">
+localStorage → Stores data permanently.<br>
+sessionStorage → Stores data until tab/browser closes.
+</div>
+
+</div>
+
+<!-- ================= CSS ================= -->
+
+<div class="section">
+<h2>CSS Questions</h2>
+
+<div class="question">10. What is CSS?</div>
+<div class="answer">
+CSS styles and layouts web pages by controlling colors, fonts, spacing, and positioning.
+</div>
+
+<div class="question">11. Difference between class and id in CSS?</div>
+<div class="answer">
+Class → Reusable multiple times.<br>
+ID → Must be unique.
+</div>
+
+<div class="question">12. What is the CSS Box Model?</div>
+<div class="answer">
+Box Model = content + padding + border + margin.
+</div>
+
+<pre>
+div {
+  width: 200px;
+  padding: 10px;
+  border: 5px solid black;
+  margin: 20px;
+}
+</pre>
+
+<div class="question">13. What is display property?</div>
+<div class="answer">
+Controls layout type: block, inline, inline-block, none, flex, grid.
+</div>
+
+<div class="question">14. What is position property?</div>
+<div class="answer">
+static, relative, absolute, fixed, sticky.
+</div>
+
+<div class="question">15. What is Flexbox?</div>
+<div class="answer">
+Flexbox is used to align items in a single row or column.
+</div>
+
+<pre>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</pre>
+
+<div class="question">16. What is CSS Grid?</div>
+<div class="answer">
+Grid is used to create two-dimensional layouts using rows and columns.
+</div>
+
+<div class="question">17. What is Responsive Design?</div>
+<div class="answer">
+Responsive design adapts layout for different screen sizes using media queries.
+</div>
+
+<pre>
+@media (max-width: 768px) {
+  body {
+    background: lightgray;
+  }
+}
+</pre>
+
+<div class="question">18. Difference between visibility: hidden and display: none?</div>
+<div class="answer">
+visibility: hidden → Hides element but keeps space.<br>
+display: none → Removes element from layout.
+</div>
+
+<div class="question">19. What is z-index?</div>
+<div class="answer">
+Controls stacking order of positioned elements.
+</div>
+
+<div class="question">20. What is specificity in CSS?</div>
+<div class="answer">
+Specificity determines which CSS rule is applied when multiple rules target the same element.
+Priority: Inline > ID > Class > Element
+</div>
+
+<div class="question">21. What is the difference between relative and absolute positioning?</div>
+<div class="answer">
+relative → Positioned relative to itself.<br>
+absolute → Positioned relative to nearest positioned parent.
+</div>
+
+<div class="question">22. What is overflow property?</div>
+<div class="answer">
+Controls content overflow: visible, hidden, scroll, auto.
+</div>
+
+<div class="question">23. What is pseudo-class?</div>
+<div class="answer">
+Used to define special states of elements like :hover, :focus, :nth-child().
+</div>
+
+<div class="question">24. What is difference between em and rem?</div>
+<div class="answer">
+em → Relative to parent font-size.<br>
+rem → Relative to root (html) font-size.
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHP API Interview Questions</title>
+
+<link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+<div class="container">
+
+<h1>PHP API Interview Questions</h1>
+
+<!-- ================= BASIC ================= -->
+
+<div class="section">
+<h2>Basic Concepts</h2>
+
+<div class="question">1. What is a Web API?</div>
+<div class="answer">
+A Web API allows communication between client and server over HTTP using JSON or XML.
+</div>
+
+<div class="question">2. What is a RESTful API?</div>
+<div class="answer">
+A RESTful API follows REST principles and uses HTTP methods like GET, POST, PUT, DELETE.
+</div>
+
+<div class="question">3. Difference between REST and SOAP?</div>
+<div class="answer">
+REST → Lightweight, mostly JSON.<br>
+SOAP → Heavy protocol, uses XML and strict standards.
+</div>
+
+<div class="question">4. What are HTTP Methods?</div>
+<div class="answer">
+GET (Read), POST (Create), PUT (Update), DELETE (Remove).
+</div>
+
+<pre>
+GET /users
+POST /users
+PUT /users/1
+DELETE /users/1
+</pre>
+
+<div class="question">5. What are HTTP Status Codes?</div>
+<div class="answer">
+200 OK<br>
+201 Created<br>
+400 Bad Request<br>
+401 Unauthorized<br>
+403 Forbidden<br>
+404 Not Found<br>
+500 Internal Server Error
+</div>
+
+<div class="question">6. What is JSON?</div>
+<div class="answer">
+JSON is a lightweight data format used for API communication.
+</div>
+
+<pre>
+{
+  "name": "Bavithran",
+  "role": "PHP Developer"
+}
+</pre>
+
+<div class="question">7. What is Authentication in API?</div>
+<div class="answer">
+Authentication verifies user identity using tokens like JWT or API keys.
+</div>
+
+<div class="question">8. What is Statelessness in REST?</div>
+<div class="answer">
+Each request contains all necessary information. Server does not store client state.
+</div>
+
+</div>
+
+<!-- ================= PHP API ================= -->
+
+<div class="section">
+<h2>PHP API Implementation</h2>
+
+<div class="question">9. How to return JSON response in PHP?</div>
+<div class="answer">
+Use header() and json_encode().
+</div>
+
+<pre>
+header("Content-Type: application/json");
+$data = ["status" => "success"];
+echo json_encode($data);
+</pre>
+
+<div class="question">10. How to receive JSON request in PHP?</div>
+<div class="answer">
+Use php://input and json_decode().
+</div>
+
+<pre>
+$data = json_decode(file_get_contents("php://input"), true);
+echo $data['name'];
+</pre>
+
+<div class="question">11. What is CORS?</div>
+<div class="answer">
+CORS allows or blocks requests from different domains.
+</div>
+
+<pre>
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+</pre>
+
+<div class="question">12. What is CRUD in API?</div>
+<div class="answer">
+CRUD → Create, Read, Update, Delete.
+</div>
+
+</div>
+
+<!-- ================= SECURITY ================= -->
+
+<div class="section">
+<h2>Security & Best Practices</h2>
+
+<div class="question">13. How to prevent SQL Injection?</div>
+<div class="answer">
+Use prepared statements and parameter binding.
+</div>
+
+<pre>
+$stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+$stmt->execute([$email]);
+</pre>
+
+<div class="question">14. What is JWT?</div>
+<div class="answer">
+JWT (JSON Web Token) is used to securely transmit authentication data.
+</div>
+
+<div class="question">15. What is Rate Limiting?</div>
+<div class="answer">
+Limits number of API requests per user/IP to prevent abuse.
+</div>
+
+<div class="question">16. What is API Versioning?</div>
+<div class="answer">
+Maintaining multiple API versions like:
+<br>/api/v1/users
+<br>/api/v2/users
+</div>
+
+<div class="question">17. What is 401 vs 403?</div>
+<div class="answer">
+401 → Not authenticated.<br>
+403 → Authenticated but no permission.
+</div>
+
+</div>
+
+<!-- ================= ADVANCED ================= -->
+
+<div class="section">
+<h2>Advanced / Interview Tricky Questions</h2>
+
+<div class="question">18. Difference between PUT and PATCH?</div>
+<div class="answer">
+PUT → Updates full resource.<br>
+PATCH → Updates partial resource.
+</div>
+
+<div class="question">19. What is Idempotent Method?</div>
+<div class="answer">
+Repeated requests produce the same result.<br>
+GET, PUT, DELETE are idempotent.
+</div>
+
+<div class="question">20. What is Pagination in API?</div>
+<div class="answer">
+Pagination limits large responses into smaller pages.
+</div>
+
+<pre>
+SELECT * FROM users LIMIT 10 OFFSET 0;
+</pre>
+
+<div class="question">21. How to design secure and scalable API?</div>
+<div class="answer">
+• Use HTTPS<br>
+• Use Token/JWT Authentication<br>
+• Validate input<br>
+• Use Prepared statements<br>
+• Implement Rate limiting<br>
+• Use Pagination & Caching<br>
+• Move heavy tasks to Queue
+</div>
+
+</div>
+
+</div>
+</body>
+</html>

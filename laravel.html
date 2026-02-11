@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laravel Interview Questions</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f6f9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 15px;
+}
+
+.section {
+    background: #ffffff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+h2 {
+    margin-top: 25px;
+    color: #333;
+}
+
+.question {
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.answer {
+    margin: 5px 0 10px 0;
+    color: #555;
+}
+
+pre {
+    background: #1e1e1e;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    overflow-x: auto;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Laravel Interview Questions</h1>
+
+<!-- ================= BASIC ================= -->
+
+<div class="section">
+<h2>Laravel Basics</h2>
+
+<div class="question">1. What is Laravel?</div>
+<div class="answer">
+Laravel is an open-source PHP framework based on MVC architecture designed for fast, secure, and maintainable web development.
+</div>
+
+<div class="question">2. What is MVC?</div>
+<div class="answer">
+Model → Handles database & business logic.<br>
+View → Handles UI (Blade).<br>
+Controller → Handles request & response.
+</div>
+
+<div class="question">3. What is Artisan?</div>
+<div class="answer">
+Artisan is Laravel's command line tool.
+</div>
+
+<pre>
+php artisan make:controller UserController
+php artisan make:model User -m
+</pre>
+
+<div class="question">4. What is Composer?</div>
+<div class="answer">
+Composer is a dependency manager for PHP used to install Laravel packages.
+</div>
+
+</div>
+
+<!-- ================= ROUTING ================= -->
+
+<div class="section">
+<h2>Routing & Controllers</h2>
+
+<div class="question">5. What is Routing?</div>
+<div class="answer">
+Routing maps URLs to controllers or closures.
+</div>
+
+<pre>
+Route::get('/users', [UserController::class, 'index']);
+</pre>
+
+<div class="question">6. What is Middleware?</div>
+<div class="answer">
+Middleware filters HTTP requests before reaching controllers (Auth, Role check).
+</div>
+
+<pre>
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth');
+</pre>
+
+</div>
+
+<!-- ================= ELOQUENT ================= -->
+
+<div class="section">
+<h2>Eloquent ORM</h2>
+
+<div class="question">7. What is Eloquent?</div>
+<div class="answer">
+Eloquent is Laravel’s ORM used to interact with database using models.
+</div>
+
+<pre>
+$users = User::where('status',1)->get();
+</pre>
+
+<div class="question">8. find() vs first() vs get()</div>
+<div class="answer">
+find() → By primary key.<br>
+first() → First matching record.<br>
+get() → Multiple records.
+</div>
+
+<pre>
+User::find(1);
+User::where('status',1)->first();
+User::where('status',1)->get();
+</pre>
+
+<div class="question">9. N+1 Problem?</div>
+<div class="answer">
+Multiple queries inside a loop due to lazy loading.
+</div>
+
+❌ Problem:
+<pre>
+$users = User::all();
+foreach($users as $user){
+    echo $user->posts;
+}
+</pre>
+
+✅ Solution (Eager Loading):
+<pre>
+$users = User::with('posts')->get();
+</pre>
+
+</div>
+
+<!-- ================= AUTH & SECURITY ================= -->
+
+<div class="section">
+<h2>Authentication & Security</h2>
+
+<div class="question">10. How Laravel handles Authentication?</div>
+<div class="answer">
+Using Breeze, Jetstream, Sanctum.
+</div>
+
+<pre>
+if(Auth::attempt(['email'=>$email,'password'=>$password])){
+    return redirect()->intended('dashboard');
+}
+</pre>
+
+<div class="question">11. What is CSRF Protection?</div>
+<div class="answer">
+Prevents unauthorized form submissions.
+</div>
+
+<pre>
+<form method="POST">
+    @csrf
+</form>
+</pre>
+
+</div>
+
+<!-- ================= QUEUE ================= -->
+
+<div class="section">
+<h2>Queue & Jobs</h2>
+
+<div class="question">12. What is Queue?</div>
+<div class="answer">
+Queues process background tasks like emails.
+</div>
+
+<pre>
+php artisan make:job SendEmailJob
+</pre>
+
+<pre>
+class SendEmailJob implements ShouldQueue
+{
+    public function handle(){
+        \Log::info('Email sent');
+    }
+}
+</pre>
+
+Dispatch Job:
+<pre>
+SendEmailJob::dispatch();
+</pre>
+
+</div>
+
+<!-- ================= CACHE ================= -->
+
+<div class="section">
+<h2>Cache & Optimization</h2>
+
+<div class="question">13. What is Caching?</div>
+<div class="answer">
+Stores frequently used data to improve performance.
+</div>
+
+<pre>
+Cache::remember('users',60,function(){
+    return User::all();
+});
+</pre>
+
+<div class="question">14. How to optimize Laravel?</div>
+<div class="answer">
+Use caching, eager loading, indexing, queues, config cache.
+</div>
+
+<pre>
+php artisan config:cache
+php artisan route:cache
+</pre>
+
+</div>
+
+<!-- ================= ADVANCED ================= -->
+
+<div class="section">
+<h2>Advanced Concepts</h2>
+
+<div class="question">15. What is Dependency Injection?</div>
+<div class="answer">
+Laravel automatically injects class dependencies.
+</div>
+
+<pre>
+public function __construct(UserService $service){
+    $this->service = $service;
+}
+</pre>
+
+<div class="question">16. What is Soft Delete?</div>
+<div class="answer">
+Soft delete marks record using deleted_at column instead of deleting permanently.
+</div>
+
+<pre>
+use SoftDeletes;
+User::withTrashed()->get();
+User::restore();
+</pre>
+
+<div class="question">17. What is Database Transaction?</div>
+<div class="answer">
+Ensures all queries succeed or rollback.
+</div>
+
+<pre>
+DB::transaction(function(){
+    Order::create([...]);
+    Payment::create([...]);
+});
+</pre>
+
+</div>
+
+</div>
+</body>
+</html>

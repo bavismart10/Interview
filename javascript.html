@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Interview Questions</title>
+
+<link rel="stylesheet" href="public/style.css">
+
+</head>
+<body>
+
+<div class="container">
+
+<h1>JavaScript Interview Questions</h1>
+
+<div class="section">
+<h2>JavaScript Basics</h2>
+
+<div class="question">1. What is JavaScript?</div>
+<div class="answer">
+JavaScript is a client-side scripting language used to make web pages interactive and dynamic.
+</div>
+
+<div class="question">2. Difference between var, let, and const?</div>
+<div class="answer">
+var → Function-scoped, can be redeclared.<br>
+let → Block-scoped, cannot be redeclared.<br>
+const → Block-scoped, cannot be reassigned.
+</div>
+
+<div class="question">3. What is Hoisting?</div>
+<div class="answer">
+Hoisting moves variable and function declarations to the top of their scope before execution.
+</div>
+
+<div class="question">4. What are Data Types?</div>
+<div class="answer">
+Primitive: String, Number, Boolean, Undefined, Null, Symbol, BigInt.<br>
+Non-Primitive: Object, Array, Function.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Functions & Scope</h2>
+
+<div class="question">5. What is a Function?</div>
+<div class="answer">
+A reusable block of code that performs a specific task.
+</div>
+
+<div class="question">6. Arrow Function vs Normal Function?</div>
+<div class="answer">
+Arrow functions do not have their own <strong>this</strong>, normal functions do.
+</div>
+
+<div class="question">7. What is Closure?</div>
+<div class="answer">
+A closure remembers variables from its outer scope even after the outer function finishes execution.
+</div>
+
+</div>
+
+<div class="section">
+<h2>DOM & Events</h2>
+
+<div class="question">8. What is DOM?</div>
+<div class="answer">
+DOM represents the HTML page as objects that JavaScript can manipulate.
+</div>
+
+<div class="question">9. How to select elements?</div>
+<div class="answer">
+getElementById(), getElementsByClassName(), querySelector(), querySelectorAll()
+</div>
+
+<div class="question">10. What is Event Bubbling?</div>
+<div class="answer">
+Event bubbling means an event moves from child element to parent element.
+</div>
+
+<div class="question">11. Difference between == and ===?</div>
+<div class="answer">
+== compares only value.<br>
+=== compares value and data type.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Asynchronous JavaScript</h2>
+
+<div class="question">12. What is Asynchronous JavaScript?</div>
+<div class="answer">
+It allows tasks like API calls to run in the background without blocking the main thread.
+</div>
+
+<div class="question">13. What is a Callback?</div>
+<div class="answer">
+A function passed as an argument and executed later.
+</div>
+
+<div class="question">14. What is a Promise?</div>
+<div class="answer">
+An object representing completion or failure of an async operation.<br>
+States: Pending, Fulfilled, Rejected.
+</div>
+
+<div class="question">15. What are async and await?</div>
+<div class="answer">
+Keywords used to handle promises in a cleaner synchronous-looking way.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Arrays & Objects</h2>
+
+<div class="question">16. Common Array Methods?</div>
+<div class="answer">
+map(), filter(), reduce(), forEach(), push(), pop()
+</div>
+
+<div class="question">17. Difference between null and undefined?</div>
+<div class="answer">
+undefined → Declared but not assigned.<br>
+null → Intentionally empty.
+</div>
+
+<div class="question">18. What is Destructuring?</div>
+<div class="answer">
+Extract values from arrays or objects into variables easily.
+</div>
+
+<pre>
+const user = { name: "Bavi", age: 25 };
+const { name, age } = user;
+
+const arr = [10, 20, 30];
+const [a, b, c] = arr;
+</pre>
+
+</div>
+
+<div class="section">
+<h2>ES6+ & Browser</h2>
+
+<div class="question">19. What is Template Literal?</div>
+<div class="answer">
+Uses backticks (`) and allows string interpolation using ${}.
+</div>
+
+<div class="question">20. What is Spread Operator?</div>
+<div class="answer">
+The spread operator (...) expands arrays or objects into elements.
+</div>
+
+<div class="question">21. localStorage vs sessionStorage?</div>
+<div class="answer">
+localStorage → Stores data permanently.<br>
+sessionStorage → Stores data until browser closes.
+</div>
+
+<div class="question">22. What is CORS?</div>
+<div class="answer">
+CORS controls how resources are shared between different domains.
+</div>
+
+<div class="question">23. Is JavaScript synchronous or asynchronous?</div>
+<div class="answer">
+JavaScript is single-threaded and synchronous, but supports async operations using callbacks, promises, and async/await.
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
