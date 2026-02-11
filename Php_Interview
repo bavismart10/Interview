@@ -1,0 +1,107 @@
+------- Php Interview Questions ---------
+
+SQL Injection
+
+1) SQL injection is a code injection technique that might destroy your database.
+2) SQL injection is one of the most common web hacking techniques.
+3) SQL Injection is a security vulnerability where an attacker inserts (or “injects”) malicious SQL code into your application’s database queries.
+
+How to Avoid SQL Injection
+
+1. Use Prepared Statements (MOST IMPORTANT)
+	Example using PDO (recommended) - PHP Data Objects (PDO is a database abstraction layer in PHP.)
+	Example using MySQLi
+
+2. Never put user input directly into queries
+3. Validate & Sanitize Inputs
+4. Use Stored Procedures (Optional)
+5. Limit Database Privileges
+
+What is OOPS?
+
+OOPS (Object-Oriented Programming System) is a programming approach where we write code using objects and classes instead of only functions.
+
+Basic OOPS Terms
+
+Class → Blueprint
+
+Object → Real instance of a class 
+
+Quick Interview Summary 📌
+Pillar	        Meaning
+Encapsulation	Data hiding using access modifiers
+Inheritance	Parent → Child
+Polymorphism	Same method, different behavior
+Abstraction	Hide implementation, show functionality
+
+6) Encapsulation
+Encapsulation means wrapping data (variables) and methods inside a class and restricting direct access using access modifiers. 👉 Example. Public,private,protected.
+
+7) Inheritance
+Inheritance allows one class to acquire properties and methods of another class using extends. 👉 Example. Base Model, Base Controller
+
+8) Polymorphism
+Polymorphism means same method name but different behavior depending on the object. 
+
+9) Abstraction
+Hiding implementation details, showing only essential features or functionality. 👉 Example. Model called inside Controller
+
+10) Access Modifiers
+📌 public, protected, private
+
+public → anywhere
+
+protected → class + child
+
+private → same class only
+
+11) Constructor
+
+Automatically called when object is created
+
+12) Destructor
+
+Called when object is destroyed.
+
+13) What is static?
+
+Belongs to class, not object
+
+Access using ::
+
+14) What is a Trait?
+
+Used to reuse functionality or code across in multiple classes.
+
+15) final keyword
+
+Prevents inheritance or overriding.
+
+16) Difference between self and this
+
+$this → current object
+
+self:: → current class
+
+17) List of Magic Constants (Most Important)
+Magic constants are predefined PHP constants commonly used for debugging, logging, and file path management in MVC applications.
+
+Magic Constant	Meaning
+__LINE__	Current line number
+__FILE__	Full file path
+__DIR__	        Directory of the file
+__FUNCTION__	Function name
+__CLASS__	Class name
+__METHOD__	Class method name
+__NAMESPACE__	Current namespace
+
+⚡ Most Asked in Interviews
+
+__FILE__, __DIR__ → path handling
+
+__CLASS__, __METHOD__ → logging
+
+__LINE__ → debugging
+
+18) Microservices is an architecture where an application is split into small, 
+independent services that communicate through APIs and can be developed and deployed separately.
