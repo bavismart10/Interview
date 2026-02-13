@@ -13,10 +13,13 @@
 <div class="container">
 
 <h1>PHP Interview Questions</h1>
-
 <!-- ================= SECURITY ================= -->
 
 <div class="section">
+<h2>What is PHP?</h2>
+<div class="answer">
+PHP is an open-source, free, and powerful server-side scripting language used to create dynamic and interactive web pages.
+</div>
 <h2>Security</h2>
 
 <div class="question">1. What is SQL Injection?</div>
@@ -185,6 +188,198 @@ Command → Encapsulates actions as objects
 </table>
 
 </div>
+<div class="section">
+<h2>Magic Methods</h2>
+
+<table>
+<tr>
+<td>__construct()</td>
+<td>Automatically called when an object is created.</td>
+<td>Used to initialize properties.</td>
+</tr>
+
+<tr>
+<td>__destruct()</td>
+<td>Automatically called when object is destroyed.</td>
+<td>Used to close connections or cleanup.</td>
+</tr>
+
+<tr>
+<td>__get()</td>
+<td>Called when accessing inaccessible/private property.</td>
+<td>Handles undefined property read.</td>
+</tr>
+
+<tr>
+<td>__set()</td>
+<td>Called when setting inaccessible/private property.</td>
+<td>Handles undefined property write.</td>
+</tr>
+
+<tr>
+<td>__toString()</td>
+<td>Called when object is treated as a string.</td>
+<td>Returns string representation of object.</td>
+</tr>
+</table>
+
+</div>
+
+
+<div class="section">
+<h2>PHP 7 vs PHP 8 Differences (With Explanation & Examples)</h2>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>Feature</th>
+<th>PHP 7</th>
+<th>PHP 8</th>
+</tr>
+
+<tr>
+<td><b>Saner String to Number Comparisons</b></td>
+<td>
+Non-numeric strings were converted to 0 during loose comparison.
+<pre>
+var_dump(0 == "abc"); // true
+</pre>
+</td>
+<td>
+Non-numeric strings are NOT converted to 0.
+Safer comparison behavior.
+<pre>
+var_dump(0 == "abc"); // false
+</pre>
+</td>
+</tr>
+
+<tr>
+<td><b>Constructor Property Promotion</b></td>
+<td>
+More boilerplate code (property declared separately).
+<pre>
+class User {
+    public $name;
+
+    public function __construct($name) {
+        $this->name = $name;
+    }
+}
+</pre>
+</td>
+<td>
+Less boilerplate code (declare & assign in constructor).
+<pre>
+class User {
+    public function __construct(
+        public string $name
+    ) {}
+}
+</pre>
+</td>
+</tr>
+
+<tr>
+<td><b>Type Declarations</b></td>
+<td>
+Scalar type declarations introduced (int, float, string, bool).
+<pre>
+function sum(int $a, int $b) {
+    return $a + $b;
+}
+</pre>
+</td>
+<td>
+Union types allow multiple data types.
+<pre>
+function test(int|string $data) {
+    return $data;
+}
+</pre>
+</td>
+</tr>
+
+<tr>
+<td><b>Null Handling</b></td>
+<td>
+Null coalescing operator (??) to provide default values.
+<pre>
+$name = $_GET['name'] ?? 'Guest';
+</pre>
+</td>
+<td>
+Nullsafe operator (?->) to avoid null errors.
+<pre>
+$user?->profile?->name;
+</pre>
+</td>
+</tr>
+
+<tr>
+<td><b>Named Arguments</b></td>
+<td>
+Only positional arguments supported.
+<pre>
+function user($name, $age) {}
+user("Bavi", 25);
+</pre>
+</td>
+<td>
+Named arguments introduced.
+<pre>
+function user($name, $age) {}
+user(age:25, name:"Bavi");
+</pre>
+</td>
+</tr>
+
+<tr>
+<td><b>Switch Alternative</b></td>
+<td>
+Only switch statement available.
+<pre>
+switch($x) {
+    case 1:
+        echo "One";
+        break;
+}
+</pre>
+</td>
+<td>
+Match expression introduced (strict comparison).It performs strict comparison and does not require a break statement.
+<pre>
+echo match($x) {
+    1 => "One",
+    default => "Other",
+};
+</pre>
+</td>
+</tr>
+
+<tr>
+<td><b>Annotations</b></td>
+<td>
+Doc comments used for metadata.
+<pre>
+/**
+ * @Route("/home")
+ */
+</pre>
+</td>
+<td>
+Attributes (#[...]) introduced.
+<pre>
+#[Route('/home')]
+</pre>
+</td>
+</tr>
+
+</table>
+<br>
+PHP 8 improves error handling by converting many warnings into exceptions like TypeError and ValueError, making debugging easier and allowing errors to be handled using try-catch blocks compared to PHP 7.
+</div>
+
 
 <!-- ================= IMPORTANT FOR 3 YEARS ================= -->
 
@@ -196,6 +391,7 @@ Command → Encapsulates actions as objects
 include → Warning if file missing.<br>
 require → Fatal error if file missing.
 </div>
+
 
 <div class="question">18. What is Namespace?</div>
 <div class="answer">

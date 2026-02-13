@@ -37,7 +37,7 @@ h2 {
 
 .answer {
     margin: 5px 0 10px 0;
-    color: #555;
+    color: #222;
 }
 
 pre {
@@ -58,6 +58,12 @@ table {
 table, th, td {
     border: 1px solid #ccc;
     padding: 8px;
+}
+.container h1 {
+    color: #111;
+}
+.section h2 {
+   color: #0b4277; 
 }
 
 @media (max-width: 768px) {
