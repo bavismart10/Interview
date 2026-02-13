@@ -53,6 +53,9 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    display: block;       /* makes table a block element */
+    overflow-x: auto;     /* enables horizontal scroll */
+    white-space: nowrap;  /* prevents table cells from wrapping */
 }
 
 table, th, td {
