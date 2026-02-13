@@ -67,6 +67,31 @@ table, th, td {
    color: #0b4277; 
 }
 
+.php_comparision {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-size: 14px; /* smaller font for compact view */
+    table-layout: auto; /* allow flexible column width */
+}
+
+.php_comparision th,
+.php_comparision td {
+    padding: 6px 8px;  /* compact padding */
+    border: 1px solid #ccc;
+    vertical-align: top;
+}
+
+.php_comparision th {
+    background-color: #f0f0f0;
+    text-align: left;
+}
+
+.php_comparision pre {
+    font-size: 12px;  /* smaller code blocks */
+    overflow-x: auto; /* horizontal scroll for long code */
+}
+
 @media (max-width: 768px) {
     .section {
         padding: 15px;
@@ -78,5 +103,19 @@ table, th, td {
         display: block;       /* makes table a block element */
         overflow-x: auto;     /* enables horizontal scroll */
         white-space: nowrap;  /* prevents table cells from wrapping */
+    }
+    .php_comparision {
+        display: block;       /* allow table to scroll */
+        overflow-x: auto;     /* horizontal scroll on mobile */
+        white-space: nowrap;  /* prevent wrapping */
+    }
+
+    .php_comparision th,
+    .php_comparision td {
+        padding: 4px 6px; /* even more compact padding for mobile */
+    }
+
+    .php_comparision pre {
+        font-size: 11px;
     }
 }
