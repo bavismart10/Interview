@@ -31,8 +31,9 @@ h2 {
 }
 
 .question {
-    font-weight: 600;
+    font-weight: 700;
     margin-top: 15px;
+    color: #118eab;
 }
 
 .answer {
@@ -60,11 +61,11 @@ table, th, td {
     padding: 8px;
 }
 .container h1 {
-    color: #111;
+    color: green;
     font-size: 1.8rem;
 }
 .section h2 {
-   color: #0b4277; 
+   color: #111; 
 }
 
 .php_comparision {

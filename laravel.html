@@ -137,9 +137,9 @@ if(Auth::attempt(['email'=>$email,'password'=>$password])){
 }
 </pre>
 
-<div class="question">11. What is CSRF Protection?</div>
+<div class="question">11. What is CSRF (Cross-Site Request Forgery), and how does Laravel prevent it?</div>
 <div class="answer">
-Prevents unauthorized form submissions.
+Using csrf tokens to Prevents unauthorized form submissions. 
 </div>
 
 <pre>
@@ -246,9 +246,74 @@ DB::transaction(function(){
     Payment::create([...]);
 });
 </pre>
+<div class="question">18. How do you measure performance in Laravel?</div>
+<div class="answer">
+Benchmark Helper.
+</div>
+
+<div class="question">19. What is Benchmark in Laravel?</div>
+<div class="answer">
+Benchmark in Laravel is a built-in helper used to measure the execution time of a piece of code and dump the result with timing information.
+<br>
+I use Laravel's Benchmark helper to measure and compare execution time before optimizing.
+</div>
+<pre>
+use Illuminate\Support\Benchmark;
+
+Benchmark::dd(function () {
+    return User::all();
+});
+</pre>
+
+<div class="question">20. Explain the lifecycle of a Laravel request?</div>
+<div class="answer">
+
+<p><strong>1. Entry Point</strong> → All requests enter through <code>public/index.php</code>.</p>
+
+<p><strong>2. Bootstrap</strong> → Laravel loads configuration and bootstraps the application.</p>
+
+<p><strong>3. Service Providers</strong> → All registered service providers are loaded.</p>
+
+<p><strong>4. Middleware</strong> → Request passes through global and route middleware.</p>
+
+<p><strong>5. Routing</strong> → Router matches the request to a route.</p>
+
+<p><strong>6. Controller / Closure</strong> → The matched controller method or closure executes.</p>
+
+<p><strong>7. Response</strong> → A response is generated (view, JSON, redirect, etc.).</p>
+
+<p><strong>8. Send Response</strong> → Response is sent back to the browser.</p>
+
+</div>
+<div class="question">21. What's the difference between a Service Container and a Service Provider in Laravel?</div>
+<div class="answer">
+
+<p><strong>Service Container</strong> → The dependency injection container that manages class dependencies and resolves objects automatically.</p>
+
+<pre>
+app()->make(UserService::class);
+</pre>
+
+<p><strong>Service Provider</strong> → A place to register bindings, services, and application bootstrapping logic into the service container.</p>
+
+<pre>
+public function register()
+{
+    $this->app->bind(UserService::class, function ($app) {
+        return new UserService();
+    });
+}
+</pre>
+
+<p><strong>Simple Difference:</strong></p>
+<p>• Service Container → Stores and resolves dependencies.</p>
+<p>• Service Provider → Registers services into the container.</p>
 
 </div>
 
+
+
+</div>
 </div>
 </body>
 </html>

@@ -17,27 +17,40 @@
 <div class="section">
 <h2>JavaScript Basics</h2>
 
-<div class="question">1. What is JavaScript?</div>
+<div class="question">What is JavaScript?</div>
 <div class="answer">
 JavaScript is a client-side scripting language used to make web pages interactive and dynamic.
 </div>
 
-<div class="question">2. Difference between var, let, and const?</div>
+<div class="question">Difference between var, let, and const?</div>
 <div class="answer">
-var → Function-scoped, can be redeclared.<br>
-let → Block-scoped, cannot be redeclared.<br>
-const → Block-scoped, cannot be reassigned.
+✅ var → Function-scoped, can be redeclared and reassigned.<br>
+✅ let → Block-scoped, cannot be redeclared but can be reassigned.<br>
+✅ const → Block-scoped, cannot be redeclared or reassigned.
 </div>
 
-<div class="question">3. What is Hoisting?</div>
+<div class="question">What is Hoisting?</div>
 <div class="answer">
-Hoisting moves variable and function declarations to the top of their scope before execution.
+Hoisting moves variable and function declarations to the top of their scope before code execution.
 </div>
 
-<div class="question">4. What are Data Types?</div>
+<div class="question">What Temporal Dead Zone (TDZ)?</div>
+<div class="answer">
+TDZ is the time period where a let or const variable exists but cannot be used before 
+its declaration, and accessing it will throw a ReferenceError.
+</div>
+
+<div class="question">What are Data Types?</div>
 <div class="answer">
 Primitive: String, Number, Boolean, Undefined, Null, Symbol, BigInt.<br>
 Non-Primitive: Object, Array, Function.
+</div>
+
+<div class="question">What are Prototype?</div>
+<div class="answer">
+<p>A prototype is the mechanism JavaScript uses to implement inheritance.
+Every JavaScript object can inherit properties and methods from another object through its prototype. (OR)</p>
+<p>Prototype is the mechanism in JavaScript that allows objects to inherit properties and methods from other objects.</p>
 </div>
 
 </div>
@@ -124,8 +137,8 @@ map(), filter(), reduce(), forEach(), push(), pop()
 
 <div class="question">17. Difference between null and undefined?</div>
 <div class="answer">
-undefined → Declared but not assigned.<br>
-null → Intentionally empty.
+undefined → A variable declared but not assigned a value.<br>
+null → Represents an intentional absence of any value.
 </div>
 
 <div class="question">18. What is Destructuring?</div>
@@ -153,21 +166,26 @@ Uses backticks (`) and allows string interpolation using ${}.
 
 <div class="question">20. What is Spread Operator?</div>
 <div class="answer">
-The spread operator (...) expands arrays or objects into elements.
+The spread operator (...) expands arrays or objects into individual elements.
 </div>
 
-<div class="question">21. localStorage vs sessionStorage?</div>
+<div class="question">21. What is Rest Operator?</div>
+<div class="answer">
+The Rest operator (...) collects elements into an array.
+</div>
+
+<div class="question">22. localStorage vs sessionStorage?</div>
 <div class="answer">
 localStorage → Stores data permanently.<br>
 sessionStorage → Stores data until browser closes.
 </div>
 
-<div class="question">22. What is CORS?</div>
+<div class="question">23. What is CORS?</div>
 <div class="answer">
 CORS controls how resources are shared between different domains.
 </div>
 
-<div class="question">23. Is JavaScript synchronous or asynchronous?</div>
+<div class="question">24. Is JavaScript synchronous or asynchronous?</div>
 <div class="answer">
 JavaScript is single-threaded and synchronous, but supports async operations using callbacks, promises, and async/await.
 </div>
