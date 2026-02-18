@@ -81,7 +81,7 @@ Route::get('/dashboard', function () {
 
 <div class="question">7. What is Eloquent?</div>
 <div class="answer">
-Eloquent is Laravel’s ORM used to interact with database using models.
+Eloquent is Laravel's Active ORM (Object-Relational Mapping) used to interact with database using PHP models instead of writing raw SQL queries.
 </div>
 
 <pre>
@@ -187,7 +187,7 @@ SendEmailJob::dispatch();
 
 <div class="question">13. What is Caching?</div>
 <div class="answer">
-Stores frequently used data to improve performance.
+Stores frequently used data to improve performance. It stores query results without hitting the database every time.
 </div>
 
 <pre>
@@ -215,7 +215,8 @@ php artisan route:cache
 
 <div class="question">15. What is Dependency Injection?</div>
 <div class="answer">
-Laravel automatically injects class dependencies.
+<p>Laravel automatically injects class dependencies.</p>
+<p>Dependency Injection is a technique where a class receives its dependencies from outside instead of creating them inside the class.</p>
 </div>
 
 <pre>

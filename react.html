@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>React Interview Questions</title>
+
+<link rel="stylesheet" href="public/style.css">
+</head>
+
+<body>
+<div class="container">
+
+<h1>React Interview Questions</h1>
+
+<!-- ================= BASIC ================= -->
+
+<div class="section">
+<h2>Basic Concepts</h2>
+
+<div class="question">1. What is React?</div>
+<div class="answer">
+React is a JavaScript library used to build user interfaces, especially single-page applications.
+</div>
+
+<div class="question">2. What is JSX?</div>
+<div class="answer">
+JSX (JavaScript XML) allows us to write HTML inside JavaScript.
+</div>
+
+<pre>
+const element = &lt;h1&gt;Hello World&lt;/h1&gt;;
+</pre>
+
+<div class="question">3. What is a Component?</div>
+<div class="answer">
+A component is a reusable piece of UI in React. It can be functional or class-based.
+</div>
+
+<div class="question">4. What are Props?</div>
+<div class="answer">
+Props are inputs passed from parent component to child component.
+They are read-only.
+</div>
+
+<div class="question">5. What is State?</div>
+<div class="answer">
+State is a built-in object used to manage dynamic data inside a component.
+When state changes, the component re-renders.
+</div>
+
+<div class="question">5. What is DOM?</div>
+<div class="answer">
+DOM (Document Object Model) is a programming interface for HTML and XML documents.
+It represents the page as a tree structure so JavaScript can access and modify it.
+</div>
+
+</div>
+
+<!-- ================= INTERMEDIATE ================= -->
+
+<div class="section">
+<h2>Intermediate Concepts</h2>
+
+<div class="question">1. What is Virtual DOM?</div>
+<div class="answer">
+Virtual DOM is a lightweight copy of the real DOM.
+React updates only the changed parts instead of reloading the whole page.
+</div>
+
+<div class="question">2. What is useState?</div>
+<div class="answer">
+useState is a React Hook used to add state in functional components.
+</div>
+
+<pre>
+import { useState } from 'react';
+
+const Counter = () =&gt; {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;{count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  );
+};
+</pre>
+
+<div class="question">3. What is useEffect?</div>
+<div class="answer">
+useEffect is used to perform side effects like API calls, subscriptions, or DOM updates.
+</div>
+
+<div class="question">4. What is Conditional Rendering?</div>
+<div class="answer">
+Conditional rendering means displaying UI elements based on conditions.
+</div>
+
+<pre>
+{isLoggedIn ? &lt;Dashboard /&gt; : &lt;Login /&gt;}
+</pre>
+
+<div class="question">5. What are Keys in React?</div>
+<div class="answer">
+Keys help React identify which items in a list have changed, added, or removed.
+</div>
+
+</div>
+
+<!-- ================= ADVANCED ================= -->
+
+<div class="section">
+<h2>Advanced Concepts</h2>
+
+<div class="question">1. What is React.memo?</div>
+<div class="answer">
+React.memo is used to prevent unnecessary re-rendering of functional components.
+</div>
+
+<div class="question">2. What is useCallback?</div>
+<div class="answer">
+useCallback returns a memoized function to improve performance.
+</div>
+
+<div class="question">3. What is Context API?</div>
+<div class="answer">
+Context API is a React feature that allows you to share data globally between components 
+without passing props manually at every level (avoiding prop drilling).
+
+It is mainly used for global data like user info, theme, authentication, etc.
+</div>
+
+<pre>
+import { createContext, useContext } from "react";
+
+const UserContext = createContext();
+
+function Parent() {
+  return (
+    &lt;UserContext.Provider value="Bavi"&gt;
+      &lt;Child /&gt;
+    &lt;/UserContext.Provider&gt;
+  );
+}
+
+function Child() {
+  const user = useContext(UserContext);
+  return &lt;h1&gt;Hello {user}&lt;/h1&gt;;
+}
+</pre>
+
+
+<div class="question">4. What is Lazy Loading?</div>
+<div class="answer">
+Lazy loading loads components only when they are needed to improve performance.
+</div>
+
+<pre>
+const Home = React.lazy(() =&gt; import('./Home'));
+</pre>
+
+<div class="question">5. What is the difference between CSR and SSR?</div>
+<div class="answer">
+CSR (Client-Side Rendering) renders pages in the browser.<br>
+SSR (Server-Side Rendering) renders pages on the server before sending to the browser.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Performance Optimization Techniques</h2>
+<div class="question">How to improve performance in React?</div>
+<div class="answer">
+React performance can be improved by reducing unnecessary re-renders,
+optimizing components, and loading resources efficiently.
+</div>
+
+
+<div class="question">1. Use React.memo</div>
+<div class="answer">
+React.memo prevents unnecessary re-rendering of functional components 
+if props have not changed.
+</div>
+
+<pre>
+const MyComponent = React.memo(function MyComponent(props) {
+  return &lt;div&gt;{props.name}&lt;/div&gt;;
+});
+</pre>
+
+<div class="question">2. Use useCallback</div>
+<div class="answer">
+useCallback memoizes functions so they are not recreated on every render.
+Useful when passing functions to child components.
+</div>
+
+<pre>
+const handleClick = useCallback(() =&gt; {
+  console.log("Clicked");
+}, []);
+</pre>
+
+<div class="question">3. Use useMemo</div>
+<div class="answer">
+useMemo memoizes computed values to avoid expensive recalculations.
+</div>
+
+<pre>
+const expensiveValue = useMemo(() =&gt; {
+  return heavyCalculation(data);
+}, [data]);
+</pre>
+
+<div class="question">4. Avoid Inline Functions in JSX</div>
+<div class="answer">
+Inline functions create new references on every render,
+which may cause unnecessary re-renders.
+</div>
+
+<div class="question">5. Lazy Loading</div>
+<div class="answer">
+Use React.lazy and Suspense to load components only when needed.
+This reduces initial bundle size.
+</div>
+
+<pre>
+const Home = React.lazy(() =&gt; import('./Home'));
+</pre>
+
+<div class="question">6. Use Proper Keys in Lists</div>
+<div class="answer">
+Always use unique and stable keys when rendering lists
+to help React efficiently update elements.
+</div>
+
+<div class="question">7. Code Splitting</div>
+<div class="answer">
+Split your application into smaller chunks so that only required code loads.
+Improves initial load time.
+</div>
+
+<div class="question">8. Avoid Unnecessary State</div>
+<div class="answer">
+Keep state minimal and lift it only when needed.
+Too much state causes extra re-renders.
+</div>
+
+<div class="question">9. Difference between React.memo, useMemo, and useCallback?</div>
+
+<div class="answer">
+All three are used for performance optimization, but they solve different problems.
+
+<h2>1. React.memo</h2>
+<p>React.memo is used to prevent unnecessary re-rendering of a functional component 
+when its props have not changed.</p>
+<p>It compares the previous props with the new props.
+If props have not changed, React skips re-rendering the component.</p>
+👉 It memoizes the <strong>Component</strong>.
+
+<pre>
+const Child = React.memo(function Child({ name }) {
+  return &lt;h1&gt;{name}&lt;/h1&gt;;
+});
+</pre>
+
+<h2>2. useMemo</h2>
+useMemo is used to memoize a calculated value.
+It prevents expensive calculations from running on every render.<br>
+👉 It memoizes a <strong>Value</strong>.
+
+<pre>
+const result = useMemo(() =&gt; {
+  return heavyCalculation(data);
+}, [data]);
+</pre>
+
+<h2>3. useCallback</h2>
+useCallback is used to memoize a function.
+It prevents the function from being recreated on every render.<br>
+👉 It memoizes a <strong>Function</strong>.
+
+<pre>
+const handleClick = useCallback(() =&gt; {
+  console.log("Clicked");
+}, []);
+</pre>
+
+<strong>Simple Interview Difference:</strong><br>
+React.memo → Component<br>
+useMemo → Value<br>
+useCallback → Function
+</div>
+
+<div class="question">10.What is Suspense in React?</div>
+
+<div class="answer">
+Suspense is a React component used to handle loading states 
+while waiting for something to load (like lazy-loaded components).
+
+It is mainly used with React.lazy for code splitting.
+
+👉 It shows a fallback UI (like loading spinner) until the component loads.
+</div>
+
+<pre>
+import React, { Suspense } from "react";
+
+const Home = React.lazy(() =&gt; import("./Home"));
+
+function App() {
+  return (
+    &lt;Suspense fallback=&lt;div&gt;Loading...&lt;/div&gt;&gt;
+      &lt;Home /&gt;
+    &lt;/Suspense&gt;
+  );
+}
+</pre>
+
+<div class="answer">
+<strong>Simple Interview Explanation:</strong><br>
+Suspense is used to display a loading fallback UI 
+while a component or data is being loaded.
+</div>
+</div>
+
+<div class="section">
+<h2>Additional Concepts</h2>
+<div class="question">1. What is Redux and its use case?</div>
+
+<div class="answer">
+Redux is a state management library used to manage global state in large applications.
+
+It stores application state in a single store and allows components 
+to access and update the state in a predictable way.
+
+👉 It helps manage complex state.<br>
+👉 It avoids prop drilling.<br>
+👉 It makes state predictable and easier to debug.
+</div>
+
+<h2>Core Concepts of Redux</h2>
+
+<div class="answer">
+<strong>1. Store</strong> - Holds the global state.<br>
+<strong>2. Action</strong> - An object that describes what happened.<br>
+<strong>3. Reducer</strong> - A function that updates the state based on action.<br>
+<strong>4. Dispatch</strong> - Sends action to the reducer.
+</div>
+
+<pre>
+// Action
+const increment = () =&gt; {
+  return { type: "INCREMENT" };
+};
+
+// Reducer
+function counterReducer(state = 0, action) {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1;
+    default:
+      return state;
+  }
+}
+</pre>
+
+<h2>Use Cases of Redux</h2>
+
+<div class="answer">
+✅ Authentication (user login/logout state)<br>
+✅ Shopping cart management<br>
+✅ Theme switching (dark/light mode)<br>
+✅ Managing API data globally<br>
+✅ Large applications with many components sharing data
+</div>
+
+<div class="answer">
+<strong>Simple Interview Explanation:</strong><br>
+Redux is used to manage global state in large applications 
+where many components need access to the same data.
+</div>
+
+<div class="question">2. What are the new features in React 19?</div>
+
+<div class="answer">
+React 19 introduces performance improvements, better server support, 
+and new hooks to simplify development.
+</div>
+
+<h2>1. React Compiler</h2>
+
+<div class="answer">
+React Compiler automatically optimizes components.
+
+👉 It reduces unnecessary re-renders.<br>
+👉 No need to manually use React.memo in many cases.<br>
+👉 Improves performance automatically.
+</div>
+
+<h2>2. Server Components (Stable)</h2>
+
+<div class="answer">
+Server Components allow components to run on the server instead of the browser.
+
+👉 Reduces bundle size.<br>
+👉 Improves performance.<br>
+👉 Securely access backend resources.<br>
+👉 Sends only required HTML to client.
+</div>
+
+<h2>3. New Hooks</h2>
+
+<div class="answer">
+
+<strong>use()</strong> - Used to read promises directly (mainly in Server Components).<br>
+It simplifies data fetching.
+
+<pre>
+const data = use(fetchData());
+</pre>
+
+<strong>useFormStatus()</strong> - Helps track form submission state.<br>
+Used with server actions.
+
+<strong>useOptimistic()</strong> - Used for optimistic UI updates 
+(before server response).
+
+<strong>useActionState()</strong> - Manages state for async form actions.
+</div>
+
+<h2>4. Improved Actions (Server Actions)</h2>
+
+<div class="answer">
+React 19 improves handling of form submissions using server actions.
+
+👉 Directly call server functions from forms.<br>
+👉 Less boilerplate code.
+</div>
+
+<h2>5. Better Suspense Support</h2>
+
+<div class="answer">
+Suspense works better for data fetching and async operations 
+with improved streaming support.
+</div>
+
+<div class="answer">
+<strong>Simple Interview Explanation:</strong><br>
+React 19 focuses on automatic performance optimization (React Compiler),
+stronger Server Components support, and new hooks 
+to simplify async and form handling.
+</div>
+
+<div class="question">3. What is Axios?</div>
+
+<div class="answer">
+Axios is a promise-based HTTP client used to make API requests 
+from the browser or Node.js.
+
+It is commonly used in React applications to fetch or send data to servers.
+
+👉 Supports GET, POST, PUT, DELETE requests<br>
+👉 Automatically converts JSON data<br>
+👉 Supports interceptors<br>
+👉 Better error handling
+</div>
+
+<h2>Basic Example (GET Request)</h2>
+
+<pre>
+import axios from "axios";
+
+axios.get("https://api.example.com/users")
+  .then(response =&gt; {
+    console.log(response.data);
+  })
+  .catch(error =&gt; {
+    console.log(error);
+  });
+</pre>
+
+<h2>POST Request Example</h2>
+
+<pre>
+axios.post("https://api.example.com/users", {
+  name: "John",
+  email: "john@example.com"
+});
+</pre>
+
+<h2>Why use Axios instead of fetch?</h2>
+
+<div class="answer">
+✅ Automatic JSON transformation<br>
+✅ Better error handling<br>
+✅ Request & Response interceptors<br>
+✅ Timeout support<br>
+✅ Cancel requests
+</div>
+
+<h2>What are Interceptors?</h2>
+
+<div class="answer">
+Interceptors allow you to run code before a request is sent 
+or after a response is received.
+
+Commonly used for:
+👉 Adding authentication tokens<br>
+👉 Global error handling
+</div>
+
+<pre>
+axios.interceptors.request.use(config =&gt; {
+  config.headers.Authorization = "Bearer token";
+  return config;
+});
+</pre>
+
+<div class="answer">
+<strong>Simple Interview Explanation:</strong><br>
+Axios is used to make API calls easily with better error handling 
+and additional features compared to fetch.
+</div>
+
+
+
+</div>
+
+</div>
+</body>
+</html>

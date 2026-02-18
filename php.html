@@ -1,69 +1,704 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PHP Interview Questions</title>
-    <link rel="stylesheet" href="public/style.css" />
-    <style></style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHP Interview Questions</title>
+
+<link rel="stylesheet" href="public/style.css">
 </head>
+
 <body>
 <div class="container">
+
 <h1>PHP Interview Questions</h1>
 
+<!-- ================= BASIC ================= -->
+
 <div class="section">
-<h2>PHP Beginner Questions</h2>
-<div class="question">What is PHP?</div>
+<h2>Basic PHP Interview Questions</h2>
+
+<div class="question">1. What is PHP?</div>
 <div class="answer">
-  PHP  (Hypertext Preprocessor) is an open-source, free, and powerful server-side scripting
-  language used to create dynamic and interactive web pages.
+PHP (Hypertext Preprocessor) is an open-source, free, and powerful server-side scripting language used to build dynamic web applications.
 </div>
 
-<div class="question">What are the main features of PHP?</div>
+<div class="question">2. What are the main features of PHP?</div>
 <div class="answer">
   Open-source, cross-platform, server-side scripting, supports databases, simple and fast development.
 </div>
 
-<div class="question">Difference between echo, print and print_r()</div>
+<div class="question">3. What is the difference between echo, print and print_r()?</div>
 <div class="answer">
-<p><strong>echo</strong> → Used to display the output and it can take multiple arguments or variables.</p>
-<p><strong>print</strong> → Used to display the output but it takes only one argument and returns 1.</p>
-<p><strong>print_r()</strong> → Used to display readable information about arrays or objects (mainly for debugging).</p>
-</div>
-<div class="question">Difference between Loose vs string 𝗰𝗼𝗺𝗽𝗮𝗿𝗶𝘀𝗼𝗻 (== vs ===) ?</div>
-<div class="answer">
-  <p><strong>==</strong> → Loose comparison (checks value).</p>
-  <p><strong>===</strong> → Strict comparison (checks value + type).</p>
+<p><strong>echo</strong> → Used to display output. It can print multiple values, is faster, and does not return any value.</p>
+<p><strong>print</strong> → Used to display output. It prints only one value at a time, is slightly slower than echo, and returns 1.</p>
+<p><strong>print_r()</strong> → Used to display human-readable information about arrays and objects. Mainly used for debugging purposes.</p>
 </div>
 
-<div class="question">Difference between require vs autoloading</div>
+
+<div class="question">4. What are PHP data types?</div>
+<div class="answer">
+String, Integer, Float, Boolean, Array, Object, NULL, Resource.
+</div>
+
+<div class="question">5. What is the difference between GET and POST?</div>
+<div class="answer">
+GET → Data is sent in URL, less secure, limited size.<br>
+POST → Data is sent in request body, more secure, no size limitation.
+</div>
+
+<div class="question">6. What is a session? How is it different from cookies?</div>
+<div class="answer">
+Session → Stored on server, more secure.<br>
+Cookie → Stored in browser, less secure.
+</div>
+
+<div class="question">7. What is the difference between include and require?</div>
+<div class="answer">
+include → Shows warning if file not found and continues execution.<br>
+require → Shows fatal error and stops execution.
+</div>
+
+<div class="question">8. What is the difference between == and ===?</div>
+<div class="answer">
+== → Compares value only.<br>
+=== → Compares value and data type.
+</div>
+
+<div class="question">9. What are superglobal variables in PHP?</div>
+<div class="answer">
+<p><b>Superglobal Variables</b> → Predefined built-in variables in PHP that are accessible from anywhere in the script.</p>
+<p><b>$_GET</b> → Used to collect data sent via URL parameters.</p>
+<p><b>$_POST</b> → Used to collect data sent via HTTP POST method.</p>
+<p><b>$_REQUEST</b> → Contains data from $_GET, $_POST, and $_COOKIE.</p>
+<p><b>$_SESSION</b> → Used to store session data on the server.</p>
+<p><b>$_COOKIE</b> → Used to store data in the user's browser.</p>
+<p><b>$_SERVER</b> → Contains information about the web server environment, HTTP headers, paths, and script locations.</p>
+<p><b>$_FILES</b> → Used to handle file uploads.</p>
+<p><b>$_ENV</b> → Contains environment variables.</p>
+<p><b>$GLOBALS</b> → Used to access global variables inside functions.</p>
+</div>
+
+<div class="question">10. How do you connect PHP with MySQL?</div>
+<div class="answer">
+<p><b>MySQLi</b> → Used to connect PHP with MySQL database.</p>
+<p><b>PDO (PHP Data Objects)</b> → PDO (PHP Data Objects) in PHP is a database access layer and used to interact with different databases like MySQL, PostgreSQL, SQLite, etc and run safe queries using prepared statements to prevent SQL injection.</p>
+</div>
+
+<pre>
+// MySQLi Example
+$conn = mysqli_connect("localhost", "root", "", "test");
+
+
+// PDO Example
+try {
+    $conn = new PDO("mysql:host=localhost;dbname=test", "root", "");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully";
+} catch(PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+}
+</pre>
+
+<div class="question">11. What is the difference between isset(), empty(), and null?</div>
+<div class="answer">
+<p>isset() → Checks if variable is set and not NULL.</p>
+<p>empty() → Checks if variable is empty (0, "", NULL, false).</p>
+<p>null → Variable has no value assigned.</p>
+</div>
+<div class="question">12. Difference between require vs autoloading</div>
 <div class="answer">
   <p><strong>require</strong> → Manually includes a file.</p>
   <p><strong>Autoloading</strong> → Automatically loads class files when needed.
   No need to manually include each file. Mostly used with PSR-4 standard.</p>
 </div>
-<div class="question">What are arrays in PHP?</div>
+
+<div class="question">13. Explain the importance of Parser in PHP?</div>
 <div class="answer">
-<p><strong>Array</strong> → A variable that can store multiple values in a single variable.</p>
+Parser converts PHP code into machine-readable format before execution.
 </div>
-<div class="question">What is the difference between an indexed array and an associative array in PHP?</div>
+
+<div class="question">14. Types of arrays in PHP?</div>
 <div class="answer">
+Indexed, Associative, Multidimensional.
+</div>
 
+<div class="question">15. What is the difference between an indexed array and an associative array in PHP?</div>
+<div class="answer">
 <p><strong>Indexed Array</strong> → Uses numerical index (0,1,2...).</p>
-
 <pre>
 $fruits = ["Apple", "Banana"];
 echo $fruits[1]; // Banana
 </pre>
-
 <p><strong>Associative Array</strong> → Uses named keys.</p>
-
 <pre>
 $student = ["name" => "Bavi", "age" => 22];
 echo $student["name"]; // Bavi
 </pre>
+</div>
+
+<div class="question">16. Types of errors in PHP?</div>
+<div class="answer">
+<table border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th>Error Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>Notice</td>
+<td>Minor issue (non-critical errors), script continues</td>
+<td><code>echo $undefinedVar;</code></td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>Non-fatal, script continues</td>
+<td><code>include("nofile.php");</code></td>
+</tr>
+<tr>
+<td>Fatal Error</td>
+<td>Script stops execution</td>
+<td><code>undefinedFunction();</code></td>
+</tr>
+<tr>
+<td>Parse Error</td>
+<td>Syntax error, stops script</td>
+<td><code>if(true { echo "Hi"; }</code></td>
+</tr>
+</table>
+</div>
+
+<div class="question">17. Differentiate between variables and constants in PHP</div>
+<div class="answer">
+Variable → Value can change. Example:
+<pre>$name = "Bavi";
+</pre>
+Constant → Value cannot change once defined.
+<pre>define("SITE", "MyApp");<br>echo SITE;</pre>
+</div>
+
+<div class="question">18. What are Traits in PHP, and when should you use them?</div>
+<div class="answer">
+A mechanism for code reuse in PHP. It allows you to reuse methods in multiple classes without using inheritance. Example: logging, caching, timestamping
+</div>
+
+<div class="question">19. What is a session in PHP?</div>
+<div class="answer">
+Session stores user data on the server across multiple pages.
+<pre>session_start();<br>$_SESSION['user'] = "Bavi";</pre>
+</div>
+
+<div class="question">20. What does PEAR stand for?</div>
+<div class="answer">
+PEAR stands for <b>PHP Extension and Application Repository. It is a framework
+and has collection of reusable PHP libraries and components used to simplify PHP development</b>.
+</div>
+
+<div class="question">21. Explain the difference between $message and $$message.</div>
+<div class="answer">
+$message → Normal variable.<br>
+$$message → Variable variable.
+(It allows you to dynamically create a variable name using the value of another variable.)
+<pre>$name = "user";<br>$user = "Bavi";<br>echo $$name; // Bavi
+</pre>
+</div>
+
+<div class="question">22. Is PHP case-sensitive?</div>
+<div class="answer">
+PHP can be considered as a partial case-sensitive language. Variables are case-sensitive.<br>
+But Functions and keywords are not case-sensitive.
+</div>
+
+<div class="question">23. Types of variables in PHP?</div>
+<div class="answer">
+<table border="0" cellpadding="5" cellspacing="0">
+<tr>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+<tr>
+<td>String</td>
+<td>Text</td>
+<td><code>$name = "Bavi";</code></td>
+</tr>
+<tr>
+<td>Integer</td>
+<td>Whole number</td>
+<td><code>$age = 25;</code></td>
+</tr>
+<tr>
+<td>Float</td>
+<td>Decimal number</td>
+<td><code>$price = 99.99;</code></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>true/false</td>
+<td><code>$isActive = true;</code></td>
+</tr>
+<tr>
+<td>Array</td>
+<td>Collection</td>
+<td><code>$arr = [1,2,3];</code></td>
+</tr>
+<tr>
+<td>Object</td>
+<td>Instance of class</td>
+<td><code>$obj = new User();</code></td>
+</tr>
+<tr>
+<td>NULL</td>
+<td>Empty variable</td>
+<td><code>$x = null;</code></td>
+</tr>
+<tr>
+<td>Resource</td>
+<td>External resource</td>
+<td><code>$file = fopen("file.txt","r");</code></td>
+</tr>
+</table>
+</div>
+
+<div class="question">24. What are the rules for naming a PHP variable?</div>
+<div class="answer">
+<b>Start with a dollar sign:</b> All PHP variables must begin with the $ symbol.</br>
+<b>Initial character:</b> The first character after the $ sign must be a letter (A-z) or an underscore (_). It cannot be a number.</br>
+<b>Allowed characters:</b> The rest of the variable name can only contain alphanumeric characters and underscores (A-z, 0-9, and _).</br>
+<b>No spaces:</b> Variable names cannot contain spaces. </br>
+<b>Case sensitivity:</b> PHP variable names are case-sensitive. For example, $age and $AGE are treated as two different variables.</br>
+<b>Reserved words:</b> Do not use PHP reserved keywords (like function, class, echo, print) as variable names to avoid errors.</br>
+<b>Special variables:</b> $this is a special, predefined variable used within classes and cannot be assigned a value or referenced dynamically in the same way as user-defined variables.
+</div>
+
+<div class="question">25. Disadvantages of PHP</div>
+<div class="answer">
+Security issues if not handled properly.<br>
+Loosely typed language.<br>
+Can become messy without proper structure.
+</div>
+<div class="question">26. What is Composer?</div>
+<div class="answer">
+Composer is a dependency manager for PHP used to install and manage libraries.
+</div>
+<div class="question">27. What is Autoloading in PHP?</div>
+<div class="answer">
+  Automatically loads class files using spl_autoload_register() or Composer PSR-4.
+</div>
+
+<div class="question">28. Diffence Between Session and Cookie?</div>
+<div class="answer">
+  Session → Stored on server.<br />
+  Cookie → Stored in browser.
+</div>
+<div class="question">29. What are sessions in PHP?</div>
+<div class="answer">
+  A way to store user data on the server across multiple pages.
+</div>
+<div class="question">30. What are cookies in PHP?</div>
+<div class="answer">
+  A small piece of data stored in the user's browser.
+</div>
+
+<div class="question">31. What is session_unset() in PHP?</div>
+<div class="answer">
+  The session_unset() function clears all session variables.
+</div>
+
+<div class="question">32. What is session_destroy() in PHP?</div>
+<div class="answer">
+  The session_destroy() function destroys all data registered to a session.
+</div>
+
+<div class="question">33. What is the session_regenerate_id() function in PHP?</div>
+<div class="answer">
+  The session_regenerate_id() function generates a new session ID, which is used to prevent session fixation attacks.
+</div>
+<div class="question">34. What is the htmlspecialchars() function in PHP?</div>
+<div class="answer">
+  The htmlspecialchars() function converts special characters to HTML entities to prevent XSS attacks.
+</div>
+<div class="question">35. What is htmlentities() in PHP?</div>
+<div class="answer">
+  The htmlentities() function converts all applicable characters to HTML entities.
+</div>
+
+<div class="question">36. What is stripslashes() in PHP?</div>
+<div class="answer">
+  The stripslashes() function removes backslashes from a string.
+</div>
+
+<div class="question">38. What is REST API in PHP?</div>
+<div class="answer">
+  A REST API is a type of Web API that follows REST principles and uses HTTP methods like GET, POST, PUT, DELETE.
+</div>
+
+<div class="question">39. What is Dependency Injection?</div>
+<div class="answer">
+  <p>Dependency Injection means passing required objects to a class instead of creating them inside.</p>
+  <p>Dependency Injection means passing required dependencies to a class instead of creating them inside the class.</p>
+</div>
+
+<div class="question">40. How to improve PHP performance?</div>
+<div class="answer">
+  Use caching, optimize queries, use indexes, enable OPcache, reduce DB
+  calls, and avoid unnecessary loops.
+</div>
+<div class="question">41. Difference between PUT, PATCH, POST?</div>
+<div class="answer">
+  <p>POST is used to create a new resource; it is not idempotent.</p>
+  <p>PUT is used to completely update/replace a resource; it is idempotent.</p>
+  <p>PATCH is used to partially update a resource; it is idempotent.</p>
+</div>
+<div class="question">42. Difference between var_dump() and print_r()?</div>
+<div class="answer">
+  <p><strong>var_dump() →</strong> Displays the data type and value of a variable in detail.</p>
+  <p><strong>print_r() →</strong> Prints human-readable information without showing data types clearly.</p>
+</div>
+
 
 </div>
+
+<!-- ================= OOP ================= -->
+
+<div class="section">
+<h2>OOP in PHP</h2>
+
+<div class="question">1. What is OOP?</div>
+<div class="answer">
+<p>OOP (Object-Oriented Programming System) is a programming concept based on classes and objects.</p>
+<p>OOPS (Object-Oriented Programming System) is a programming approach where we write code using classes and objects.</p>
+</div>
+
+<div class="question">2. What is a class in PHP?</div>
+<div class="answer">
+  A class is a blueprint for creating objects that contain properties (variables) and methods (functions).
+</div>
+<div class="question">3. What is an object in PHP?</div>
+<div class="answer">
+  An object is an instance of a class that contains properties (variables) and methods (functions).
+</div>
+
+<div class="question">4. Difference between interface and abstract class?</div>
+<div class="answer">
+<p><strong>In Short:</strong></p>
+<p>Interface → Only method declarations  but cannot provide method implementations.</p>
+<p>Abstract class → Can have both method declaration and implementation.</p>
+
+<p><strong>Interface</strong> → Interfaces define methods that must be implemented by a class, but cannot provide method implementations.</p>
+
+<pre>
+interface Animal {
+    public function sound(); // Declaration
+}
+
+class Dog implements Animal {
+    public function sound() { // Implementation
+        echo "Bark";
+    }
+}
+</pre>
+
+<p><strong>Abstract Class</strong> → Abstract classes can define methods that must be implemented (abstract methods) and also provide method implementations (concrete methods).</p>
+<p><strong>Abstract class</strong>: Defines abstract methods (child must implement) and partial concrete methods (already implemented methods child can use)</p>
+<pre>
+abstract class Animal {
+    abstract public function sound(); // Declaration
+
+    public function eat() { // Implementation
+        echo "Eating";
+    }
+}
+
+class Dog extends Animal {
+    public function sound() {
+        echo "Bark";
+    }
+}
+</pre>
+<p>One Line :</p>
+<p><strong>✅ interface:</strong> only provides method declarations, does not provide method implementations.</p>
+<p><strong>✅ Abstract class:</strong> provides both method declarations (abstract methods) and method implementations (concrete methods)</p>
+</div>
+
+<div class="question">5. What is encapsulation?</div>
+<div class="answer">
+Encapsulation means wrapping (hiding internal) data and methods inside a class and restricting direct access using access modifiers.
+</div>
+
+<div class="question">6. What is inheritance?</div>
+<div class="answer">
+Inheritance allows a class to use methods and properties of another class using extends. Example: Base Model, Base Controller
+</div>
+
+<div class="question">7. What is polymorphism?</div>
+<div class="answer">
+Polymorphism means same method name but different behavior depending on the object.
+</div>
+<div class="question">8. What is Abstraction?</div>
+<div class="answer">
+Abstraction hides implementation details and shows only essential functionality. Example: Model called inside Controller.
+</div>
+
+<div class="question">9. What are access modifiers?</div>
+<div class="answer">
+public → Accessible everywhere.<br>
+private → Accessible only inside the class.<br>
+protected → Accessible inside class and child class.
+</div>
+
+<div class="question">10. What is constructor and destructor?</div>
+<div class="answer">
+Constructor → Automatically called when object is created.<br>
+Destructor → Automatically called when object is destroyed.
+</div>
+
+<pre>
+function __construct() {}
+function __destruct() {}
+</pre>
+
+<div class="question">11. What is static?</div>
+<div class="answer">
+  Static belongs to class, not object. Access using :: (scope resolution operator or double colon)
+</div>
+<div class="question">12. Difference between self and $this?</div>
+<div class="answer">
+  $this → Refers to current object.<br />
+  self:: → Refers to current class.
+</div>
+
+<div class="question">13. What is Method Overriding?</div>
+<div class="answer">
+<p><b>Method Overriding</b> → When both the parent and child classes have the same method name, but the child overrides the parent's method behavior. (OR)</p> 
+<p><b>Method Overriding</b> → When both the parent and child classes have the same method name, but with different behavior.</p>
+</div>
+
+<pre>
+Example : Used when we want to perform similar operations with the same method name but with different parameters.
+
+class ParentClass {
+    public function greet() {
+        echo "Hello from Parent";
+    }
+}
+
+class ChildClass extends ParentClass {
+    public function greet() {
+        echo "Hello from Child";
+    }
+}
+
+$obj = new ChildClass();
+$obj->greet(); // Output: Hello from Child
+</pre>
+
+<div class="question">14. What is Method Overloading?</div>
+<div class="answer">
+<p><b>Method Overloading</b> → PHP does not support traditional method overloading like Java. But we can achieve similar behavior using default parameters or __call() magic method.</p>
+<p>Same method name but handling different number of parameters</p>
+</div>
+<pre>
+class Test {
+    public function __call($name, $arguments) {
+        echo "Method Name: " . $name . "<br>";
+        echo "Arguments: " . implode(", ", $arguments);
+    }
+}
+
+$obj = new Test();
+$obj->add(10, 20);
+</pre>
+
+<p>✅ Overriding = change the child behavior</p>
+<p>✅ Overloading = handling different number of parameters</p>
+
+</div>
+
+<!-- ================= ADVANCED 3+ YEARS ================= -->
+
+<div class="section">
+<h2>Advanced PHP Concepts (3+ Years Level)</h2>
+
+<div class="question">What is Namespace in PHP?</div>
+<div class="answer">
+Namespace is used to avoid class name conflicts by grouping related classes.
+</div>
+
+<div class="question">What is Xdebug?</div>
+<div class="answer">
+Xdebug is a PHP extension that provides debugging, profiling, and code coverage capabilities to help developers find and fix errors efficiently.
+</div>
+
+<div class="question">What is Memory Limit in PHP?</div>
+<div class="answer">
+Memory Limit in PHP is the maximum amount of memory a script is allowed to allocate during execution, set by the <code>memory_limit</code> directive in php.ini.
+<pre>ini_get('memory_limit')</pre>
+</div>
+<div class="question">What is strict_types in PHP?</div>
+<div class="answer">
+In PHP, <code>strict_types</code> enforces strict type checking for function arguments and return values, preventing automatic type coercion.  
+It is enabled by adding 
+<pre>declare(strict_types=1);</pre>
+at the top of a PHP file.
+</div>
+<div class="question">Difference between Traits and Interfaces in PHP?</div>
+<div class="answer">
+Traits provide reusable method implementations to include in classes, while Interfaces only define method signatures that classes must implement.
+</div>
+
+
+<div class="question">What is PHP-FPM?</div>
+<div class="answer">
+PHP-FPM (FastCGI Process Manager) is a PHP handler that manages pools of PHP processes to improve performance and handle high traffic efficiently.
+</div>
+
+<div class="question">What is File Handling in PHP?</div>
+<div class="answer">
+File handling allows PHP to create, read, write, append, and delete files on the server.
+</div>
+
+<h3>Common File Functions</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>fopen()</td>
+<td>Opens a file.</td>
+</tr>
+
+<tr>
+<td>fclose()</td>
+<td>Closes an open file.</td>
+</tr>
+
+<tr>
+<td>fread()</td>
+<td>Reads from a file.</td>
+</tr>
+
+<tr>
+<td>fwrite()</td>
+<td>Writes to a file.</td>
+</tr>
+
+<tr>
+<td>file_get_contents()</td>
+<td>Reads entire file into a string.</td>
+</tr>
+
+<tr>
+<td>file_put_contents()</td>
+<td>Writes data to a file.</td>
+</tr>
+
+<tr>
+<td>unlink()</td>
+<td>Deletes a file.</td>
+</tr>
+
+<tr>
+<td>file_exists()</td>
+<td>Checks if file exists.</td>
+</tr>
+
+<tr>
+<td>filesize()</td>
+<td>Returns file size.</td>
+</tr>
+
+<tr>
+<td>move_uploaded_file()</td>
+<td>Moves uploaded file to target directory.</td>
+</tr>
+
+</table>
+
+<h3>File Modes (fopen modes)</h3>
+
+<table border="1" cellpadding="8">
+<tr>
+<th>Mode</th>
+<th>Meaning</th>
+</tr>
+
+<tr>
+<td>r</td>
+<td>Read only</td>
+</tr>
+
+<tr>
+<td>r+</td>
+<td>Read and write</td>
+</tr>
+
+<tr>
+<td>w</td>
+<td>Write only (creates or overwrites file)</td>
+</tr>
+
+<tr>
+<td>w+</td>
+<td>Read and write (overwrites file)</td>
+</tr>
+
+<tr>
+<td>a</td>
+<td>Append (adds data at end)</td>
+</tr>
+
+<tr>
+<td>a+</td>
+<td>Read and append</td>
+</tr>
+
+<tr>
+<td>x</td>
+<td>Create new file (fails if exists)</td>
+</tr>
+
+<tr>
+<td>x+</td>
+<td>Create new file for read/write</td>
+</tr>
+
+</table>
+
+<div class="question">Example: Read and Write File</div>
+<div class="answer">
+<pre>$file = fopen("test.txt", "w");<br>fwrite($file, "Hello PHP");<br>fclose($file);<br><br>$content = file_get_contents("test.txt");<br>echo $content;
+</pre>
+</div>
+
+<div class="question">What is Output Buffering?</div>
+<div class="answer">
+Output buffering stores output in memory before sending it to browser using ob_start().
+</div>
+
+<div class="question">What is the purpose of the break and continue statements in PHP?</div>
+<div class="answer">
+  <p>break → Stops the loop completely.</p>
+  <p>continue → Skips the current iteration of a loop and moves to the next iteration.</p>
+</div>
+
+<div class="question">What is the purpose of @ in PHP?</div>
+<div class="answer">
+In PHP, @ is used for suppressing error messages. If any runtime error occurs on the
+line which consists @ symbol at the beginning, then the error will be handled by PHP.
+<pre>@$file = fopen("test.txt","r");
+</pre>
+</div>
+
+<div class="question">What is final keyword?</div>
+<div class="answer">
+  <p><strong>final class</strong> → Cannot be extended.</p>
+  <p><strong>final method</strong> → Cannot be overridden.</p>
+</div>
+
 <div class="question">What is Operator Precedence in PHP?</div>
 <div class="answer">
 
@@ -90,11 +725,8 @@ echo $result; // 16
 </div>
 <div class="question">What are References (&) in PHP?</div>
 <div class="answer">
-
 <p><strong>Reference (&)</strong> → It allows two variables to point to the same value in memory.</p>
-
 <p><strong>Example:</strong></p>
-
 <pre>
 $a = 10;
 $b = &$a;
@@ -107,34 +739,24 @@ echo $a; // 20
 
 <p>Without & → It copies the value.</p>
 <p>With & → It shares the same memory.</p>
-
 </div>
 
-        <div class="question">
-          Difference between isset(), empty(), and null?
-        </div>
-        <div class="answer">
-          <p><strong>isset()</strong> → Checks variable is set and not null.</p>
-          <p><strong>empty()</strong> → Checks variable is empty (0, "", null, false).</p>
-          <p><strong>null</strong> → Variable has no value assigned.</p>
-        </div>
-        
-        <div class="question">
-          Difference between die() vs exit()?
-        </div>
-        <div class="answer">
-          <p>Both will Terminates (stops) the script execution immediately. die() is simply an alias of exit()
-          When to Use?</p>
-          <p><strong>die()</strong> → Commonly used for simple error handling.</p>
-          <p><strong>exit()</strong> → Often used in larger applications for clarity.</p>
-        </div>
-        <div class="question">Loops - for, foreach, while, do...while</div>
-        <div class="answer">
-        <p><strong>for</strong> → Used when number of iterations is known.</p>
-        <p><strong>foreach</strong> → Used to loop through arrays.</p>
-        <p><strong>while</strong> → Executes while condition is true (checks before loop).</p>
-        <p><strong>do...while</strong> → Executes at least once (checks condition after loop).</p>
-        </div>
+<div class="question">
+  Difference between die() vs exit()?
+</div>
+<div class="answer">
+  <p>Both will Terminates (stops) the script execution immediately. die() is simply an alias of exit()
+  When to Use?</p>
+  <p><strong>die()</strong> → Commonly used for simple error handling.</p>
+  <p><strong>exit()</strong> → Often used in larger applications for clarity.</p>
+</div>
+<div class="question">Loops - for, foreach, while, do...while</div>
+<div class="answer">
+<p><strong>for</strong> → Used when number of iterations is known.</p>
+<p><strong>foreach</strong> → Used to loop through arrays.</p>
+<p><strong>while</strong> → Executes while condition is true (checks before loop).</p>
+<p><strong>do...while</strong> → Executes at least once (checks condition after loop).</p>
+</div>
 <div class="question">What are some common security vulnerabilities in PHP and how do you prevent them?</div>
 <div class="answer">
 
@@ -310,131 +932,144 @@ $obj->display(); // Non-static Method
 
 </div>
 
-  </div>
-
-<!-- ================= SECURITY ================= -->
-  <div class="section">
-         <h2>Security</h2>
-        <div class="question">What is SQL Injection?</div>
-        <div class="answer">
-          SQL Injection is a security vulnerability where an attacker injects
-          malicious SQL code into database queries.
-        </div>
-
-        <div class="question">How to prevent SQL Injection?</div>
-        <div class="answer">
-          Use Prepared Statements (PDO/MySQLi), validate inputs, avoid direct
-          query insertion, and limit DB privileges.
-        </div>
-
-        <div class="question">What is XSS?</div>
-        <div class="answer">
-          Cross-Site Scripting (XSS) is an attack where malicious scripts are
-          injected into web pages.
-        </div>
-
-        <div class="question">How to prevent XSS?</div>
-        <div class="answer">
-          Use htmlspecialchars(), validate inputs, enable Content Security
-          Policy (CSP), and escape output properly.
-        </div>
+<div class="question">What's the difference between unset() and unlink() in PHP?</div>
+<div class="answer">
+<p><strong>unset()</strong> → Used to destroy a variable from memory.</p>
+<p><strong>unlink()</strong> → Used to delete a file from the server.</p>
+</div>
+<div class="question">What is Late Static Binding?</div>
+<div class="answer">
+  Used to reference called class at runtime using
+  <b>static::</b> instead of <b>self::</b>.
 </div>
 
-<!-- ================= OOPS ================= -->
+<div class="question">What is Exception Handling?</div>
+<div class="answer">
+  Used to handle runtime errors using try, catch, finally and throw.
+</div>
 
-      <div class="section">
-        <h2>OOPS in PHP</h2>
+<div class="question">What is JSON handling in PHP?</div>
+<div class="answer">
+  json_encode() → Convert array/object to JSON.<br />
+  json_decode() → Convert JSON to PHP array/object.
+</div>
 
-        <div class="question">What is OOPS?</div>
-        <div class="answer">
-          OOPS (Object-Oriented Programming System) is a programming approach
-          where we write code using classes and objects.
-        </div>
-        <div class="question">What is a class in PHP?</div>
-        <div class="answer">
-          A class is a blueprint for creating objects that contain properties (variables) and methods (functions).
-        </div>
-        <div class="question">What is an object in PHP?</div>
-        <div class="answer">
-          An object is an instance of a class.
-        </div>
+<div class="question">What are PSR Standards?</div>
+<div class="answer">
+  PSR-4 → Autoloading standard.<br />
+  PSR-12 → Coding style guide.<br />
+  PSR-7 → HTTP message interface standard.
+</div>
 
-        <div class="question">What is Encapsulation?</div>
-        <div class="answer">
-          Encapsulation means wrapping data and methods inside a class and
-          restricting direct access using access modifiers.
-        </div>
+<div class="question">What is Middleware?</div>
+<div class="answer">
+  Middleware filters HTTP requests before reaching controller
+  (Authentication, Logging, etc).
+</div>
 
-        <div class="question">What is Inheritance?</div>
-        <div class="answer">
-          Inheritance allows a class to use methods and properties of another class using <b>extends</b>. Example: Base Model, Base
-          Controller.
-        </div>
+<div class="question">What is Queue in PHP?</div>
+<div class="answer">
+  Used to process background jobs like email sending, notifications,
+  reports generation.
+</div>
 
-        <div class="question">What is Polymorphism?</div>
-        <div class="answer">
-          Polymorphism means same method name but different behavior depending
-          on the object.
-        </div>
+<div class="question">What is Caching?</div>
+<div class="answer">
+  Improves performance by storing frequently accessed data in memory
+  (Redis, Memcached, OPcache).
+</div>
 
-        <div class="question">What is Abstraction?</div>
-        <div class="answer">
-          Abstraction hides implementation details and shows only essential
-          functionality. Example: Model called inside Controller.
-        </div>
+<div class="question">What are Database Transactions?</div>
+<div class="answer">
+  Ensures ACID properties (Atomicity, Consistency, Isolation,
+  Durability) using commit() and rollback().
+</div>
 
-        <table>
-          <tr>
-            <th>Pillar</th>
-            <th>Meaning</th>
-          </tr>
-          <tr>
-            <td>Encapsulation</td>
-            <td>Data hiding using access modifiers</td>
-          </tr>
-          <tr>
-            <td>Inheritance</td>
-            <td>Parent → Child relationship</td>
-          </tr>
-          <tr>
-            <td>Polymorphism</td>
-            <td>Same method, different behavior</td>
-          </tr>
-          <tr>
-            <td>Abstraction</td>
-            <td>Hide implementation details</td>
-          </tr>
-        </table>
+<div class="question">What is JWT Authentication?</div>
+<div class="answer">
+  JWT (JSON Web Token) is used for secure API authentication using
+  signed tokens.
+</div>
 
-        <div class="question">What are Access Modifiers?</div>
-        <div class="answer">
-          public → Accessible anywhere<br />
-          protected → Class + Child class<br />
-          private → Same class only
-        </div>
+<div class="question">What are Generators in PHP?</div>
+<div class="answer">
+  Generators use <b>yield</b> keyword to iterate large datasets with low
+  memory usage.
+</div>
 
-        <div class="question">What is Constructor?</div>
-        <div class="answer">
-          Constructor (__construct) is automatically called when an object is
-          created.
-        </div>
+<div class="question">What are Closures?</div>
+<div class="answer">
+  Anonymous functions that can capture variables from parent scope using
+  <b>use</b>.
+</div>
 
-        <div class="question">What is Destructor?</div>
-        <div class="answer">
-          Destructor (__destruct) is called when object is destroyed.
-        </div>
+<div class="question">What is CSRF Protection?</div>
+<div class="answer">
+  Prevents unauthorized requests using CSRF tokens in forms.
+</div>
 
-        <div class="question">What is static?</div>
-        <div class="answer">
-          Static belongs to class, not object. Access using ::
-        </div>
-        <div class="question">Difference between self and $this?</div>
-        <div class="answer">
-          $this → Refers to current object.<br />
-          self:: → Refers to current class.
-        </div>
+<div class="question">What is CORS?</div>
+<div class="answer">
+  Cross-Origin Resource Sharing allows or restricts API access from
+  different domains.
+</div>
 
-        </div>
+<div class="question">What is Unit Testing?</div>
+<div class="answer">
+  Testing individual components of application using tools like PHPUnit.
+</div>
+
+<div class="question">What is N+1 Query Problem?</div>
+<div class="answer">
+  Occurs when one query fetches data and additional queries run inside a
+  loop, causing performance issues.
+</div>
+
+<div class="question">What is Rate Limiting?</div>
+<div class="answer">
+  Limits number of API requests per user/IP to prevent abuse.
+</div>
+
+<div class="question">What is Dependency Injection Container?</div>
+<div class="answer">
+  Manages class dependencies automatically and resolves them when
+  needed.
+</div>
+
+<div class="question">Explain Type Hinting</div>
+<div class="answer">
+Specifying expected data type in function parameters.
+<pre>function sum(int $a, int $b){}
+</pre>
+</div>
+
+<div class="question">How to terminate script execution?</div>
+<div class="answer">
+Using exit() or die()
+<pre>exit("Script stopped");
+</pre>
+</div>
+
+<div class="question">Ways to handle MySQL result set?</div>
+<div class="answer">
+
+<p><strong>mysqli_fetch_assoc()</strong> → Fetches a result row as an associative array.</p>
+
+<p><strong>mysqli_fetch_array()</strong> → Fetches a row as associative array, numeric array, or both.</p>
+
+<p><strong>mysqli_fetch_object()</strong> → Fetches a result row as an object.</p>
+
+<p><strong>mysqli_fetch_row()</strong> → Fetches a result row as a numeric array.</p>
+
+</div>
+<div class="question">How to connect to a URL in PHP?</div>
+<div class="answer">
+Using file_get_contents() or cURL.
+<pre>$data = file_get_contents("https://example.com");
+</pre>
+</div>
+
+</div>
 
 <div class="section">
 <h2>Important PHP String Functions</h2>
@@ -665,16 +1300,16 @@ Array
 </pre>
 </div>
 </div>
-        <div class="section">
-        <h2>SOLID principles</h2>
-        <div class="question">Explain the SOLID principles in PHP?</div>
+<div class="section">
+<h2>SOLID principles</h2>
+<div class="question">Explain the SOLID principles in PHP?</div>
 <div class="answer">
 The SOLID principles are five design rules for writing better, maintainable object-oriented code.<br><br>
 
 1. <b>Single Responsibility Principle (SRP)</b>: 
 <p>Memory Tip: One class, one job</p>
 A class should have only one job.  (One Method only inside Class) 
-Example:
+<p>Example: <b>I separated database, business logic, and notifications → SRP</b></p>
 <pre>
 class Logger {
     public function log($message) {
@@ -686,8 +1321,8 @@ class Logger {
 
 2. <b>Open/Closed Principle (OCP)</b>: 
 <p>Memory Tip: Open for extension, closed for modification</p>
-You can add new features or featuresfunctionality without changing existing code.
-Example:
+You can add new features or features or functionality without changing the existing code.
+<p>Example: <b>Used strategy pattern for salary calculation → OCP</b></p>
 <pre>
 interface Shape {
     public function area();
@@ -705,8 +1340,11 @@ class Circle implements Shape {
 
 3. <b>Liskov Substitution Principle (LSP)</b>: 
 <p>Memory Tip: Child can replace parent</p>
-Child classes should work without breaking the parent class behavior.  
-Example:
+<p>Child classes should work without breaking the parent class behavior. </p> 
+<p>LSP: You should be able to replace or substitute a parent class with a child class, and the program should still work correctly.</p>
+<p>Example: <b>Ensured all employee types follow same contract</b></p>
+<p>✅ Followed LSP: You swap the parent with the child → program still works.</p>
+<p>❌ Violated LSP: You swap the parent with the child → program behaves incorrectly, crashes, or gives</p>
 <pre>
 class Bird { 
     public function fly() {} 
@@ -722,7 +1360,7 @@ class Ostrich extends Bird {
 4. <b>Interface Segregation Principle (ISP)</b>: 
 <p>Memory Tip: Many small interfaces, not one big</p>
 <p>Don't force a class to implement methods it doesn't use.  Means If you have an interface with 5 methods, but your class only needs 2 of them, don't force the class to implement all 5.</p>
-Example:
+<p>Example: <b>Split large interfaces into smaller ones</b></p>
 <pre>
 interface Worker {
     public function work();
@@ -747,7 +1385,7 @@ class RobotWorker implements Worker {
 5. <b>Dependency Inversion Principle (DIP)</b>: 
 <p>Memory Tip: Depend on abstractions, not concretions</p>
 <p>High-level modules (like App) should not depend on low-level modules (like MySQLDatabase) to work. Instead, make both depend on an abstraction (an interface).</p>
-Example: The app doesn't care which database it uses, it just cares that it can connect.
+<p>Example: <b>The app doesn't care which database it uses, it just cares that it can connect.</b></p>
 <pre>
 interface Database {
     public function connect();
@@ -783,1060 +1421,390 @@ D - Depend on interfaces, not concrete classes
 </div>
 </div>
 
-      <!-- ================= DESIGN PATTERNS ================= -->
+<!-- ================= DESIGN PATTERNS ================= -->
 
-      <div class="section">
-        <h2>PHP Design Patterns</h2>
+<div class="section">
+  <h2>PHP Design Patterns</h2>
 
-        <div class="question">What are Design Patterns?</div>
-        <div class="answer">
-          Design patterns are reusable solutions to common software design
-          problems that improve maintainability, scalability, and testability.
-        </div>
+  <div class="question">What are Design Patterns?</div>
+  <div class="answer">
+    Design patterns are reusable solutions to common software design
+    problems that improve maintainability, scalability, and testability.
+  </div>
 
-        <h3>Creational Patterns</h3>
-        <div class="answer">
-          Singleton → Ensures only one instance (Example: DB connection)<br />
-          Factory → Creates objects without exposing logic (Example: Payment
-          gateway)<br />
-          Builder → Builds complex objects step by step
-        </div>
+  <h3>Creational Patterns</h3>
+  <div class="answer">
+    Singleton → Ensures only one instance (Example: DB connection)<br />
+    Factory → Creates objects without exposing logic (Example: Payment
+    gateway)<br />
+    Builder → Builds complex objects step by step
+  </div>
 
-        <h3>Structural Patterns</h3>
-        <div class="answer">
-          MVC → Separates Model, View, Controller<br />
-          Adapter → Makes incompatible interfaces work together<br />
-          Decorator → Adds behavior without modifying class<br />
-          Facade → Simple interface to complex system
-        </div>
+  <h3>Structural Patterns</h3>
+  <div class="answer">
+    MVC → Separates Model, View, Controller<br />
+    Adapter → Makes incompatible interfaces work together<br />
+    Decorator → Adds behavior without modifying class<br />
+    Facade → Simple interface to complex system
+  </div>
 
-        <h3>Behavioral Patterns</h3>
-        <div class="answer">
-          Observer → Event listeners / Notifications<br />
-          Strategy → Change algorithm dynamically<br />
-          Command → Encapsulates actions as objects
-        </div>
-      </div>
+  <h3>Behavioral Patterns</h3>
+  <div class="answer">
+    Observer → Event listeners / Notifications<br />
+    Strategy → Change algorithm dynamically<br />
+    Command → Encapsulates actions as objects
+  </div>
+</div>
 
-      <!-- ================= MAGIC CONSTANTS ================= -->
+<!-- ================= MAGIC CONSTANTS ================= -->
 
-      <div class="section">
-        <h2>Magic Constants</h2>
+<div class="section">
+  <h2>Magic Constants</h2>
 
-        <table>
-          <tr>
-            <th>Constant</th>
-            <th>Meaning</th>
-          </tr>
-          <tr>
-            <td>__LINE__</td>
-            <td>Current line number</td>
-          </tr>
-          <tr>
-            <td>__FILE__</td>
-            <td>Full file path</td>
-          </tr>
-          <tr>
-            <td>__DIR__</td>
-            <td>Directory of file</td>
-          </tr>
-          <tr>
-            <td>__FUNCTION__</td>
-            <td>Function name</td>
-          </tr>
-          <tr>
-            <td>__CLASS__</td>
-            <td>Class name</td>
-          </tr>
-          <tr>
-            <td>__METHOD__</td>
-            <td>Method name</td>
-          </tr>
-          <tr>
-            <td>__NAMESPACE__</td>
-            <td>Current namespace</td>
-          </tr>
-        </table>
-      </div>
-      <div class="section">
-        <h2>Magic Methods</h2>
+  <table>
+    <tr>
+      <th>Constant</th>
+      <th>Meaning</th>
+    </tr>
+    <tr>
+      <td>__LINE__</td>
+      <td>Current line number</td>
+    </tr>
+    <tr>
+      <td>__FILE__</td>
+      <td>Full file path</td>
+    </tr>
+    <tr>
+      <td>__DIR__</td>
+      <td>Directory of file</td>
+    </tr>
+    <tr>
+      <td>__FUNCTION__</td>
+      <td>Function name</td>
+    </tr>
+    <tr>
+      <td>__CLASS__</td>
+      <td>Class name</td>
+    </tr>
+    <tr>
+      <td>__METHOD__</td>
+      <td>Method name</td>
+    </tr>
+    <tr>
+      <td>__NAMESPACE__</td>
+      <td>Current namespace</td>
+    </tr>
+  </table>
+</div>
+<div class="section">
+  <h2>Magic Methods</h2>
 
-        <table>
-          <tr>
-            <td>__construct()</td>
-            <td>Automatically called when an object is created.</td>
-            <td>Used to initialize properties.</td>
-          </tr>
+  <table>
+    <tr>
+      <td>__construct()</td>
+      <td>Automatically called when an object is created.</td>
+      <td>Used to initialize properties.</td>
+    </tr>
 
-          <tr>
-            <td>__destruct()</td>
-            <td>Automatically called when object is destroyed.</td>
-            <td>Used to close connections or cleanup.</td>
-          </tr>
+    <tr>
+      <td>__destruct()</td>
+      <td>Automatically called when object is destroyed.</td>
+      <td>Used to close connections or cleanup.</td>
+    </tr>
 
-          <tr>
-            <td>__get()</td>
-            <td>Called when accessing inaccessible/private property.</td>
-            <td>Handles undefined property read.</td>
-          </tr>
+    <tr>
+      <td>__get()</td>
+      <td>Called when accessing inaccessible/private property.</td>
+      <td>Handles undefined property read.</td>
+    </tr>
 
-          <tr>
-            <td>__set()</td>
-            <td>Called when setting inaccessible/private property.</td>
-            <td>Handles undefined property write.</td>
-          </tr>
+    <tr>
+      <td>__set()</td>
+      <td>Called when setting inaccessible/private property.</td>
+      <td>Handles undefined property write.</td>
+    </tr>
 
-          <tr>
-            <td>__toString()</td>
-            <td>Called when object is treated as a string.</td>
-            <td>Returns string representation of object.</td>
-          </tr>
-        </table>
-      </div>
+    <tr>
+      <td>__toString()</td>
+      <td>Called when object is treated as a string.</td>
+      <td>Returns string representation of object.</td>
+    </tr>
+  </table>
+</div>
 
-      <div class="section">
-        <h2>PHP 7 vs PHP 8 Differences (With Explanation & Examples)</h2>
+<div class="section">
+<h2>PHP 7 vs PHP 8 Differences (With Explanation & Examples)</h2>
 
-        <table border="1" class="php_comparision">
-          <tr>
-            <th>Feature</th>
-            <th>PHP 7</th>
-            <th>PHP 8</th>
-          </tr>
+<table border="1" class="php_comparision">
+<tr>
+<th>Feature</th>
+<th>PHP 7</th>
+<th>PHP 8</th>
+</tr>
 
-          <tr>
-            <td><b>Saner String to Number Comparisons</b></td>
-            <td>
-              Non-numeric strings were converted to 0 during loose comparison.
-              <pre> var_dump(0 == "abc"); // true</pre>
-            </td>
-            <td>
-              Non-numeric strings are NOT converted to 0. Safer comparison
-              behavior.
-              <pre>var_dump(0 == "abc"); // false</pre
-              >
-            </td>
-          </tr>
+<tr>
+<td><b>Saner String to Number Comparisons</b></td>
+<td>
+Non-numeric strings were converted to 0 during loose comparison.
+<pre> var_dump(0 == "abc"); // true</pre>
+</td>
+<td>
+Non-numeric strings are NOT converted to 0. Safer comparison
+behavior.
+<pre>var_dump(0 == "abc"); // false</pre
+>
+</td>
+</tr>
 
-          <tr>
-            <td><b>Constructor Property Promotion</b></td>
-            <td>
-              More boilerplate code (property declared separately).
-              <pre>class User {
-    public $name;
+<tr>
+<td><b>Constructor Property Promotion</b></td>
+<td>
+More boilerplate code (property declared separately).
+<pre>class User {
+public $name;
 
-    public function __construct($name) {
-        $this->name = $name;
-    }
+public function __construct($name) {
+$this->name = $name;
+}
 }
 </pre
-              >
-            </td>
-            <td>
-              Less boilerplate code (declare & assign in constructor).
-              <pre>
+>
+</td>
+<td>
+Less boilerplate code (declare & assign in constructor).
+<pre>
 class User {
-    public function __construct(
-        public string $name
-    ) {}
+public function __construct(
+public string $name
+) {}
 }
 </pre
-              >
-            </td>
-          </tr>
+>
+</td>
+</tr>
 
-          <tr>
-            <td><b>Type Declarations</b></td>
-            <td>
-              Scalar type declarations introduced (int, float, string, bool).
-              <pre>
+<tr>
+<td><b>Type Declarations</b></td>
+<td>
+Scalar type declarations introduced (int, float, string, bool).
+<pre>
 function sum(int $a, int $b) {
-    return $a + $b;
+return $a + $b;
 }
 </pre
-              >
-            </td>
-            <td>
-              Union types allow multiple data types.
-              <pre>
+>
+</td>
+<td>
+Union types allow multiple data types.
+<pre>
 function test(int|string $data) {
-    return $data;
+return $data;
 }
 </pre
-              >
-            </td>
-          </tr>
+>
+</td>
+</tr>
 
-          <tr>
-            <td><b>Null Handling</b></td>
-            <td>
-              Null coalescing operator (??) to provide default values.
-              <pre>
+<tr>
+<td><b>Null Handling</b></td>
+<td>
+Null coalescing operator (??) to provide default values.
+<pre>
 $name = $_GET['name'] ?? 'Guest';
 </pre
-              >
-            </td>
-            <td>
-              Nullsafe operator (?->) to avoid null errors.
-              <pre>
+>
+</td>
+<td>
+Nullsafe operator (?->) to avoid null errors.
+<pre>
 $user?->profile?->name;
 </pre
-              >
-            </td>
-          </tr>
+>
+</td>
+</tr>
 
-          <tr>
-            <td><b>Named Arguments</b></td>
-            <td>
-              Only positional arguments supported.
-              <pre>
+<tr>
+<td><b>Named Arguments</b></td>
+<td>
+Only positional arguments supported.
+<pre>
 function user($name, $age) {}
 user("Bavi", 25);
 </pre
-              >
-            </td>
-            <td>
-              Named arguments introduced.
-              <pre>
+>
+</td>
+<td>
+Named arguments introduced.
+<pre>
 function user($name, $age) {}
 user(age:25, name:"Bavi");
 </pre
-              >
-            </td>
-          </tr>
+>
+</td>
+</tr>
 
-          <tr>
-            <td><b>Switch Alternative</b></td>
-            <td>
-              Only switch statement available.
-              <pre>
+<tr>
+<td><b>Switch Alternative</b></td>
+<td>
+Only switch statement available.
+<pre>
 switch($x) {
-    case 1:
-        echo "One";
-        break;
+case 1:
+echo "One";
+break;
 }
 </pre
-              >
-            </td>
-            <td>
-              Match expression introduced (strict comparison).It performs strict
-              comparison and does not require a break statement.
-              <pre>
+>
+</td>
+<td>
+Match expression introduced (strict comparison).It performs strict
+comparison and does not require a break statement.
+<pre>
 echo match($x) {
-    1 => "One",
-    default => "Other",
+1 => "One",
+default => "Other",
 };
 </pre
-              >
-            </td>
-          </tr>
+>
+</td>
+</tr>
 
-          <tr>
-            <td><b>Annotations</b></td>
-            <td>
-              Doc comments used for metadata.
-              <pre>
+<tr>
+<td><b>Annotations</b></td>
+<td>
+Doc comments used for metadata.
+<pre>
 /**
- * @Route("/home")
- */
+* @Route("/home")
+*/
 </pre
-              >
-            </td>
-            <td>
-              Attributes (#[...]) introduced.
-              <pre>
+>
+</td>
+<td>
+Attributes (#[...]) introduced.
+<pre>
 #[Route('/home')]
 </pre
-              >
-            </td>
-          </tr>
-        </table>
-        <br />
-        PHP 8 improves error handling by converting many warnings into
-        exceptions like TypeError and ValueError, making debugging easier and
-        allowing errors to be handled using try-catch blocks compared to PHP 7.
-      </div>
-
-      <!-- ================= IMPORTANT FOR 3 YEARS ================= -->
-
-      <div class="section">
-        <h2>Important PHP Questions (3 Years Experience)</h2>
-
-        <div class="question">Difference between include and require?</div>
-        <div class="answer">
-          include → Warning if file missing.<br />
-          require → Fatal error if file missing.
-        </div>
-
-        <div class="question">What is Namespace?</div>
-        <div class="answer">
-          Namespace avoids class name conflicts in large applications.
-          IT is used to organize classes, functions, and constants to avoid name conflicts.
-        </div>
-
-        <div class="question">What is Composer?</div>
-        <div class="answer">Composer is a dependency manager for PHP.</div>
-
-        <div class="question">What is Autoloading?</div>
-        <div class="answer">
-          Automatically loads class files using spl_autoload_register() or
-          Composer PSR-4.
-        </div>
-
-        <div class="question">Diffence Between Session and Cookie?</div>
-        <div class="answer">
-          Session → Stored on server.<br />
-          Cookie → Stored in browser.
-        </div>
-        <div class="question">What are sessions in PHP?</div>
-        <div class="answer">
-          A way to store user data on the server across multiple pages.
-        </div>
-        <div class="question">What are cookies in PHP?</div>
-        <div class="answer">
-          A small piece of data stored in the user's browser.
-        </div>
-
-        <div class="question">What is session_unset() in PHP?</div>
-        <div class="answer">
-          The session_unset() function clears all session variables.
-        </div>
-
-        <div class="question">What is session_destroy() in PHP?</div>
-        <div class="answer">
-          The session_destroy() function destroys all data registered to a session.
-        </div>
-
-        <div class="question">What is the session_regenerate_id() function in PHP?</div>
-        <div class="answer">
-          The session_regenerate_id() function generates a new session ID, which is used to prevent session fixation attacks.
-        </div>
-        <div class="question">What is the htmlspecialchars() function in PHP?</div>
-        <div class="answer">
-          The htmlspecialchars() function converts special characters to HTML entities to prevent XSS attacks.
-        </div>
-        <div class="question">What is htmlentities() in PHP?</div>
-        <div class="answer">
-          The htmlentities() function converts all applicable characters to HTML entities.
-        </div>
-
-        <div class="question">What is stripslashes() in PHP?</div>
-        <div class="answer">
-          The stripslashes() function removes backslashes from a string.
-        </div>
-
-        <div class="question">What is REST API in PHP?</div>
-        <div class="answer">
-          A REST API is a type of Web API that follows REST principles and uses HTTP methods like GET, POST, PUT, DELETE.
-        </div>
-
-        <div class="question">What is PDO?</div>
-        <div class="answer">
-          PDO (PHP Data Objects) provides secure database access using prepared
-          statements.
-        </div>
-
-        <div class="question">What is Dependency Injection?</div>
-        <div class="answer">
-          Dependency Injection means passing required objects to a class instead
-          of creating them inside.
-        </div>
-
-        <div class="question">How to improve PHP performance?</div>
-        <div class="answer">
-          Use caching, optimize queries, use indexes, enable OPcache, reduce DB
-          calls, and avoid unnecessary loops.
-        </div>
-      </div>
-
-      <!-- ================= MICROSERVICES ================= -->
-
-      <div class="section">
-        <h2>Microservices</h2>
-
-        <div class="question">What is Microservices?</div>
-        <div class="answer">
-          Microservices is an architecture where an application is divided into
-          small independent services that communicate via APIs.
-        </div>
-      </div>
-
-      <!-- ================= GLOBAL VARIABLES ================= -->
-
-        <div class="section">
-        <h2>PHP Global Variables (Superglobals)</h2>
-
-        <div class="question">What are Global Variables in PHP?</div>
-        <div class="answer">
-        Global variables are predefined variables that are accessible from anywhere in the script. 
-        They are also called <b>Superglobals</b>.
-        </div>
-
-        <table border="1" cellpadding="8">
-        <tr>
-        <th>Variable</th>
-        <th>Description</th>
-        </tr>
-
-        <tr>
-        <td>$_GET</td>
-        <td>Used to collect data sent via URL parameters (HTTP GET method).</td>
-        </tr>
-
-        <tr>
-        <td>$_POST</td>
-        <td>Used to collect form data sent via POST method.</td>
-        </tr>
-
-        <tr>
-        <td>$_REQUEST</td>
-        <td>Contains data from $_GET, $_POST, and $_COOKIE.</td>
-        </tr>
-
-        <tr>
-        <td>$_SERVER</td>
-        <td>It is a global associative array that contains information about the web server environment, HTTP headers, paths, and script locations.</td>
-        </tr>
-
-        <tr>
-        <td>$_SESSION</td>
-        <td>It is a global associative array that stores session variables.</td>
-        </tr>
-
-        <tr>
-        <td>$_COOKIE</td>
-        <td>Stores cookie data (stored in browser).</td>
-        </tr>
-
-        <tr>
-        <td>$_FILES</td>
-        <td>It is a global associative array that contains information about files uploaded via HTTP POST.</td>
-        </tr>
-
-        <tr>
-        <td>$_ENV</td>
-        <td>Contains environment variables.</td>
-        </tr>
-
-        <tr>
-        <td>$GLOBALS</td>
-        <td>Used to access global variables inside functions.</td>
-        </tr>
-
-        </table>
-
-        <div class="question">What is $GLOBALS?</div>
-        <div class="answer">
-        $GLOBALS is an associative array that contains all global variables.
-        Example:
-        <pre>$x = 10;
-
-function test() {
-    echo $GLOBALS['x'];
-}
-
-test(); // 10
-        </pre>
-        </div>
-
-        </div>
-
-        <!-- ================= FILE HANDLING ================= -->
-
-        <div class="section">
-        <h2>PHP File Handling Functions</h2>
-
-        <div class="question">What is File Handling in PHP?</div>
-        <div class="answer">
-        File handling allows PHP to create, read, write, append, and delete files on the server.
-        </div>
-
-        <h3>Common File Functions</h3>
-
-        <table border="1" cellpadding="8">
-        <tr>
-        <th>Function</th>
-        <th>Description</th>
-        </tr>
-
-        <tr>
-        <td>fopen()</td>
-        <td>Opens a file.</td>
-        </tr>
-
-        <tr>
-        <td>fclose()</td>
-        <td>Closes an open file.</td>
-        </tr>
-
-        <tr>
-        <td>fread()</td>
-        <td>Reads from a file.</td>
-        </tr>
-
-        <tr>
-        <td>fwrite()</td>
-        <td>Writes to a file.</td>
-        </tr>
-
-        <tr>
-        <td>file_get_contents()</td>
-        <td>Reads entire file into a string.</td>
-        </tr>
-
-        <tr>
-        <td>file_put_contents()</td>
-        <td>Writes data to a file.</td>
-        </tr>
-
-        <tr>
-        <td>unlink()</td>
-        <td>Deletes a file.</td>
-        </tr>
-
-        <tr>
-        <td>file_exists()</td>
-        <td>Checks if file exists.</td>
-        </tr>
-
-        <tr>
-        <td>filesize()</td>
-        <td>Returns file size.</td>
-        </tr>
-
-        <tr>
-        <td>move_uploaded_file()</td>
-        <td>Moves uploaded file to target directory.</td>
-        </tr>
-
-        </table>
-
-        <h3>File Modes (fopen modes)</h3>
-
-        <table border="1" cellpadding="8">
-        <tr>
-        <th>Mode</th>
-        <th>Meaning</th>
-        </tr>
-
-        <tr>
-        <td>r</td>
-        <td>Read only</td>
-        </tr>
-
-        <tr>
-        <td>r+</td>
-        <td>Read and write</td>
-        </tr>
-
-        <tr>
-        <td>w</td>
-        <td>Write only (creates or overwrites file)</td>
-        </tr>
-
-        <tr>
-        <td>w+</td>
-        <td>Read and write (overwrites file)</td>
-        </tr>
-
-        <tr>
-        <td>a</td>
-        <td>Append (adds data at end)</td>
-        </tr>
-
-        <tr>
-        <td>a+</td>
-        <td>Read and append</td>
-        </tr>
-
-        <tr>
-        <td>x</td>
-        <td>Create new file (fails if exists)</td>
-        </tr>
-
-        <tr>
-        <td>x+</td>
-        <td>Create new file for read/write</td>
-        </tr>
-
-        </table>
-
-        <div class="question">Example: Read and Write File</div>
-        <div class="answer">
-        <pre>$file = fopen("test.txt", "w");<br>fwrite($file, "Hello PHP");<br>fclose($file);<br><br>$content = file_get_contents("test.txt");<br>echo $content;
-        </pre>
-        </div>
-
-        </div>
-
-      <!-- ================= ADVANCED 3+ YEARS ================= -->
-
-      <div class="section">
-        <h2>Advanced PHP Concepts (3+ Years Level)</h2>
-
-<div class="question">Difference between Interface and Abstract Class?</div>
+>
+</td>
+</tr>
+</table>
+<br />
+PHP 8 improves error handling by converting many warnings into
+exceptions like TypeError and ValueError, making debugging easier and
+allowing errors to be handled using try-catch blocks compared to PHP 7.
+</div>
+
+
+<!-- ================= SCENARIO ================= -->
+
+<div class="section">
+<h2>Scenario-Based Questions</h2>
+
+<div class="question">1. How do you optimize a slow PHP application?</div>
 <div class="answer">
+✅ Use caching<br>
+✅ Optimize SQL queries<br>
+✅ Use indexing<br>
+✅ Reduce unnecessary loops<br>
+✅ Enable OPcache
+</div>
 
-<p><strong>Interface</strong> → Interfaces define methods that must be implemented by a class, but cannot provide method implementations.</p>
+<div class="question">2. How do you handle large file uploads?</div>
+<div class="answer">
+✅ Increase upload_max_filesize and post_max_size<br>
+✅ Validate file type and size<br>
+✅ Store files securely
+</div>
+
+<div class="question">3. How do you secure a login system?</div>
+<div class="answer">
+✅ Use password_hash() and password_verify()<br>
+✅ Use prepared statements<br>
+✅ Enable CSRF protection<br>
+✅ Validate inputs
+</div>
+
+<div class="question">4. How do you improve API performance?</div>
+<div class="answer">
+✅ Use caching<br>
+✅ Reduce database calls<br>
+✅ Use pagination<br>
+✅ Optimize response data
+</div>
+
+<div class="question">5. How do you handle errors and exceptions?</div>
+<div class="answer">
+Use try-catch blocks and proper logging.
+</div>
 
 <pre>
-interface Animal {
-    public function sound(); // Declaration
-}
-
-class Dog implements Animal {
-    public function sound() { // Implementation
-        echo "Bark";
-    }
+try {
+  // code
+} catch(Exception $e) {
+  echo $e->getMessage();
 }
 </pre>
 
-<p><strong>Abstract Class</strong> → It can have both method declarations and partial implementation method implementations.</p>
+</div>
+
+<!-- ================= CODING ================= -->
+
+<div class="section">
+<h2>Coding Questions</h2>
+
+<div class="question">1. Reverse a string without built-in function.</div>
 
 <pre>
-abstract class Animal {
-    abstract public function sound(); // Declaration
+$str = "hello";
+$rev = "";
+for($i = strlen($str)-1; $i >= 0; $i--){
+    $rev .= $str[$i];
+}
+echo $rev;
+</pre>
 
-    public function eat() { // Implementation
-        echo "Eating";
+<div class="question">2. Find duplicate values in an array.</div>
+
+<pre>
+$arr = [1,2,3,2,4,1];
+print_r(array_unique(array_diff_assoc($arr, array_unique($arr))));
+</pre>
+
+<div class="question">3. Sort array without using sort().</div>
+
+<pre>
+$arr = [5,3,1,4,2];
+for($i=0;$i<count($arr);$i++){
+  for($j=$i+1;$j<count($arr);$j++){
+    if($arr[$i] > $arr[$j]){
+      $temp = $arr[$i];
+      $arr[$i] = $arr[$j];
+      $arr[$j] = $temp;
     }
+  }
 }
+print_r($arr);
+</pre>
 
-class Dog extends Animal {
-    public function sound() {
-        echo "Bark";
-    }
+<div class="question">4. Check palindrome.</div>
+
+<pre>
+$str = "madam";
+if($str == strrev($str)){
+  echo "Palindrome";
 }
 </pre>
 
-</div>
+<div class="question">5. Remove duplicate characters from string.</div>
 
-        <div class="question">What is the purpose of the break and continue statements in PHP?</div>
-        <div class="answer">
-          <p>break → Stops the loop completely.</p>
-          <p>continue → Skips the current iteration of a loop and moves to the next iteration.</p>
-        </div>
-
-        <div class="question">What is final keyword?</div>
-        <div class="answer">
-          <p><strong>final class</strong> → Cannot be extended.</p>
-          <p><strong>final method</strong> → Cannot be overridden.</p>
-        </div>
-
-        <div class="question">What's the difference between unset() and unlink() in PHP?</div>
-        <div class="answer">
-        <p><strong>unset()</strong> → Used to destroy a variable from memory.</p>
-        <p><strong>unlink()</strong> → Used to delete a file from the server.</p>
-        </div>
-        <div class="question">What is Late Static Binding?</div>
-        <div class="answer">
-          Used to reference called class at runtime using
-          <b>static::</b> instead of <b>self::</b>.
-        </div>
-
-        <div class="question">What is Exception Handling?</div>
-        <div class="answer">
-          Used to handle runtime errors using try, catch, finally and throw.
-        </div>
-
-        <div class="question">What is JSON handling in PHP?</div>
-        <div class="answer">
-          json_encode() → Convert array/object to JSON.<br />
-          json_decode() → Convert JSON to PHP array/object.
-        </div>
-
-        <div class="question">What are PSR Standards?</div>
-        <div class="answer">
-          PSR-4 → Autoloading standard.<br />
-          PSR-12 → Coding style guide.<br />
-          PSR-7 → HTTP message interface standard.
-        </div>
-
-        <div class="question">What is Middleware?</div>
-        <div class="answer">
-          Middleware filters HTTP requests before reaching controller
-          (Authentication, Logging, etc).
-        </div>
-
-        <div class="question">What is Queue in PHP?</div>
-        <div class="answer">
-          Used to process background jobs like email sending, notifications,
-          reports generation.
-        </div>
-
-        <div class="question">What is Caching?</div>
-        <div class="answer">
-          Improves performance by storing frequently accessed data in memory
-          (Redis, Memcached, OPcache).
-        </div>
-
-        <div class="question">What are Database Transactions?</div>
-        <div class="answer">
-          Ensures ACID properties (Atomicity, Consistency, Isolation,
-          Durability) using commit() and rollback().
-        </div>
-
-        <div class="question">What is JWT Authentication?</div>
-        <div class="answer">
-          JWT (JSON Web Token) is used for secure API authentication using
-          signed tokens.
-        </div>
-
-        <div class="question">What are Generators in PHP?</div>
-        <div class="answer">
-          Generators use <b>yield</b> keyword to iterate large datasets with low
-          memory usage.
-        </div>
-
-        <div class="question">What are Closures?</div>
-        <div class="answer">
-          Anonymous functions that can capture variables from parent scope using
-          <b>use</b>.
-        </div>
-
-        <div class="question">What is CSRF Protection?</div>
-        <div class="answer">
-          Prevents unauthorized requests using CSRF tokens in forms.
-        </div>
-
-        <div class="question">What is CORS?</div>
-        <div class="answer">
-          Cross-Origin Resource Sharing allows or restricts API access from
-          different domains.
-        </div>
-
-        <div class="question">What is Unit Testing?</div>
-        <div class="answer">
-          Testing individual components of application using tools like PHPUnit.
-        </div>
-
-        <div class="question">What is N+1 Query Problem?</div>
-        <div class="answer">
-          Occurs when one query fetches data and additional queries run inside a
-          loop, causing performance issues.
-        </div>
-
-        <div class="question">What is Rate Limiting?</div>
-        <div class="answer">
-          Limits number of API requests per user/IP to prevent abuse.
-        </div>
-
-        <div class="question">What is Dependency Injection Container?</div>
-        <div class="answer">
-          Manages class dependencies automatically and resolves them when
-          needed.
-        </div>
-        </div>
-
-        <!-- ================= COMPLETE INTERVIEW SET ================= -->
-
-        <div class="section">
-        <h2>PHP Interview Questions For Freshers</h2>
-
-        <div class="question">Differentiate between variables and constants in PHP</div>
-        <div class="answer">
-        Variable → Value can change. Example:
-        <pre>$name = "Bavi";
-        </pre>
-        Constant → Value cannot change once defined.
-        <pre>define("SITE", "MyApp");<br>echo SITE;</pre>
-        </div>
-
-        <div class="question">What is a session in PHP?</div>
-        <div class="answer">
-        Session stores user data on the server across multiple pages.
-        <pre>session_start();<br>$_SESSION['user'] = "Bavi";</pre>
-        </div>
-
-        <div class="question">What does PEAR stand for?</div>
-        <div class="answer">
-        PEAR stands for <b>PHP Extension and Application Repository. It is a framework
-        and has collection of reusable PHP libraries and components used to simplify PHP development</b>.
-        </div>
-
-        <div class="question">Explain the difference between $message and $$message.</div>
-        <div class="answer">
-        $message → Normal variable.<br>
-        $$message → Variable variable.
-        (It allows you to dynamically create a variable name using the value of another variable.)
-        <pre>$name = "user";<br>$user = "Bavi";<br>echo $$name; // Bavi
-        </pre>
-        </div>
-
-        <div class="question">Is PHP case-sensitive?</div>
-        <div class="answer">
-        PHP can be considered as a partial case-sensitive language. Variables are case-sensitive.<br>
-        But Functions and keywords are not case-sensitive.
-        </div>
-
-        <div class="question">Types of variables in PHP?</div>
-        <div class="answer">
-        <table border="0" cellpadding="5" cellspacing="0">
-        <tr>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Example</th>
-        </tr>
-        <tr>
-        <td>String</td>
-        <td>Text</td>
-        <td><code>$name = "Bavi";</code></td>
-        </tr>
-        <tr>
-        <td>Integer</td>
-        <td>Whole number</td>
-        <td><code>$age = 25;</code></td>
-        </tr>
-        <tr>
-        <td>Float</td>
-        <td>Decimal number</td>
-        <td><code>$price = 99.99;</code></td>
-        </tr>
-        <tr>
-        <td>Boolean</td>
-        <td>true/false</td>
-        <td><code>$isActive = true;</code></td>
-        </tr>
-        <tr>
-        <td>Array</td>
-        <td>Collection</td>
-        <td><code>$arr = [1,2,3];</code></td>
-        </tr>
-        <tr>
-        <td>Object</td>
-        <td>Instance of class</td>
-        <td><code>$obj = new User();</code></td>
-        </tr>
-        <tr>
-        <td>NULL</td>
-        <td>Empty variable</td>
-        <td><code>$x = null;</code></td>
-        </tr>
-        <tr>
-        <td>Resource</td>
-        <td>External resource</td>
-        <td><code>$file = fopen("file.txt","r");</code></td>
-        </tr>
-        </table>
-        </div>
-
-        <div class="question">What are the rules for naming a PHP variable?</div>
-        <div class="answer">
-        <b>Start with a dollar sign:</b> All PHP variables must begin with the $ symbol.</br>
-        <b>Initial character:</b> The first character after the $ sign must be a letter (A-z) or an underscore (_). It cannot be a number.</br>
-        <b>Allowed characters:</b> The rest of the variable name can only contain alphanumeric characters and underscores (A-z, 0-9, and _).</br>
-        <b>No spaces:</b> Variable names cannot contain spaces. </br>
-        <b>Case sensitivity:</b> PHP variable names are case-sensitive. For example, $age and $AGE are treated as two different variables.</br>
-        <b>Reserved words:</b> Do not use PHP reserved keywords (like function, class, echo, print) as variable names to avoid errors.</br>
-        <b>Special variables:</b> $this is a special, predefined variable used within classes and cannot be assigned a value or referenced dynamically in the same way as user-defined variables.
-        </div>
-
-        <div class="question">Disadvantages of PHP</div>
-        <div class="answer">
-        Security issues if not handled properly.<br>
-        Loosely typed language.<br>
-        Can become messy without proper structure.
-        </div>
-
-        </div>
-
-        <div class="section">
-        <h2>Intermediate Interview Questions</h2>
-
-        <div class="question">How can PHP and HTML interact?</div>
-        <div class="answer">
-        PHP can be embedded inside HTML.
-        <pre>&lt;?php echo "Hello"; ?&gt;
-        </pre>
-        </div>
-
-        <div class="question">What is the purpose of @ in PHP?</div>
-        <div class="answer">
-        In PHP, @ is used for suppressing error messages. If any runtime error occurs on the
-        line which consists @ symbol at the beginning, then the error will be handled by PHP.
-        <pre>@$file = fopen("test.txt","r");
-        </pre>
-        </div>
-
-        <div class="question">Explain the importance of Parser in PHP?</div>
-        <div class="answer">
-        Parser converts PHP code into machine-readable format before execution.
-        </div>
-
-        <div class="question">Types of arrays in PHP?</div>
-        <div class="answer">
-        Indexed, Associative, Multidimensional.
-        </div>
-
-        <div class="question">Types of errors in PHP?</div>
-        <div class="answer">
-        <table border="0" cellpadding="5" cellspacing="0">
-        <tr>
-        <th>Error Type</th>
-        <th>Description</th>
-        <th>Example</th>
-        </tr>
-        <tr>
-        <td>Notice</td>
-        <td>Minor issue (non-critical errors), script continues</td>
-        <td><code>echo $undefinedVar;</code></td>
-        </tr>
-        <tr>
-        <td>Warning</td>
-        <td>Non-fatal, script continues</td>
-        <td><code>include("nofile.php");</code></td>
-        </tr>
-        <tr>
-        <td>Fatal Error</td>
-        <td>Script stops execution</td>
-        <td><code>undefinedFunction();</code></td>
-        </tr>
-        <tr>
-        <td>Parse Error</td>
-        <td>Syntax error, stops script</td>
-        <td><code>if(true { echo "Hi"; }</code></td>
-        </tr>
-        </table>
-        </div>
-
-        <div class="question">What are Traits in PHP, and when should you use them?</div>
-        <div class="answer">
-        A mechanism for code reuse in PHP. It allows you to reuse methods in multiple classes without using inheritance. Example: logging, caching, timestamping
-        </div>
-
-        <div class="question">Does JavaScript interact with PHP?</div>
-        <div class="answer">
-        Yes, through AJAX or form submission.
-        </div>
-
-        <div class="question">How does foreach work?</div>
-        <div class="answer">
-        Used to iterate arrays.
-        <pre>foreach($arr as $value){
-    echo $value;
-}
-        </pre>
-        </div>
-
-        <div class="question">Most used hashing method for passwords?</div>
-        <div class="answer">
-        password_hash() and password_verify()
-        </div>
-
-        <div class="question">Difference between include() and require()</div>
-        <div class="answer">
-        include → Warning if file missing.<br>
-        require → Fatal error if file missing.
-        </div>
-
-        <div class="question">What are Cookies? How to create?</div>
-        <div class="answer">
-        Cookies store data in browser.
-        <pre>setcookie("user","Bavi",time()+3600);
-        </pre>
-        </div>
-
-        <div class="question">Difference between ASP.NET and PHP?</div>
-        <div class="answer">
-        ASP.NET → Microsoft framework.<br>
-        PHP → Open-source scripting language.
-        </div>
-
-        <div class="question">Meaning of escaping to PHP?</div>
-        <div class="answer">
-        Switching from HTML to PHP using &lt;?php ?&gt; tags.
-        </div>
-
-        <div class="question">Explain Path Traversal</div>
-        <div class="answer">
-        Security vulnerability allowing access to files outside root directory using ../
-        </div>
-
-        <div class="question">What is final method and final class?</div>
-        <div class="answer">
-        final class →  A class declared as final cannot be extended (inherited) by any other class. (cannot be extended)<br>
-        final method → A method declared as final within a class cannot be overridden in a child class. (cannot be overridden)
-        </div>
-
-        </div>
-
-        <div class="section">
-        <h2>PHP Interview Questions For Experienced</h2>
-
-        <div class="question">Steps to create database using MySQL & PHP?</div>
-        <div class="answer">
-        1. Connect using mysqli or PDO<br>
-        2. Create database query<br>
-        3. Execute query
-        <pre>$conn = new mysqli("localhost","root","");<br>$conn->query("CREATE DATABASE testdb");
-        </pre>
-        </div>
-
-        <div class="question">session_start() and session_destroy()</div>
-        <div class="answer">
-        session_start() → Starts session.<br>
-        session_destroy() → Ends session.
-        </div>
-
-        <div class="question">What is Memcache & Memcached?</div>
-        <div class="answer">
-        Used for caching data in memory to improve performance.
-        Yes, one instance can be shared across multiple projects.
-        </div>
-
-<div class="question">Ways to handle MySQL result set?</div>
-<div class="answer">
-
-<p><strong>mysqli_fetch_assoc()</strong> → Fetches a result row as an associative array.</p>
-
-<p><strong>mysqli_fetch_array()</strong> → Fetches a row as associative array, numeric array, or both.</p>
-
-<p><strong>mysqli_fetch_object()</strong> → Fetches a result row as an object.</p>
-
-<p><strong>mysqli_fetch_row()</strong> → Fetches a result row as a numeric array.</p>
-
-</div>
-<div class="question">How to connect to a URL in PHP?</div>
-<div class="answer">
-Using file_get_contents() or cURL.
-<pre>$data = file_get_contents("https://example.com");
+<pre>
+$str = "programming";
+echo implode("", array_unique(str_split($str)));
 </pre>
-</div>
-
-<div class="question">How to create API in PHP?</div>
-<div class="answer">
-Use header("Content-Type: application/json");<br>
-Handle HTTP methods and return JSON response.
-</div>
-
-<div class="question">What is PDO?</div>
-<div class="answer">
-PDO (PHP Data Objects) in PHP is a database access layer and used to interact with different databases like MySQL, PostgreSQL, SQLite, etc and run safe queries using prepared statements to prevent SQL injection.
-</div>
-
-<div class="question">Difference between GET and POST</div>
-<div class="answer">
-GET → Data visible in URL.<br>
-POST → Data hidden in body, more secure.
-</div>
-
-<div class="question">Explain Type Hinting</div>
-<div class="answer">
-Specifying expected data type in function parameters.
-<pre>function sum(int $a, int $b){}
-</pre>
-</div>
-
-<div class="question">How to terminate script execution?</div>
-<div class="answer">
-Using exit() or die()
-<pre>exit("Script stopped");
-</pre>
-</div>
 
 </div>
 
-  </div>
 </div>
 </body>
 </html>
