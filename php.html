@@ -43,13 +43,14 @@ String, Integer, Float, Boolean, Array, Object, NULL, Resource.
 
 <div class="question">5. What is the difference between GET and POST?</div>
 <div class="answer">
-GET → Data is sent in URL, less secure, limited size.<br>
-POST → Data is sent in request body, more secure, no size limitation.
+GET → Data is sent in URL, less secure, limited size. Used to fetch records.<br>
+POST → Data is sent in request body, more secure, no size limitation. used to save records.
 </div>
 
 <div class="question">6. What is a session? How is it different from cookies?</div>
 <div class="answer">
 Session → Stored on server, more secure.<br>
+<pre>session_start();<br>$_SESSION['user'] = "Bavi";</pre>
 Cookie → Stored in browser, less secure.
 </div>
 
@@ -180,6 +181,10 @@ Constant → Value cannot change once defined.
 <div class="question">18. What are Traits in PHP, and when should you use them?</div>
 <div class="answer">
 A mechanism for code reuse in PHP. It allows you to reuse methods in multiple classes without using inheritance. Example: logging, caching, timestamping
+<pre>
+trait Hello { public function sayHello(){ echo "Hello"; } }
+class Greet { use Hello; }
+</pre>
 </div>
 
 <div class="question">19. What is a session in PHP?</div>
@@ -328,15 +333,27 @@ Composer is a dependency manager for PHP used to install and manage libraries.
   The stripslashes() function removes backslashes from a string.
 </div>
 
-<div class="question">38. What is REST API in PHP?</div>
+<div class="question">37. What is REST API in PHP?</div>
 <div class="answer">
   A REST API is a type of Web API that follows REST principles and uses HTTP methods like GET, POST, PUT, DELETE.
 </div>
 
-<div class="question">39. What is Dependency Injection?</div>
+<div class="question">38. What is Dependency Injection?</div>
 <div class="answer">
-  <p>Dependency Injection means passing required objects to a class instead of creating them inside.</p>
-  <p>Dependency Injection means passing required dependencies to a class instead of creating them inside the class.</p>
+<p>Passing dependencies into a class instead of creating them internally or inside the class.</p>
+<pre>
+class DB { }
+class User {
+    private $db;
+    public function __construct(DB $db){ $this->db = $db; }
+}
+
+</pre>
+</div>
+
+<div class="question">39. What is Dependency Injection Container?</div>
+<div class="answer">
+  A Dependency Injection Container is a class/system that automatically creates and injects dependencies.
 </div>
 
 <div class="question">40. How to improve PHP performance?</div>
@@ -355,7 +372,11 @@ Composer is a dependency manager for PHP used to install and manage libraries.
   <p><strong>var_dump() →</strong> Displays the data type and value of a variable in detail.</p>
   <p><strong>print_r() →</strong> Prints human-readable information without showing data types clearly.</p>
 </div>
-
+<div class="question">43. Difference between Error and Exception?</div>
+<div class="answer">
+  <p><strong>Error:</strong> Fatal runtime problem (E.g., parse errors, type errors)</p>
+  <p><strong>Exception:</strong> Recoverable issues using try-catch</p>
+</div>
 
 </div>
 
@@ -382,8 +403,8 @@ Composer is a dependency manager for PHP used to install and manage libraries.
 <div class="question">4. Difference between interface and abstract class?</div>
 <div class="answer">
 <p><strong>In Short:</strong></p>
-<p>Interface → Only method declarations  but cannot provide method implementations.</p>
-<p>Abstract class → Can have both method declaration and implementation.</p>
+<p>Interface → Only method declarations  but cannot provide method implementations. Classes can implement multiple interfaces</p>
+<p>Abstract class → Can have both method declaration and implementation; single inheritance.</p>
 
 <p><strong>Interface</strong> → Interfaces define methods that must be implemented by a class, but cannot provide method implementations.</p>
 
@@ -419,6 +440,10 @@ class Dog extends Animal {
 <p>One Line :</p>
 <p><strong>✅ interface:</strong> only provides method declarations, does not provide method implementations.</p>
 <p><strong>✅ Abstract class:</strong> provides both method declarations (abstract methods) and method implementations (concrete methods)</p>
+<pre>
+interface Logger { public function log($msg); }
+abstract class BaseLogger { public function format($msg){ return strtoupper($msg); } }
+</pre>
 </div>
 
 <div class="question">5. What is encapsulation?</div>
@@ -462,10 +487,11 @@ function __destruct() {}
 <div class="answer">
   Static belongs to class, not object. Access using :: (scope resolution operator or double colon)
 </div>
-<div class="question">12. Difference between self and $this?</div>
+<div class="question">12. Difference between $this vs self:: vs static:: ?</div>
 <div class="answer">
-  $this → Refers to current object.<br />
-  self:: → Refers to current class.
+  <p>$this → Refers to the current object instance. Used to access instance properties and methods.(non-static)</p>
+  <p>self:: → Refers to the class where the method is defined. Does not consider child classes (static, no inheritance).</p>
+  <p>static:: → Refers to the class that called the method, even if it's a child class. (static, supports inheritance)</p>
 </div>
 
 <div class="question">13. What is Method Overriding?</div>
@@ -551,6 +577,14 @@ Traits provide reusable method implementations to include in classes, while Inte
 <div class="question">What is PHP-FPM?</div>
 <div class="answer">
 PHP-FPM (FastCGI Process Manager) is a PHP handler that manages pools of PHP processes to improve performance and handle high traffic efficiently.
+</div>
+
+<div class="question">What is Generator and yield</div>
+<div class="answer">
+<p><strong>Generator -> </strong>A Generator is the special kind of function that can generate values one at a time.</p>
+<p><strong>Yield -> </strong>yield is the keyword inside a generator that produces a value. 
+It's like return, but instead of stopping the function, it pauses it so the next value can be generated later.</p>
+<p>✅ Here, yield is giving the values one by one.</p>
 </div>
 
 <div class="question">What is File Handling in PHP?</div>
@@ -676,7 +710,14 @@ File handling allows PHP to create, read, write, append, and delete files on the
 
 <div class="question">What is Output Buffering?</div>
 <div class="answer">
-Output buffering stores output in memory before sending it to browser using ob_start().
+<p>It is feature in PHP. That</p>
+<p>Output Buffering = temporarily storing PHP output in memory instead of sending it immediately to the browser, so you can modify or control it before sending.</p>
+<pre>
+ob_start();
+echo "Hello";
+header("Location: example.php"); // No error, output is in buffer
+ob_end_flush();
+</pre>
 </div>
 
 <div class="question">What is the purpose of the break and continue statements in PHP?</div>
@@ -956,7 +997,7 @@ $obj->display(); // Non-static Method
 
 <div class="question">What are PSR Standards?</div>
 <div class="answer">
-  PSR-4 → Autoloading standard.<br />
+  PSR-4 → Standard for autoloading classes via namespaces.<br />
   PSR-12 → Coding style guide.<br />
   PSR-7 → HTTP message interface standard.
 </div>
@@ -997,12 +1038,6 @@ $obj->display(); // Non-static Method
   memory usage.
 </div>
 
-<div class="question">What are Closures?</div>
-<div class="answer">
-  Anonymous functions that can capture variables from parent scope using
-  <b>use</b>.
-</div>
-
 <div class="question">What is CSRF Protection?</div>
 <div class="answer">
   Prevents unauthorized requests using CSRF tokens in forms.
@@ -1030,11 +1065,6 @@ $obj->display(); // Non-static Method
   Limits number of API requests per user/IP to prevent abuse.
 </div>
 
-<div class="question">What is Dependency Injection Container?</div>
-<div class="answer">
-  Manages class dependencies automatically and resolves them when
-  needed.
-</div>
 
 <div class="question">Explain Type Hinting</div>
 <div class="answer">
@@ -1308,7 +1338,7 @@ The SOLID principles are five design rules for writing better, maintainable obje
 
 1. <b>Single Responsibility Principle (SRP)</b>: 
 <p>Memory Tip: One class, one job</p>
-A class should have only one job.  (One Method only inside Class) 
+A class should have only one job.  (One responsibility only inside Class) 
 <p>Example: <b>I separated database, business logic, and notifications → SRP</b></p>
 <pre>
 class Logger {
@@ -1424,36 +1454,35 @@ D - Depend on interfaces, not concrete classes
 <!-- ================= DESIGN PATTERNS ================= -->
 
 <div class="section">
-  <h2>PHP Design Patterns</h2>
+<h2>PHP Design Patterns</h2>
 
-  <div class="question">What are Design Patterns?</div>
-  <div class="answer">
-    Design patterns are reusable solutions to common software design
-    problems that improve maintainability, scalability, and testability.
-  </div>
+<div class="question">What are Design Patterns?</div>
+<div class="answer">
+Design patterns are reusable solutions to common software design problems that improve maintainability, scalability, and testability.
+</div>
 
-  <h3>Creational Patterns</h3>
-  <div class="answer">
-    Singleton → Ensures only one instance (Example: DB connection)<br />
-    Factory → Creates objects without exposing logic (Example: Payment
-    gateway)<br />
-    Builder → Builds complex objects step by step
-  </div>
+<h3>Creational Patterns</h3>
+<div class="answer">
+  Singleton → Ensures only one instance (Example: DB connection)<br />
+  Factory → Creates objects without exposing logic (Example: Payment
+  gateway)<br />
+  Builder → Builds complex objects step by step
+</div>
 
-  <h3>Structural Patterns</h3>
-  <div class="answer">
-    MVC → Separates Model, View, Controller<br />
-    Adapter → Makes incompatible interfaces work together<br />
-    Decorator → Adds behavior without modifying class<br />
-    Facade → Simple interface to complex system
-  </div>
+<h3>Structural Patterns</h3>
+<div class="answer">
+  MVC → Separates Model, View, Controller<br />
+  Adapter → Makes incompatible interfaces work together<br />
+  Decorator → Adds behavior without modifying class<br />
+  Facade → Simple interface to complex system
+</div>
 
-  <h3>Behavioral Patterns</h3>
-  <div class="answer">
-    Observer → Event listeners / Notifications<br />
-    Strategy → Change algorithm dynamically<br />
-    Command → Encapsulates actions as objects
-  </div>
+<h3>Behavioral Patterns</h3>
+<div class="answer">
+  Observer → Event listeners / Notifications<br />
+  Strategy → Change algorithm dynamically<br />
+  Command → Encapsulates actions as objects
+</div>
 </div>
 
 <!-- ================= MAGIC CONSTANTS ================= -->
@@ -1498,36 +1527,40 @@ D - Depend on interfaces, not concrete classes
 </div>
 <div class="section">
   <h2>Magic Methods</h2>
-
+  <p>In PHP, magic methods are special methods that start with double underscores __ and are automatically called in certain situations by PHP.</p>
   <table>
     <tr>
       <td>__construct()</td>
       <td>Automatically called when an object is created.</td>
-      <td>Used to initialize properties.</td>
     </tr>
 
     <tr>
       <td>__destruct()</td>
       <td>Automatically called when object is destroyed.</td>
-      <td>Used to close connections or cleanup.</td>
     </tr>
 
     <tr>
       <td>__get()</td>
-      <td>Called when accessing inaccessible/private property.</td>
-      <td>Handles undefined property read.</td>
+      <td>It is called when trying to access a non-existent or inaccessible property..</td>
     </tr>
 
     <tr>
       <td>__set()</td>
-      <td>Called when setting inaccessible/private property.</td>
-      <td>Handles undefined property write.</td>
+      <td>Called when setting a non-existent or inaccessible property.</td>
+    </tr>
+
+    <tr>
+      <td>__call($name,$parameter)</td>
+      <td>This method executes when a method is called which is not defined yet. / when call undefined method.</td>
     </tr>
 
     <tr>
       <td>__toString()</td>
-      <td>Called when object is treated as a string.</td>
-      <td>Returns string representation of object.</td>
+      <td>This method is called when we need to convert the object into a string.</td>
+    </tr>
+    <tr>
+      <td>__invoke()</td>
+      <td>Called when an object is used as a function..</td>
     </tr>
   </table>
 </div>
