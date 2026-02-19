@@ -17,36 +17,36 @@
 <div class="section">
 <h2>JavaScript Basics</h2>
 
-<div class="question">What is JavaScript?</div>
+<div class="question">1. What is JavaScript?</div>
 <div class="answer">
 JavaScript is a client-side scripting language used to make web pages interactive and dynamic.
 </div>
 
-<div class="question">Difference between var, let, and const?</div>
+<div class="question">2. Difference between var, let, and const?</div>
 <div class="answer">
 ✅ var → Function-scoped, can be redeclared and reassigned.<br>
 ✅ let → Block-scoped, cannot be redeclared but can be reassigned.<br>
 ✅ const → Block-scoped, cannot be redeclared or reassigned.
 </div>
 
-<div class="question">What is Hoisting?</div>
+<div class="question">3. What is Hoisting?</div>
 <div class="answer">
 Hoisting moves variable and function declarations to the top of their scope before code execution.
 </div>
 
-<div class="question">What Temporal Dead Zone (TDZ)?</div>
+<div class="question">4. What Temporal Dead Zone (TDZ)?</div>
 <div class="answer">
 TDZ is the time period where a let or const variable exists but cannot be used before 
 its declaration, and accessing it will throw a ReferenceError.
 </div>
 
-<div class="question">What are Data Types?</div>
+<div class="question">5. What are Data Types?</div>
 <div class="answer">
 Primitive: String, Number, Boolean, Undefined, Null, Symbol, BigInt.<br>
 Non-Primitive: Object, Array, Function.
 </div>
 
-<div class="question">What are Prototype?</div>
+<div class="question">6. What are Prototype?</div>
 <div class="answer">
 <p>A prototype is the mechanism JavaScript uses to implement inheritance.
 Every JavaScript object can inherit properties and methods from another object through its prototype. (OR)</p>
@@ -58,19 +58,127 @@ Every JavaScript object can inherit properties and methods from another object t
 <div class="section">
 <h2>Functions & Scope</h2>
 
-<div class="question">5. What is a Function?</div>
+<div class="question">1. What is a Function?</div>
 <div class="answer">
 A reusable block of code that performs a specific task.
 </div>
 
-<div class="question">6. Arrow Function vs Normal Function?</div>
+<div class="question">2. Arrow Function vs Normal Function?</div>
 <div class="answer">
 Arrow functions do not have their own <strong>this</strong>, normal functions do.
 </div>
 
-<div class="question">7. What is Closure?</div>
+<div class="question">3. What is Closure?</div>
 <div class="answer">
-A closure remembers variables from its outer scope even after the outer function finishes execution.
+A closure allows inner function to access variables from its outer function even after the outer function has executed.
+<p>Use Case : Counters, debounce() and throttle()</p>
+</div>
+
+<div class="question">4. What is an Arrow Function?</div>
+<div class="answer">
+Arrow functions are a shorter syntax for writing functions in ES6.
+
+<p>Example: Callbacks in array methods like map(), filter(), and reduce()</p>
+<pre>
+const add = (a, b) => a + b;
+console.log(add(2,3)); // 5
+</pre>
+</div>
+
+<div class="question">5. What is a Callback Function?</div>
+<div class="answer">
+A callback function is a function that is passed as an argument to another function and is executed inside that function.  
+<p>Use Case: Handling asynchronous operations like API calls, event handling, or timers.</p>
+<p>Example:</p>
+<pre>
+function greet(name, callback) {
+  console.log("Hello, " + name);
+  callback();
+}
+
+function afterGreeting() {
+  console.log("Greeting has been displayed.");
+}
+
+greet("Bavi", afterGreeting);
+
+// Output:
+// Hello, Bavi
+// Greeting has been displayed.
+</pre>
+</div>
+
+
+<div class="question">6. What is a Higher-Order Function (HOF)?</div>
+<div class="answer">
+<p>A Higher-Order Function is a function that:</p>
+<p>✅ Takes one or more functions as arguments (or)</p>
+<p>✅ Returns a function</p>
+<p>Use Cases: Array methods -> .map(), .filter(), and .reduce(), setTimeout(), setInterval()</p>
+
+<p>Example:</p>
+<pre>
+function greet(message) {
+  return function(name) {
+    console.log(`${message}, ${name}!`);
+  };
+}
+
+const sayHello = greet("Hello");
+sayHello("Bavi"); // Hello, Bavi!
+</pre>
+</div>
+
+<div class="question">7. What is IIFE (Immediately Invoked Function Expression)?</div>
+<div class="answer">
+<p>An IIFE is a function that runs immediately after it is defined. </p>
+<p>IIFE makes variables private, so they don't conflict with global variables.</p>
+<p>Use Case: Avoid Global Variables in Big Projects or Module pattern, counters, data privacy</p>
+<p>Example:</p>
+<pre>
+var name = "Global";
+
+(function() {
+    var name = "Inside IIFE";
+    console.log(name); // Inside IIFE
+})();
+
+console.log(name); // Global
+</pre>
+</div>
+
+<div class="question">8. What is Currying in JavaScript?</div>
+<div class="answer">
+<p>Currying is a technique of transforming a function with multiple arguments into a sequence of functions, each taking a single argument. </p>
+<p>Currying transforms f(a, b, c) into f(a)(b)(c)</p>
+<p>Use Case: function reusability, Partial function application, reusable and composable functions.</p>
+<p>Example:</p>
+<pre>
+// Normal
+
+function add(a, b, c) {
+    return a + b + c;
+}
+
+console.log(add(2, 3, 4)); // 9
+
+// Currying
+
+// Generic multiply function
+function multiply(a) {
+    return function(b) {
+        return a * b;
+    };
+}
+
+var double = multiply(2); // 'a' is 2, returns function(b) waiting for 'b'
+console.log(double(5)); // 2 * 5 = 10
+console.log(double(10)); // 2 * 10 = 20
+
+var triple = multiply(3); // 'a' is 3, returns function(b) waiting for 'b'
+console.log(triple(5)); // 3 * 5 = 15
+
+</pre>
 </div>
 
 </div>
@@ -78,22 +186,22 @@ A closure remembers variables from its outer scope even after the outer function
 <div class="section">
 <h2>DOM & Events</h2>
 
-<div class="question">8. What is DOM?</div>
+<div class="question">1. What is DOM?</div>
 <div class="answer">
 DOM represents the HTML page as objects that JavaScript can manipulate.
 </div>
 
-<div class="question">9. How to select elements?</div>
+<div class="question">2. How to select elements?</div>
 <div class="answer">
 getElementById(), getElementsByClassName(), querySelector(), querySelectorAll()
 </div>
 
-<div class="question">10. What is Event Bubbling?</div>
+<div class="question">3. What is Event Bubbling?</div>
 <div class="answer">
 Event bubbling means an event moves from child element to parent element.
 </div>
 
-<div class="question">11. Difference between == and ===?</div>
+<div class="question">4. Difference between == and ===?</div>
 <div class="answer">
 == compares only value.<br>
 === compares value and data type.
@@ -104,23 +212,31 @@ Event bubbling means an event moves from child element to parent element.
 <div class="section">
 <h2>Asynchronous JavaScript</h2>
 
-<div class="question">12. What is Asynchronous JavaScript?</div>
+<div class="question">1. What is Asynchronous JavaScript?</div>
 <div class="answer">
 It allows tasks like API calls to run in the background without blocking the main thread.
 </div>
 
-<div class="question">13. What is a Callback?</div>
+<div class="question">2. What is a Callback?</div>
 <div class="answer">
 A function passed as an argument and executed later.
 </div>
 
-<div class="question">14. What is a Promise?</div>
+<div class="question">3. What is a Promise?</div>
 <div class="answer">
 An object representing completion or failure of an async operation.<br>
 States: Pending, Fulfilled, Rejected.
 </div>
 
-<div class="question">15. What are async and await?</div>
+<div class="question">4. Promise types</div>
+<div class="answer">
+<p><strong>Promise.all</strong> → Waits for all promises to finish, fails if any reject. <b>(Need all to resolve)</b></p>
+<p><strong>Promise.allSettled</strong> → Waits for all promises to finish, regardless of resolve/reject. <b>(Need all to finish)</b></p>
+<p><strong>Promise.race</strong> → Waits for the first promise to finish, whether it resolves or rejects. <b>(Need first to finish)</b></p>
+<p><strong>Promise.any</strong> → Waits for the first promise to successfully resolve. Fails only if all promises reject. <b>(Need any to resolve)</b></p>
+</div>
+
+<div class="question">5. What are async and await?</div>
 <div class="answer">
 Keywords used to handle promises in a cleaner synchronous-looking way.
 </div>
@@ -129,19 +245,144 @@ Keywords used to handle promises in a cleaner synchronous-looking way.
 
 <div class="section">
 <h2>Arrays & Objects</h2>
-
-<div class="question">16. Common Array Methods?</div>
+<div class="question">1. Arrays vs Objects</div>
 <div class="answer">
-map(), filter(), reduce(), forEach(), push(), pop()
+<p><strong>Arrays</strong> → Ordered collection of items, accessed by numeric index.</p>
+<p><strong>Objects</strong> → Collection of key-value pairs, accessed by keys.</p>
 </div>
 
-<div class="question">17. Difference between null and undefined?</div>
+
+<div class="question">2. Common Array Methods?</div>
+<div class="answer">
+<p><strong>map()</strong> → Creates a new array by applying a function to each element.</p>
+<pre>
+const numbers = [1,2,3];
+const doubled = numbers.map(n => n * 2);
+console.log(doubled); // [2,4,6]
+</pre>
+
+<p><strong>filter()</strong> → Creates a new array with elements that pass a test.</p>
+<pre>
+const numbers = [1,2,3,4,5];
+const even = numbers.filter(n => n % 2 === 0);
+console.log(even); // [2,4]
+</pre>
+
+<p><strong>reduce()</strong> → Reduces array to a single value by applying a function cumulatively.</p>
+<pre>
+const numbers = [1,2,3,4];
+const sum = numbers.reduce((acc, curr) => acc + curr, 0);
+console.log(sum); // 10
+</pre>
+
+<p><strong>forEach()</strong> → Executes a function on each element (returns undefined).</p>
+<pre>
+const numbers = [1,2,3];
+numbers.forEach(n => console.log(n * 2));
+// Output: 2 4 6
+</pre>
+
+<p><strong>push()</strong> → Adds elements to the end of an array.</p>
+<pre>
+const arr = [1,2];
+arr.push(3);
+console.log(arr); // [1,2,3]
+</pre>
+
+<p><strong>pop()</strong> → Removes the last element from an array.</p>
+<pre>
+const arr = [1,2,3];
+const last = arr.pop();
+console.log(last); // 3
+console.log(arr);  // [1,2]
+</pre>
+
+<p><strong>shift()</strong> → Removes the first element from an array.</p>
+<pre>
+const arr = [1,2,3];
+const first = arr.shift();
+console.log(first); // 1
+console.log(arr);   // [2,3]
+</pre>
+
+<p><strong>unshift()</strong> → Adds elements to the beginning of an array.</p>
+<pre>
+const arr = [2,3];
+arr.unshift(1);
+console.log(arr); // [1,2,3]
+</pre>
+
+<p><strong>slice()</strong> → Returns a shallow copy of a portion of an array.</p>
+<pre>
+const arr = [1,2,3,4];
+const part = arr.slice(1,3);
+console.log(part); // [2,3]
+</pre>
+
+<p><strong>splice()</strong> → Adds/removes elements at a specific index.</p>
+<pre>
+const arr = [1,2,3,4];
+arr.splice(1,2,9,10);
+console.log(arr); // [1,9,10,4]
+</pre>
+
+<p><strong>find()</strong> → Returns the first element that satisfies a test function.</p>
+<pre>
+const arr = [1,2,3,4];
+const firstEven = arr.find(n => n % 2 === 0);
+console.log(firstEven); // 2
+</pre>
+
+<p><strong>findIndex()</strong> → Returns the index of the first element that satisfies a test.</p>
+<pre>
+const arr = [1,2,3,4];
+const index = arr.findIndex(n => n % 2 === 0);
+console.log(index); // 1
+</pre>
+
+<p><strong>includes()</strong> → Checks if an array contains a specific element.</p>
+<pre>
+const arr = [1,2,3];
+console.log(arr.includes(2)); // true
+</pre>
+
+<p><strong>some()</strong> → Returns true if at least one element passes a test.</p>
+<pre>
+const arr = [1,3,5];
+const hasEven = arr.some(n => n % 2 === 0);
+console.log(hasEven); // false
+</pre>
+
+<p><strong>every()</strong> → Returns true if all elements pass a test.</p>
+<pre>
+const arr = [2,4,6];
+const allEven = arr.every(n => n % 2 === 0);
+console.log(allEven); // true
+</pre>
+
+<p><strong>sort()</strong> → Sorts elements in place (alphabetical or compare function).</p>
+<pre>
+const arr = [3,1,4,2];
+arr.sort((a,b) => a-b);
+console.log(arr); // [1,2,3,4]
+</pre>
+
+<p><strong>reverse()</strong> → Reverses the elements of an array.</p>
+<pre>
+const arr = [1,2,3];
+arr.reverse();
+console.log(arr); // [3,2,1]
+</pre>
+</div>
+
+
+<div class="question">3. Difference between null and undefined?</div>
 <div class="answer">
 undefined → A variable declared but not assigned a value.<br>
 null → Represents an intentional absence of any value.
 </div>
 
-<div class="question">18. What is Destructuring?</div>
+<div class="question">4. What is Destructuring?</div>
 <div class="answer">
 Extract values from arrays or objects into variables easily.
 </div>
@@ -154,45 +395,524 @@ const arr = [10, 20, 30];
 const [a, b, c] = arr;
 </pre>
 
+<div class="question">5. How to clone an array or object?</div>
+<div class="answer">
+<p><strong>Array:</strong> Using spread operator or slice()</p>
+<pre>
+const arr = [1,2,3];
+const cloneArr = [...arr];
+const cloneArr2 = arr.slice();
+</pre>
+<p><strong>Object:</strong> Using spread operator or Object.assign()</p>
+<pre>
+const obj = { name: "Bavi" };
+const cloneObj = { ...obj };
+const cloneObj2 = Object.assign({}, obj);
+</pre>
 </div>
+
+<div class="question">6. How to merge arrays or objects?</div>
+<div class="answer">
+<p><strong>Arrays:</strong> Using concat() or spread operator</p>
+<pre>
+const arr1 = [1,2], arr2 = [3,4];
+const mergedArr = arr1.concat(arr2);
+const mergedArr2 = [...arr1, ...arr2];
+</pre>
+<p><strong>Objects:</strong> Using spread operator or Object.assign()</p>
+<pre>
+const obj1 = {a:1}, obj2 = {b:2};
+const mergedObj = {...obj1, ...obj2};
+const mergedObj2 = Object.assign({}, obj1, obj2);
+</pre>
+</div>
+
+<div class="question">7. Difference between forEach(), map(), filter(), reduce()?</div>
+<div class="answer">
+<p><strong>forEach()</strong> → Iterates array, returns nothing.<br>
+<strong>map()</strong> → Iterates array, returns new array with transformed values.<br>
+<strong>filter()</strong> → Returns a new array with elements passing a condition.<br>
+<strong>reduce()</strong> → Reduces array to a single value using accumulator.</p>
+</div>
+
+<div class="question">8. How to check if a variable is an array or object?</div>
+<div class="answer">
+<p><strong>Array:</strong> Array.isArray(arr) → true/false</p>
+<p><strong>Object:</strong> typeof obj === "object" && obj !== null && !Array.isArray(obj)</p>
+</div>
+
+<div class="question">9. Difference between shallow copy and deep copy?</div>
+<div class="answer">
+<p><strong>Shallow copy:</strong> Only copies first level, nested objects still reference original.<br>
+<strong>Deep copy:</strong> Copies all levels, completely independent (use JSON.parse(JSON.stringify(obj)) or structuredClone in modern JS).</p>
+</div>
+
+<div class="question">10. How to iterate objects or arrays?</div>
+<div class="answer">
+<p><strong>Array:</strong> for, forEach, map, for…of</p>
+<p><strong>Object:</strong> for…in, Object.keys(), Object.values(), Object.entries()</p>
+</div>
+
+<div class="question">11. Difference between Object.keys(), Object.values(), Object.entries()?</div>
+<div class="answer">
+<p><strong>Object.keys(obj)</strong> → Returns array of keys<br>
+<strong>Object.values(obj)</strong> → Returns array of values<br>
+<strong>Object.entries(obj)</strong> → Returns array of [key, value] pairs</p>
+</div>
+
+<div class="question">12. How to remove duplicates from an array?</div>
+<div class="answer">
+<p>Using Set or filter:</p>
+<pre>
+const arr = [1,2,2,3,3];
+const unique1 = [...new Set(arr)];
+const unique2 = arr.filter((item, index) => arr.indexOf(item) === index);
+</pre>
+</div>
+
+<div class="question">13. What is difference between mutable and immutable objects/arrays?</div>
+<div class="answer">
+<p>Mutable → Can change the original data (arrays, objects).<br>
+Immutable → Original data cannot be changed (primitives like string, number, or using libraries like Immer for objects).</p>
+</div>
+
+<div class="question">14. Nested destructuring example?</div>
+<div class="answer">
+<pre>
+const user = { name: "Bavi", address: { city: "Chennai", zip: 600001 } };
+const { name, address: { city, zip } } = user;
+console.log(name, city, zip); // Bavi Chennai 600001
+
+const arr = [1, [2,3], 4];
+const [a, [b,c], d] = arr;
+console.log(a,b,c,d); // 1 2 3 4
+</pre>
+</div>
+
+<div class="question">15. How to freeze or seal objects?</div>
+<div class="answer">
+<p><strong>Object.freeze(obj)</strong> → Makes object immutable (cannot add, delete, or modify properties).<br>
+<strong>Object.seal(obj)</strong> → Can modify existing properties but cannot add or delete.</p>
+</div>
+<div class="question">16. How Convert Object to Array and Back?</div>
+<div class="answer">
+<p><strong>Object → Array:</strong> Use <code>Object.entries()</code> to convert an object into an array of key-value pairs.</p>
+<pre>
+const obj = {a: 1, b: 2};
+const arr = Object.entries(obj);
+console.log(arr); // [["a",1], ["b",2]]
+</pre>
+
+<p><strong>Array → Object:</strong> Use <code>Object.fromEntries()</code> to convert an array of key-value pairs back into an object.</p>
+<pre>
+const arr = [["a",1], ["b",2]];
+const obj = Object.fromEntries(arr);
+console.log(obj); // {a:1, b:2}
+</pre>
+</div>
+
+<div class="question">17. Check if two objects are equal?</div>
+<div class="answer">
+<p>Use <strong>JSON.stringify()</strong> for shallow comparison:</p>
+<pre>
+const obj1 = {a:1, b:2};
+const obj2 = {a:1, b:2};
+console.log(JSON.stringify(obj1) === JSON.stringify(obj2)); // true
+</pre>
+</div>
+
+<div class="question">18. Shallow vs Deep Copy of Objects</div>
+<div class="answer">
+<p><strong>Shallow Copy</strong> → When you clone an object, only the first-level properties are copied fully; nested objects/arrays still refer to the original object.</p>
+<p>Changes in nested objects will affect the original, but top-level properties are independent.</p>
+<pre>
+const original = { 
+  name: "Bavi", 
+  address: { city: "Chennai", zip: 600001 } 
+};
+
+// Shallow copy using spread operator
+const shallowCopy = { ...original };
+
+// Changing top-level property
+shallowCopy.name = "Ravi";
+console.log(original.name); // "Bavi" → original unaffected
+
+// Changing nested property
+shallowCopy.address.city = "Bangalore";
+console.log(original.address.city); // "Bangalore" → original affected!
+</pre>
+
+<p><strong>Deep Copy</strong> → When you clone an object, all levels of properties are copied fully, creating a completely independent object.</p>
+<p>Changes in nested objects will not affect the original object.</p>
+<pre>
+// Using JSON (simple method, ignores functions and undefined)
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+deepCopy.address.city = "Mumbai";
+console.log(original.address.city); // "Bangalore" → original unaffected
+</pre>
+</div>
+
+</div>
+
+<div class="section">
+<h2>String Methods</h2>
+
+<div class="question">1. Common String Methods</div>
+<div class="answer">
+<p><strong>charAt()</strong> → Returns the character at a specified index.</p>
+<pre>
+const str = "Hello";
+console.log(str.charAt(1)); // "e"
+</pre>
+
+<p><strong>concat()</strong> → Combines two or more strings.</p>
+<pre>
+const a = "Hello", b = "World";
+console.log(a.concat(" ", b)); // "Hello World"
+</pre>
+
+<p><strong>includes()</strong> → Checks if string contains a substring.</p>
+<pre>
+const str = "Hello World";
+console.log(str.includes("World")); // true
+</pre>
+
+<p><strong>indexOf()</strong> → Returns index of first occurrence of substring.</p>
+<pre>
+const str = "Hello";
+console.log(str.indexOf("l")); // 2
+</pre>
+
+<p><strong>slice()</strong> → Extracts part of a string.</p>
+<pre>
+const str = "Hello World";
+console.log(str.slice(0,5)); // "Hello"
+</pre>
+
+<p><strong>split()</strong> → Splits string into an array.</p>
+<pre>
+const str = "a,b,c";
+console.log(str.split(",")); // ["a","b","c"]
+</pre>
+
+<p><strong>replace()</strong> → Replaces part of string with another.</p>
+<pre>
+const str = "Hello World";
+console.log(str.replace("World","JS")); // "Hello JS"
+</pre>
+
+<p><strong>toLowerCase()</strong> → Converts string to lowercase.</p>
+<pre>
+const str = "HELLO";
+console.log(str.toLowerCase()); // "hello"
+</pre>
+
+<p><strong>toUpperCase()</strong> → Converts string to uppercase.</p>
+<pre>
+const str = "hello";
+console.log(str.toUpperCase()); // "HELLO"
+</pre>
+
+<p><strong>trim()</strong> → Removes whitespace from both ends of a string.</p>
+<pre>
+const str = "  Hello  ";
+console.log(str.trim()); // "Hello"
+</pre>
+
+</div>
+</div>
+
+<div class="section">
+<h2>Object Methods</h2>
+
+<div class="question">1. Common Object Methods</div>
+<div class="answer">
+<p><strong>Object.keys()</strong> → Returns array of an object's keys.</p>
+<pre>
+const obj = {a:1, b:2};
+console.log(Object.keys(obj)); // ["a","b"]
+</pre>
+
+<p><strong>Object.values()</strong> → Returns array of an object's values.</p>
+<pre>
+const obj = {a:1, b:2};
+console.log(Object.values(obj)); // [1,2]
+</pre>
+
+<p><strong>Object.entries()</strong> → Returns array of key-value pairs.</p>
+<pre>
+const obj = {a:1, b:2};
+console.log(Object.entries(obj)); // [["a",1],["b",2]]
+</pre>
+
+<p><strong>Object.assign()</strong> → Copies properties from source objects to a target object.</p>
+<pre>
+const obj1 = {a:1}, obj2 = {b:2};
+const merged = Object.assign({}, obj1, obj2);
+console.log(merged); // {a:1, b:2}
+</pre>
+
+<p><strong>hasOwnProperty()</strong> → Checks if object has a property.</p>
+<pre>
+const obj = {a:1};
+console.log(obj.hasOwnProperty("a")); // true
+</pre>
+
+<p><strong>Object.freeze()</strong> → Makes object immutable.</p>
+<pre>
+const obj = {a:1};
+Object.freeze(obj);
+obj.a = 2; 
+console.log(obj.a); // 1
+</pre>
+
+<p><strong>Object.seal()</strong> → Prevents adding/removing properties but allows value change.</p>
+<pre>
+const obj = {a:1};
+Object.seal(obj);
+obj.b = 2; // ignored
+obj.a = 3; // works
+console.log(obj); // {a:3}
+</pre>
+
+<p><strong>Object.getPrototypeOf()</strong> → Returns prototype of object.</p>
+<pre>
+const obj = {};
+console.log(Object.getPrototypeOf(obj)); // Object.prototype
+</pre>
+
+<p><strong>Object.defineProperty()</strong> → Defines new property or modifies existing property.</p>
+<pre>
+const obj = {};
+Object.defineProperty(obj, 'a', { value: 10, writable: true });
+console.log(obj.a); // 10
+</pre>
+
+<p><strong>Object.fromEntries()</strong> → Converts array of key-value pairs to object.</p>
+<pre>
+const arr = [['a',1], ['b',2]];
+const obj = Object.fromEntries(arr);
+console.log(obj); // {a:1, b:2}
+</pre>
+
+</div>
+</div>
+
+
 
 <div class="section">
 <h2>ES6+ & Browser</h2>
 
-<div class="question">19. What is Template Literal?</div>
+<div class="question">1. What is Template Literal?</div>
 <div class="answer">
 Uses backticks (`) and allows string interpolation using ${}.
 </div>
 
-<div class="question">20. What is Spread Operator?</div>
+<div class="question">2. What is Spread Operator?</div>
 <div class="answer">
-The spread operator (...) expands arrays or objects into individual elements.
+The spread operator (...) is used to expand an array or object into individual elements/properties.
+<pre>
+const mergedArr = [...arr1, ...arr2];
+
+const mergedObj = { ...obj1, ...obj2 };
+</pre>
 </div>
 
-<div class="question">21. What is Rest Operator?</div>
+<div class="question">3. What is Rest Operator?</div>
 <div class="answer">
-The Rest operator (...) collects elements into an array.
+The rest operator is used to collect remaining elements/properties into an array or object.
+<pre>
+const numbers = [1, 2, 3, 4, 5];
+const [first, second, ...rest] = numbers;
+
+const user = { name: "Bavi", age: 25, city: "Chennai" };
+const { name, ...others } = user;
+</pre>
 </div>
 
-<div class="question">22. localStorage vs sessionStorage?</div>
+<div class="question">4. localStorage vs sessionStorage?</div>
 <div class="answer">
 localStorage → Stores data permanently.<br>
 sessionStorage → Stores data until browser closes.
 </div>
 
-<div class="question">23. What is CORS?</div>
+<div class="question">5. What is CORS?</div>
 <div class="answer">
 CORS controls how resources are shared between different domains.
 </div>
 
-<div class="question">24. Is JavaScript synchronous or asynchronous?</div>
+<div class="question">6. Is JavaScript synchronous or asynchronous?</div>
 <div class="answer">
 JavaScript is single-threaded and synchronous, but supports async operations using callbacks, promises, and async/await.
 </div>
 
 </div>
 
+<div class="section">
+<h2>Advanced Questions</h2>
+<div class="question">1. What is the Call Stack?</div>
+<div class="answer">
+<p>The call stack in JavaScript is a data structure used by the JavaScript engine to manage and track the execution of functions in a program.</p>
+<p>It follows LIFO (Last-In, First-Out) principle, meaning the last function added to the stack is the first one to be removed and executed</p>
+</div>
+<div class="question">2. What is Event Delegation?</div>
+<div class="answer">
+<p>Event Delegation is a technique where you attach a single event listener to a parent element to handle events for its child elements, using event bubbling.</p>
+<pre>
+ul > li
+
+document.getElementById("menu").addEventListener("click", function(e) {
+  // Check if clicked element is LI
+  if (e.target.tagName === "LI") {
+    console.log("Clicked:", e.target.textContent);
+  }
+});
+</pre>
+</div>
+<div class="question">3. What is Event Loop?</div>
+<div class="answer">
+Event Loop handles asynchronous operations by pushing callbacks 
+from the callback queue to the call stack when it becomes empty.
+</div>
+<div class="question">4. Difference between Microtask and Macrotask?</div>
+<div class="answer">
+Microtask → Promise, queueMicrotask (Higher priority).<br>
+Macrotask → setTimeout, setInterval, DOM events.
 </div>
 
+<div class="question">5. What is Debouncing and Throttling?</div>
+<div class="answer">
+<p><strong>Debouncing</strong> → Executes after the user stops the action for specified time.</p>
+<b>Use Case</b>: Search bar input/autocomplete. API call happens only after the user stops typing for 500ms.<br>
+<pre>
+function debounce(fn, delay) {
+  let timer;
+
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(fn, delay);
+  };
+}  
+</pre>
+<p><strong>Throttling</strong> → Executes at regular intervals while action continues.</p>
+<b>Use Case</b>: Scroll events, Mouse move events, Multiple Button clicks.
+
+<pre> 
+function throttle(fn, limit) {
+  let last = 0;
+
+  return function () {
+    let now = Date.now();
+
+    if (now - last >= limit) {
+      last = now;
+      fn();
+    }
+  };
+}
+</pre>
+</div>
+
+<div class="question">6. What is Memory Leak?</div>
+<div class="answer">
+<p>Memory leak is when memory is not freed after it is no longer needed.</p>
+Common causes: timers like (setInterval) or events not cleared properly.
+<pre>
+setInterval(function () {
+  console.log("Running...");
+}, 1000);
+
+</pre>
+</div>
+<div class="question">7. What is this keyword in different contexts?</div>
+<div class="answer">
+Global → window (browser)<br>
+Object method → Refers to object<br>
+Arrow function → Inherits from parent<br>
+Event handler → Refers to element
+</div>
+
+<div class="question">9. Difference between call, apply and bind?</div>
+<div class="answer">
+<p><strong>call() →</strong> Invokes / execute the function immediately. Arguments are passed comma-separated: func.call(context, arg1, arg2).</p>
+<p><strong>apply() →</strong> Invokes / execute the function immediately. Arguments are passed as an array: func.apply(context, [arg1, arg2])</p>
+<p><strong>bind() →</strong> It is a method that creates a new function with a specific this value: const newFunc = func.bind(context, arg1). Useful for events or timers. </p>
+<p>One Line</p>
+call() → Invokes immediately, arguments separately.<br>
+apply() → Invokes immediately, arguments as array.<br>
+bind() →Returns new function.
+</div>
+
+<div class="question">10. What is async/await internally?</div>
+<div class="answer">
+async function always returns a Promise.
+await pauses execution until promise resolves.
+</div>
+
+<div class="question">11. How to handle API errors globally?</div>
+<div class="answer">
+Using try/catch, centralized error handler, or interceptors (like Axios).
+</div>
+
+</div>
+
+<div class="section">
+<h2>ES6+ Advanced</h2>
+
+<div class="question">1. What are Generators?</div>
+<div class="answer">
+Generators are functions that can pause and resume execution using yield keyword.
+</div>
+
+<div class="question">2. What is WeakMap and WeakSet?</div>
+<div class="answer">
+They allow garbage collection of keys when no other references exist.
+Used for memory optimization.
+</div>
+
+<div class="question">3. What is Module pattern?</div>
+<div class="answer">
+Pattern to create private and public variables using closures.
+</div>
+
+</div>
+
+<div class="section">
+<h2>Performance Optimization</h2>
+
+<div class="question">1. How to improve JavaScript performance?</div>
+<div class="answer">
+Avoid unnecessary DOM manipulation.<br>
+Use memoization.<br>
+Use debouncing/throttling.<br>
+Minimize reflows and repaints.
+</div>
+
+<div class="question">2. What is Tree Shaking?</div>
+<div class="answer">
+Tree Shaking removes unused code during bundling (Webpack).
+</div>
+
+<div class="question">3. What is Code Splitting?</div>
+<div class="answer">
+Splitting bundle into smaller chunks loaded on demand.
+</div>
+<div class="question">4. How to prevent multiple API calls on button click?</div>
+<div class="answer">
+Disable button after click or use debounce.
+</div>
+<div class="question">5. How to secure frontend application?</div>
+<div class="answer">
+Use HTTPS.<br>
+Sanitize inputs.<br>
+Prevent XSS.<br>
+Avoid storing sensitive data in localStorage.
+</div>
+
+</div>
+
+</div>
 </body>
 </html>

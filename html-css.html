@@ -91,8 +91,15 @@ ID → Must be unique.
 
 <div class="question">12. What is the CSS Box Model?</div>
 <div class="answer">
-Box Model = content + padding + border + margin.
+<p>The <strong>CSS Box Model</strong> describes how elements are structured and spaced on a webpage.</p>
+<p>It consists of four parts:</p>
+<p><strong>Content</strong> → The actual text or image inside the element.</p>
+<p><strong>Padding</strong> → Space between content and border.</p>
+<p><strong>Border</strong> → Surrounds the padding and content.</p>
+<p><strong>Margin</strong> → Space outside the border.</p>
+<p>Total width = Content + Padding + Border + Margin</p>
 </div>
+
 
 <pre>
 div {
@@ -105,12 +112,26 @@ div {
 
 <div class="question">13. What is display property?</div>
 <div class="answer">
-Controls layout type: block, inline, inline-block, none, flex, grid.
+<p>The <strong>display</strong> property defines how an element is displayed on the page.</p>
+
+<p><strong>block</strong> → Takes full width and starts on a new line (e.g., div, p).</p>
+<p><strong>inline</strong> → Takes only required width and stays in the same line (e.g., span, a).</p>
+<p><strong>inline-block</strong> → Like inline, but width and height can be set.</p>
+<p><strong>none</strong> → Hides the element (removes it from layout).</p>
+<p><strong>flex</strong> → Enables Flexbox layout.</p>
+<p><strong>grid</strong> → Enables Grid layout.</p>
 </div>
+
 
 <div class="question">14. What is position property?</div>
 <div class="answer">
-static, relative, absolute, fixed, sticky.
+<p>The <strong>position</strong> property defines how an element is positioned on a webpage.</p>
+<p><strong>static</strong> → Default position (normal document flow).</p>
+<p><strong>relative</strong> → Positioned relative to itself.</p>
+<p><strong>absolute</strong> → Positioned relative to nearest positioned parent.</p>
+<p><strong>fixed</strong> → Positioned relative to viewport (does not scroll).</p>
+<p><strong>sticky</strong> → Acts like relative until a scroll point, then becomes fixed. (or)
+When you scroll to a certain height/position, it sticks to the screen like fixed.</p>
 </div>
 
 <div class="question">15. What is Flexbox?</div>
@@ -134,6 +155,10 @@ Grid is used to create two-dimensional layouts using rows and columns.
 <div class="question">17. What is Responsive Design?</div>
 <div class="answer">
 Responsive design adapts layout for different screen sizes using media queries.
+<p><strong>Common Media Query Breakpoints:</strong></p>
+<p><strong>Mobile:</strong> max-width: 767px</p>
+<p><strong>Tablet:</strong> min-width: 768px and max-width: 1023px</p>
+<p><strong>Desktop / PC:</strong> min-width: 1024px</p>
 </div>
 
 <pre>
@@ -152,7 +177,7 @@ display: none → Removes element from layout.
 
 <div class="question">19. What is z-index?</div>
 <div class="answer">
-Controls stacking order of positioned elements.
+Controls stacking order of positioned elements. It decides which element comes in front when elements overlap.
 </div>
 
 <div class="question">20. What is specificity in CSS?</div>
@@ -174,13 +199,417 @@ Controls content overflow: visible, hidden, scroll, auto.
 
 <div class="question">23. What is pseudo-class?</div>
 <div class="answer">
-Used to define special states of elements like :hover, :focus, :nth-child().
+<p>A <strong>pseudo-class</strong> is used to define a special state of an element.</p>
+
+<p>It is written using a <strong>single colon (:)</strong>.</p>
+
+<p><strong>Examples:</strong></p>
+<p><strong>:hover</strong> → When the mouse is over an element.</p>
+<p><strong>:focus</strong> → When an input field is focused.</p>
+<p><strong>:active</strong> → When an input field is  being activated , such as being clicked</p>
+<p><strong>:first-child</strong> → Selects the first child element of its parent.</p>
+<p><strong>:nth-child()</strong> → Selects the nth child element of its parent.</p>
 </div>
 
-<div class="question">24. What is difference between em and rem?</div>
+<div class="question">24. What are pseudo-elements?</div>
+<div class="answer">
+<p>A <strong>pseudo-element</strong> is used to style a specific part of an element.</p>
+
+<p>It is written using a <strong>double colon (::)</strong>.</p>
+
+<p><strong>Examples:</strong></p>
+<p><strong>::before</strong> → Inserts content before an element.</p>
+<p><strong>::after</strong> → Inserts content after an element.</p>
+<p><strong>::placeholder</strong> → Styles the placeholder text within input or textarea form elements.</p>
+<p><strong>::first-letter</strong> → Styles the first letter of text.</p>
+</div>
+
+
+<div class="question">25. What is difference between em and rem?</div>
 <div class="answer">
 em → Relative to parent font-size.<br>
 rem → Relative to root (html) font-size.
+</div>
+
+<div class="question">26. What is the difference between defer and async in script tag?</div>
+<div class="answer">
+async → Downloads script in parallel and executes immediately.<br>
+defer → Downloads in parallel but executes after HTML parsing is complete.
+</div>
+<div class="question">27. What is Critical Rendering Path?</div>
+<div class="answer">
+It is the process browser follows to convert HTML, CSS, and JS into pixels on screen. Optimizing it improves page load performance.
+</div>
+
+<div class="question">28. What is the difference between cookies, localStorage, and sessionStorage?</div>
+<div class="answer">
+Cookies → Sent with every HTTP request.<br>
+localStorage → Stored in browser permanently.<br>
+sessionStorage → Stored until tab closes.
+</div>
+
+<div class="question">29. What is Web Accessibility (a11y)?</div>
+<div class="answer">
+Accessibility ensures websites are usable by people with disabilities using screen readers and keyboard navigation.
+</div>
+
+<div class="question">30. What is ARIA?</div>
+<div class="answer">
+ARIA (Accessible Rich Internet Applications) attributes improve accessibility of dynamic content.
+Example: aria-label, aria-hidden.
+</div>
+
+<div class="question">31. What is the difference between semantic HTML and non-semantic HTML?</div>
+<div class="answer">
+Semantic → &lt;article&gt;, &lt;section&gt; (meaningful).<br>
+Non-semantic → &lt;div&gt;, &lt;span&gt; (no meaning).
+</div>
+
+<div class="question">32. What is lazy loading?</div>
+<div class="answer">
+Lazy loading delays loading of images or components until they are needed.
+Example: &lt;img loading="lazy"&gt;
+</div>
+<div class="question">33. What is padding vs margin?</div>
+<div class="answer">
+<p><strong>Simple Difference:</strong></p>
+<p>Padding adds space inside the box.</p>
+<p>Margin adds space outside the box.</p>
+</div>
+
+</div>
+
+<!-- ================= FLEXBOX PROPERTIES ================= -->
+
+<div class="section">
+<h2>Flexbox Properties</h2>
+
+<h3>1. Flex Container Properties</h3>
+
+<div class="question">display</div>
+<div class="answer">
+display: flex; → Enables flexbox.
+</div>
+
+<div class="question">flex-direction</div>
+<div class="answer">
+row | row-reverse | column | column-reverse
+</div>
+
+<div class="question">justify-content</div>
+<div class="answer">
+Aligns items horizontally (main axis).
+flex-start | flex-end | center | space-between | space-around | space-evenly
+</div>
+
+<div class="question">align-items</div>
+<div class="answer">
+Aligns items vertically (cross axis).
+stretch | flex-start | flex-end | center | baseline
+</div>
+
+<div class="question">align-content</div>
+<div class="answer">
+Aligns multiple rows when there is extra space.
+</div>
+
+<div class="question">flex-wrap</div>
+<div class="answer">
+nowrap | wrap | wrap-reverse
+</div>
+
+<div class="question">gap</div>
+<div class="answer">
+Adds spacing between flex items.
+gap: 10px;
+</div>
+
+<hr>
+
+<h3>2. Flex Item Properties</h3>
+
+<div class="question">flex-grow</div>
+<div class="answer">
+Defines how much item grows relative to others.
+</div>
+
+<div class="question">flex-shrink</div>
+<div class="answer">
+Defines how much item shrinks.
+</div>
+
+<div class="question">flex-basis</div>
+<div class="answer">
+Initial size of flex item.
+</div>
+
+<div class="question">flex</div>
+<div class="answer">
+Shorthand: flex: grow shrink basis;
+Example: flex: 1 1 200px;
+</div>
+
+<div class="question">align-self</div>
+<div class="answer">
+Overrides align-items for individual item.
+</div>
+
+<div class="question">order</div>
+<div class="answer">
+Changes visual order of items.
+</div>
+
+<div class="question">Difference between align-items and align-content</div>
+<div class="answer">
+align-items → Aligns individual items on the cross-axis inside a single row or column. <br>
+align-content → Aligns multiple rows (flex lines) inside the container when there is extra space.
+</div>
+<div class="question">Difference between justify-items and justify-content</div>
+<div class="answer">
+justify-items → Aligns individual items horizontally inside their grid cell. (Used mainly in CSS Grid).<br>
+justify-content → Aligns the entire row or grid horizontally inside the container when there is extra space.
+</div>
+
+
+</div>
+
+
+<!-- ================= GRID PROPERTIES ================= -->
+
+<div class="section">
+<h2>Grid Properties</h2>
+
+<h3>1. Grid Container Properties</h3>
+
+<div class="question">display</div>
+<div class="answer">
+display: grid; → Enables CSS Grid.
+</div>
+
+<div class="question">grid-template-columns</div>
+<div class="answer">
+Defines column structure.
+Example: grid-template-columns: 1fr 1fr 1fr;
+</div>
+
+<div class="question">grid-template-rows</div>
+<div class="answer">
+Defines row structure.
+</div>
+
+<div class="question">grid-template</div>
+<div class="answer">
+Shorthand for rows and columns.
+</div>
+
+<div class="question">gap</div>
+<div class="answer">
+Sets spacing between rows and columns.
+gap: 10px;
+</div>
+
+<div class="question">row-gap / column-gap</div>
+<div class="answer">
+Sets row and column spacing separately.
+</div>
+
+<div class="question">justify-items</div>
+<div class="answer">
+Aligns items horizontally inside grid cell.
+</div>
+
+<div class="question">align-items</div>
+<div class="answer">
+Aligns items vertically inside grid cell.
+</div>
+
+<div class="question">place-items</div>
+<div class="answer">
+Shorthand for align-items and justify-items.
+</div>
+
+<div class="question">justify-content</div>
+<div class="answer">
+Aligns entire grid horizontally.
+</div>
+
+<div class="question">align-content</div>
+<div class="answer">
+Aligns entire grid vertically.
+</div>
+
+<hr>
+
+<h3>2. Grid Item Properties</h3>
+
+<div class="question">grid-column</div>
+<div class="answer">
+Defines column start and end.
+Example: grid-column: 1 / 3;
+</div>
+
+<div class="question">grid-row</div>
+<div class="answer">
+Defines row start and end.
+</div>
+
+<div class="question">grid-area</div>
+<div class="answer">
+Shorthand for grid-row and grid-column.
+</div>
+
+<div class="question">justify-self</div>
+<div class="answer">
+Aligns individual item horizontally.
+</div>
+
+<div class="question">align-self</div>
+<div class="answer">
+Aligns individual item vertically.
+</div>
+
+</div>
+
+
+<!-- ================= ADVANCED CSS ================= -->
+
+<div class="section">
+<h2>Advanced CSS Questions (4+ Years)</h2>
+
+<div class="question">1. What are vh and vw units?</div>
+<div class="answer">
+<p><strong>vh (viewport height)</strong> → Based on screen height.</p>
+<p>1vh = 1% of total screen height.</p>
+<p>Example: height: 100vh; (Takes full screen height)</p>
+
+<p><strong>vw (viewport width)</strong> → Based on screen width.</p>
+<p>1vw = 1% of total screen width.</p>
+<p>Example: width: 100vw; (Takes full screen width)</p>
+</div>
+
+
+<div class="question">2. Height vs min-height vs max-height</div>
+<div class="answer">
+<p><strong>height</strong> → Sets exact height. It will not change.</p>
+
+<p><strong>min-height</strong> → Sets minimum height. The height will not go below this value, but it can grow bigger if the content increases.</p>
+
+<p><strong>max-height</strong> → Sets maximum height. It will not grow beyond this value.</p>
+</div>
+
+
+<div class="question">3. Width vs min-width vs max-width</div>
+<div class="answer">
+<p><strong>width</strong> → Sets exact width.</p>
+
+<p><strong>min-width</strong> → Sets minimum width. The width will not go below this value, but it can grow bigger if the content increases.</p>
+
+<p><strong>max-width</strong> → Sets maximum width. It will not grow beyond this value.</p>
+</div>
+
+
+<div class="question">4. What is CSS specificity calculation?</div>
+<div class="answer">
+Priority Orders
+Inline (1000 Points) > ID (100 Points) > Class (10 Points) > Element (1 Point).
+</div>
+
+<div class="question">5. What is BEM methodology?</div>
+<div class="answer">
+<p>BEM (Block, Element, Modifier) </p>
+<p>Block Element Modifier is a naming convention for writing scalable and maintainable CSS. </p>
+Example: card__title--active
+</div>
+
+<div class="question">6. What is the difference between Flexbox and Grid?</div>
+<div class="answer">
+Flexbox → One-dimensional layout (row OR column).<br>
+Grid → Two-dimensional layout (rows AND columns).
+</div>
+
+<div class="question">7. What is CSS preprocessor?</div>
+<div class="answer">
+Tools like SASS or LESS that add variables, nesting, and functions to CSS.
+</div>
+
+<div class="question">8. What is CSS variable?</div>
+<div class="answer">
+Custom properties defined using --variable-name.
+Example:
+:root {
+  --main-color: blue;
+}
+</div>
+
+<div class="question">9. What is repaint and reflow?</div>
+<div class="answer">
+Reflow → Layout recalculation when DOM changes.<br>
+Repaint → Visual update without layout change.
+</div>
+
+<div class="question">10. What is will-change property?</div>
+<div class="answer">
+It hints the browser about upcoming changes to optimize performance.
+</div>
+
+<div class="question">11. What is media query best practice?</div>
+<div class="answer">
+Use mobile-first approach.
+Example:
+@media (min-width: 768px) { }
+</div>
+
+<div class="question">12. What is object-fit property?</div>
+<div class="answer">
+Controls how image fits inside container (cover, contain).
+</div>
+
+<div class="question">13. What is clamp() in CSS?</div>
+<div class="answer">
+clamp() sets responsive size with minimum, preferred, and maximum values.
+<p>It takes three values:</p>
+<p><strong>clamp(min, preferred, max)</strong></p>
+<pre>
+Example:
+h1 {
+  font-size: clamp(16px, 5vw, 40px);
+}
+</pre>
+</div>
+
+<div class="question">14. What is CSS animation vs transition?</div>
+<div class="answer">
+Transition →  Used for simple changes between two states (start and end).<br>
+Animation → For complex keyframe animations, It works when a property changes, like hover.
+</div>
+
+<div class="question">15. What is @keyframes in CSS?</div>
+<div class="answer">
+<p><strong>@keyframes</strong> is used to define animation steps in CSS.</p>
+
+<p>It specifies how an element should change from start to end.</p>
+
+<p><strong>Example:</strong></p>
+
+<pre>
+@keyframes slide {
+  0%   { left: 0; }
+  50%  { left: 50px; }
+  100% { left: 100px; }
+}
+
+.box {
+  position: relative;
+  animation: slide 2s infinite;
+}
+</pre>
+
+<p>This means the element moves from 0px to 100px in 2 seconds and repeats forever.</p>
+</div>
+
+<div class="question">16. How to optimize CSS performance?</div>
+<div class="answer">
+Minify CSS, remove unused styles, avoid deep selectors, use caching, and reduce reflows.
 </div>
 
 </div>

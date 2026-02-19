@@ -84,6 +84,25 @@ require → Shows fatal error and stops execution.
 <div class="answer">
 <p><b>MySQLi</b> → Used to connect PHP with MySQL database.</p>
 <p><b>PDO (PHP Data Objects)</b> → PDO (PHP Data Objects) in PHP is a database access layer and used to interact with different databases like MySQL, PostgreSQL, SQLite, etc and run safe queries using prepared statements to prevent SQL injection.</p>
+<table>
+  <tr>
+    <th>PDO</th>
+    <th>MySQLi</th>
+  </tr>
+  <tr>
+    <td>Supports multiple DBs</td>
+    <td>Only MySQL</td>
+  </tr>
+  <tr>
+    <td>Named Parameters</td>
+    <td>Only positional</td>
+  </tr>
+  <tr>
+    <td>More secure</td>
+    <td>secure</td>
+  </tr>
+</table>
+
 </div>
 
 <pre>
@@ -403,7 +422,7 @@ class User {
 <div class="question">4. Difference between interface and abstract class?</div>
 <div class="answer">
 <p><strong>In Short:</strong></p>
-<p>Interface → Only method declarations  but cannot provide method implementations. Classes can implement multiple interfaces</p>
+<p>Interface → Only method declarations  but cannot provide method implementations; multiple inheritance.</p>
 <p>Abstract class → Can have both method declaration and implementation; single inheritance.</p>
 
 <p><strong>Interface</strong> → Interfaces define methods that must be implemented by a class, but cannot provide method implementations.</p>
@@ -549,6 +568,11 @@ $obj->add(10, 20);
 <div class="question">What is Namespace in PHP?</div>
 <div class="answer">
 Namespace is used to avoid class name conflicts by grouping related classes.
+</div>
+<div class="question">Explain PHP memory management & garbage collection?</div>
+<div class="answer">
+<p><strong>Memory Management -> </strong>PHP automatically allocates memory for variables, objects, arrays, etc., when they are created.</p>
+<p><strong>Garbage Collection-> </strong>PHP automatically frees memory for variables when they go out of scope (e.g., at the end of a function).</p>
 </div>
 
 <div class="question">What is Xdebug?</div>
@@ -996,10 +1020,12 @@ $obj->display(); // Non-static Method
 </div>
 
 <div class="question">What are PSR Standards?</div>
+PHP Standard Recommendations - Coding $ architecture standards
 <div class="answer">
-  PSR-4 → Standard for autoloading classes via namespaces.<br />
-  PSR-12 → Coding style guide.<br />
-  PSR-7 → HTTP message interface standard.
+  PSR-1 → Coding Standard.<br />
+  PSR-4 → autoloading classes via namespaces.<br />
+  PSR-7 → HTTP messages.<br />
+  PSR-12 → Coding style guide.
 </div>
 
 <div class="question">What is Middleware?</div>
@@ -1741,6 +1767,15 @@ allowing errors to be handled using try-catch blocks compared to PHP 7.
 ✅ Use indexing<br>
 ✅ Reduce unnecessary loops<br>
 ✅ Enable OPcache
+</div>
+<div class="question">1. How do you optimize a slow query?</div>
+<div class="answer">
+✅ Use Indexing<br>
+✅ Optimize SQL queries<br>
+✅ Avoid Select *<br>
+✅ Use Explain<br>
+✅ Use Join intead of subqueries
+✅ Caching
 </div>
 
 <div class="question">2. How do you handle large file uploads?</div>

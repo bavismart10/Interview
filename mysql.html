@@ -29,7 +29,7 @@ SELECT * FROM users;
 
 <div class="question">2. What is MySQL?</div>
 <div class="answer">
-MySQL is an open-source relational database management system used with web applications.
+MySQL is an open-source relational database management system that uses SQL to manage data.
 </div>
 
 <div class="question">3. Difference between SQL and MySQL?</div>
@@ -40,17 +40,22 @@ MySQL is a database system that uses SQL.
 
 <div class="question">4. What is Normalization?</div>
 <div class="answer">
-Normalization is a database design technique that organizes data into multiple related tables to reduce duplication and improve accuracy.
+Normalization is a database design technique that organizes data into multiple related tables to reduce redundancy and improve accuracy.
 <p>✅ Minimize data redundancy</p>
 <p>✅ Improve data integrity</p>
 <p>✅ Make the database more efficient and maintainable</p>
 </div>
 <div class="question">5. What is Denormalization?</div>
 <div class="answer">
-Denormalization is the process of combining related tables to reduce joins and improve read performance.
+Denormalization combines related tables to reduce joins and improve read performance.
 <p>✅ Make queries faster</p>
 <p>✅ Reduce complex joins</p>
 <p>✅ Improve read performance</p>
+</div>
+<div class="question">6. Difference between OLTP and OLAP?</div>
+<div class="answer">
+OLTP → Transactional, high insert/update operations.<br>
+OLAP → Analytical, complex queries, reporting.
 </div>
 
 </div>
@@ -60,7 +65,7 @@ Denormalization is the process of combining related tables to reduce joins and i
 <div class="section">
 <h2>Queries & Commands</h2>
 
-<div class="question">4. What is a Primary Key?</div>
+<div class="question">1. What is a Primary Key?</div>
 <div class="answer">
 A primary key uniquely identifies each record in a table and does not allow NULL values.
 </div>
@@ -72,7 +77,7 @@ CREATE TABLE users (
 );
 </pre>
 
-<div class="question">5. What is a Foreign Key?</div>
+<div class="question">2. What is a Foreign Key?</div>
 <div class="answer">
 A foreign key creates a relationship between two tables.
 </div>
@@ -83,11 +88,11 @@ ADD CONSTRAINT fk_user
 FOREIGN KEY (user_id) REFERENCES users(id);
 </pre>
 
-<div class="question">6. Difference between DELETE, TRUNCATE, DROP?</div>
+<div class="question">3. Difference between DELETE, TRUNCATE, DROP?</div>
 <div class="answer">
-DELETE → Removes selected rows.<br>
-TRUNCATE → Removes all rows.<br>
-DROP → Deletes the entire table.
+<p>DELETE → Removes selected rows, can use WHERE.</p>
+<p>TRUNCATE → Removes all rows, faster, resets auto_increment.</p>
+<p>DROP → Deletes the entire table with data structure.</p>
 </div>
 
 <pre>
@@ -96,7 +101,7 @@ TRUNCATE TABLE users;
 DROP TABLE users;
 </pre>
 
-<div class="question">7. What is WHERE clause?</div>
+<div class="question">4. What is WHERE clause?</div>
 <div class="answer">
 Filters records based on conditions.
 </div>
@@ -105,7 +110,7 @@ Filters records based on conditions.
 SELECT * FROM users WHERE status = 1;
 </pre>
 
-<div class="question">8. Difference between WHERE and HAVING?</div>
+<div class="question">5. Difference between WHERE and HAVING?</div>
 <div class="answer">
 WHERE filters rows before grouping.<br>
 HAVING filters after GROUP BY.
@@ -118,12 +123,12 @@ GROUP BY department
 HAVING COUNT(*) > 5;
 </pre>
 
-<div class="question">9. What is GROUP BY?</div>
+<div class="question">6. What is GROUP BY?</div>
 <div class="answer">
-Groups rows with the same values and is used with aggregate functions.
+Groups rows with the same values and is used with aggregate functions like COUNT, SUM, AVG, MIN, MAX.
 </div>
 
-<div class="question">10. What are Aggregate Functions?</div>
+<div class="question">7. What are Aggregate Functions?</div>
 <div class="answer">
 COUNT(), SUM(), AVG(), MIN(), MAX()
 </div>
@@ -133,6 +138,12 @@ SELECT COUNT(*), SUM(salary), AVG(salary)
 FROM employees;
 </pre>
 
+<div class="question">8. Difference between DISTINCT and GROUP BY?</div>
+<div class="answer">
+DISTINCT removes duplicate rows.<br>
+GROUP BY groups rows for aggregation.
+</div>
+
 </div>
 
 <!-- ================= JOINS ================= -->
@@ -140,7 +151,7 @@ FROM employees;
 <div class="section">
 <h2>Joins</h2>
 
-<div class="question">11. What is JOIN?</div>
+<div class="question">1. What is JOIN?</div>
 <div class="answer">
 JOIN combines rows from two or more tables based on a related column.
 </div>
@@ -151,12 +162,16 @@ FROM users
 INNER JOIN orders ON users.id = orders.user_id;
 </pre>
 
-<div class="question">12. Types of JOINs?</div>
+<div class="question">2. Types of JOINs?</div>
 <div class="answer">
 INNER JOIN, LEFT JOIN, RIGHT JOIN, FULL JOIN.
+<p><strong>INNER JOIN</strong> -> Returns only rows with matching values in both tables.</p>
+<p><strong>LEFT JOIN</strong> -> Returns all rows from the left table and matching rows from the right table.</p>
+<p><strong>RIGHT JOIN</strong> -> Returns all rows from the right table and matching rows from the left table.</p>
+<p><strong>FULL JOIN</strong> -> Returns all rows from both tables, with NULLs where there is no match.</p>
 </div>
 
-<div class="question">13. Difference between INNER JOIN and LEFT JOIN?</div>
+<div class="question">3. Difference between INNER JOIN and LEFT JOIN?</div>
 <div class="answer">
 INNER JOIN → Returns matching records only.<br>
 LEFT JOIN → Returns all records from left table.
@@ -168,6 +183,12 @@ FROM users
 LEFT JOIN orders ON users.id = orders.user_id;
 </pre>
 
+<div class="question">4. Self JOIN and Cross JOIN?</div>
+<div class="answer">
+Self JOIN → Joins a table with itself.<br>
+Cross JOIN → Cartesian product of two tables.
+</div>
+
 </div>
 
 <!-- ================= PERFORMANCE ================= -->
@@ -175,7 +196,7 @@ LEFT JOIN orders ON users.id = orders.user_id;
 <div class="section">
 <h2>Indexes & Performance</h2>
 
-<div class="question">14. What is an Index?</div>
+<div class="question">1. What is an Index?</div>
 <div class="answer">
 An index improves query performance by speeding up data retrieval.
 </div>
@@ -184,14 +205,190 @@ An index improves query performance by speeding up data retrieval.
 CREATE INDEX idx_name ON users(name);
 </pre>
 
-<div class="question">15. What is Normalization?</div>
+<div class="question">2. Types of Indexes?</div>
 <div class="answer">
-Normalization organizes data to reduce redundancy.
+Primary Index, Unique Index, Composite Index, Fulltext Index, Spatial Index.
+
+<pre>
+-- 1. PRIMARY INDEX: Unique identifier for table rows (PRIMARY KEY)
+CREATE TABLE Users (
+    UserID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+
+-- 2. UNIQUE INDEX: Ensures column values are unique
+CREATE UNIQUE INDEX idx_email ON Users(Email);
+
+-- 3. COMPOSITE INDEX: Index on multiple columns for faster search
+CREATE INDEX idx_name_email ON Users(Name, Email);
+
+-- 4. FULLTEXT INDEX: Optimized for text search in large text columns
+CREATE FULLTEXT INDEX idx_bio ON Users(Bio);
+
+-- 5. SPATIAL INDEX: Index for spatial data like coordinates or geometry
+CREATE TABLE Locations (
+    LocID INT PRIMARY KEY,
+    Coordinates POINT,
+    SPATIAL INDEX idx_coords (Coordinates)
+);
+</pre>
 </div>
 
-<div class="question">16. What is Denormalization?</div>
+<div class="question">3. What is EXPLAIN?</div>
 <div class="answer">
-Denormalization improves read performance by adding redundancy.
+EXPLAIN is used to analyze query execution plans to optimize performance. Like Optimize the query executed time.
+</div>
+<div class="question">4. Difference between Normalization and Denormalization?</div>
+<div class="answer">
+Normalization → Reduces redundancy, improves consistency.<br>
+Denormalization → Improves read performance by adding redundancy.
+</div>
+<div class="question">5. How to optimize a slow query?</div>
+<div class="answer">
+✅ Use indexes<br>
+✅ Avoid SELECT *<br>
+✅ Use LIMIT<br>
+✅ Optimize JOINs and subqueries<br>
+✅ Use EXPLAIN to check query plan
+</div>
+</div>
+<!-- ================= ADVANCED ================= -->
+
+<div class="section">
+<h2>Advanced / Tricky Questions</h2>
+
+<div class="question">1. Difference between UNION and UNION ALL?</div>
+<div class="answer">
+UNION → Removes duplicates.<br>
+UNION ALL → Keeps duplicates, faster.
+</div>
+
+<pre>
+SELECT name FROM users
+UNION
+SELECT name FROM employees;
+</pre>
+
+<div class="question">2. What is Subquery?</div>
+<div class="answer">
+A query inside another query.
+</div>
+
+<pre>
+SELECT * FROM users
+WHERE id IN (SELECT user_id FROM orders);
+</pre>
+
+<div class="question">3. Subquery vs JOIN?</div>
+<div class="answer">
+Subquery → Query inside query, can be correlated.<br>
+JOIN → Combines tables, usually more efficient.
+</div>
+
+<div class="question">4. What is AUTO_INCREMENT?</div>
+<div class="answer">
+Automatically generates unique numeric values for primary key columns.
+</div>
+<div class="question">5. Difference between stored procedures, functions, and triggers?</div>
+<div class="answer">
+<p><strong>Stored Procedure</strong> → A set of SQL statements saved or stored in the database that you can reuse and run anytime. It may or may not return a value.</p>
+<p><strong>Function</strong> → A set of SQL statements saved in the database that you can reuse and run anytime, but it always returns a single value.
+Functions can be used in SQL statements like SELECT, WHERE.</p>
+<p><strong>Trigger</strong> → Executes automatically on table events (INSERT, UPDATE, DELETE).</p>
+<pre>
+-- 1. STORED PROCEDURE: Reusable set of statements
+DELIMITER //
+CREATE PROCEDURE IncreaseSalary(IN empID INT, IN amount DECIMAL(10,2))
+BEGIN
+    UPDATE Employees SET Salary = Salary + amount WHERE EmployeeID = empID;
+END //
+DELIMITER ;
+
+-- Execute procedure
+CALL IncreaseSalary(1, 500);
+
+-- Can have multiple statements (UPDATE, INSERT, DELETE, etc.) and complex logic.
+-------------------------------------------------
+
+-- 2. FUNCTION: Returns a value, can be used in SELECT
+DELIMITER //
+CREATE FUNCTION GetSalary(empID INT)
+RETURNS DECIMAL(10,2)
+BEGIN
+    DECLARE sal DECIMAL(10,2);
+    SELECT Salary INTO sal FROM Employees WHERE EmployeeID = empID;
+    RETURN sal;
+END //
+DELIMITER ;
+
+-- Use function
+SELECT Name, GetSalary(EmployeeID) AS Salary FROM Employees;
+
+-- Use inside queries like subquery (SELECT Name, GetSalary(EmployeeID) AS Salary FROM Employees);
+-------------------------------------------------
+
+-- 3. TRIGGER: Executes automatically on table event
+CREATE TRIGGER SalaryAudit
+AFTER UPDATE ON Employees
+FOR EACH ROW
+BEGIN
+    INSERT INTO SalaryLog(EmployeeID, OldSalary, NewSalary, ChangeDate)
+    VALUES (OLD.EmployeeID, OLD.Salary, NEW.Salary, NOW());
+END;
+</pre>
+</div>
+<div class="question">6. Explain the parameters in MySQL stored procedures?</div>
+<div class="answer">
+<p>IN → Input parameter = Passes a value into the procedure.</p>
+<p>OUT → Output parameter = Procedure returns a value through it.</p>
+<p>INOUT → Both input and output = Passes a value in, can modify it, and returns the new value.</p>
+</div>
+<div class="question">7. Difference between Stored Procedure and Function in MySQL?</div>
+<div class="answer">
+<p>In MySQL:</p>
+<ul>
+  <li><strong>Function</strong> → Must return a single value and cannot modify database tables. Can be used in SELECT, WHERE, etc.</li>
+  <li><strong>Stored Procedure</strong> → May or may not return a value and can perform INSERT, UPDATE, DELETE or multiple operations.</li>
+</ul>
+</div>
+<div class="question">8. What is a View?</div>
+<div class="answer">
+A virtual table based on a query. Does not store data physically.
+<pre>
+CREATE VIEW IT_Employees AS
+SELECT EmployeeID, Name, Salary
+FROM Employees
+WHERE Department = 'IT';
+
+SELECT * FROM IT_Employees;
+</pre>
+</div>
+
+<div class="question">9. Difference between temporary and permanent tables?</div>
+<div class="answer">
+Temporary → Exists only during session.<br>
+Permanent → Stored permanently in database.
+<pre>
+CREATE TEMPORARY TABLE temp_employees (
+    EmployeeID INT,
+    Name VARCHAR(50),
+    Salary DECIMAL(10,2)
+);
+</pre>
+</div>
+
+<div class="question">10. What is a composite key?</div>
+<div class="answer">
+<p>A <strong>composite key</strong> is a primary key that consists of two or more columns in a table, used together to uniquely identify each row.</p>
+<pre>
+Eg. PropertyID, CompanyID - The combination of PropID + CompanyID must be unique.
+</pre>
+</div>
+
+<div class="question">11. Difference between CHAR and VARCHAR?</div>
+<div class="answer">
+CHAR → Fixed length.<br>
+VARCHAR → Variable length.
 </div>
 
 </div>
@@ -201,12 +398,12 @@ Denormalization improves read performance by adding redundancy.
 <div class="section">
 <h2>Security & Transactions</h2>
 
-<div class="question">17. What is SQL Injection?</div>
+<div class="question">1. What is SQL Injection?</div>
 <div class="answer">
 A security attack where malicious SQL code is injected into queries.
 </div>
 
-<div class="question">18. How to prevent SQL Injection?</div>
+<div class="question">2. How to prevent SQL Injection?</div>
 <div class="answer">
 Using prepared statements and parameterized queries.
 </div>
@@ -216,7 +413,7 @@ $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
 $stmt->execute([$email]);
 </pre>
 
-<div class="question">19. What is a Transaction?</div>
+<div class="question">3. What is a Transaction?</div>
 <div class="answer">
 A transaction is a set of queries executed as a single unit.
 </div>
@@ -227,59 +424,38 @@ INSERT INTO orders VALUES (...);
 COMMIT;
 </pre>
 
-<div class="question">20. What are ACID Properties?</div>
+<div class="question">4. What are ACID Properties?</div>
 <div class="answer">
-Atomicity, Consistency, Isolation, Durability.
+ACID ensures reliable database transactions: Atomicity, Consistency, Isolation, Durability.
 </div>
-
-</div>
-
-<!-- ================= ADVANCED ================= -->
-
-<div class="section">
-<h2>Advanced / Tricky Questions</h2>
-
-<div class="question">21. Difference between UNION and UNION ALL?</div>
-<div class="answer">
-UNION removes duplicates.<br>
-UNION ALL keeps duplicates and is faster.
-</div>
-
 <pre>
-SELECT name FROM users
-UNION
-SELECT name FROM employees;
+-- 1. ATOMICITY: "All or nothing" - either the entire transaction succeeds or fails
+BEGIN TRANSACTION;
+UPDATE Accounts SET Balance = Balance - 100 WHERE ID = 1;
+UPDATE Accounts SET Balance = Balance + 100 WHERE ID = 2;
+-- If any update fails, rollback so no money is transferred
+ROLLBACK;
+
+-- 2. CONSISTENCY: Database remains in a valid state after transaction
+-- Example: Total balance before and after transfer remains the same
+SELECT SUM(Balance) FROM Accounts;  -- Should be unchanged after valid transactions
+
+-- 3. ISOLATION: Transactions do not interfere with each other
+-- Example: Two users transferring money simultaneously won't cause incorrect balances
+
+-- 4. DURABILITY: Once a transaction is committed, it is permanent
+COMMIT;  -- Even if server crashes after this, changes remain
 </pre>
 
-<div class="question">22. What is Subquery?</div>
-<div class="answer">
-A query inside another query.
-</div>
+<p>Quick summary of ACID:</p>
 
-<pre>
-SELECT * FROM users
-WHERE id IN (SELECT user_id FROM orders);
-</pre>
+<p>✅ Atomicity: All or nothing / Rollback on failure</p>
 
-<div class="question">23. What is AUTO_INCREMENT?</div>
-<div class="answer">
-Automatically generates unique numbers for primary key columns.
-</div>
+<p>✅ Consistency: Data validity</p>
 
-<div class="question">24. Difference between CHAR and VARCHAR?</div>
-<div class="answer">
-CHAR → Fixed length.<br>
-VARCHAR → Variable length.
-</div>
+<p>✅ Isolation: Independent transactions or Multiple transactions do not conflict</p>
 
-<div class="question">25. What is EXPLAIN?</div>
-<div class="answer">
-Used to analyze and optimize query performance.
-</div>
-
-<pre>
-EXPLAIN SELECT * FROM users WHERE name = 'John';
-</pre>
+<p>✅ Durability: Permanent once committed or Once committed, changes remain even if server crashes</p>
 
 </div>
 
