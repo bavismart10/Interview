@@ -18,36 +18,47 @@
 <div class="section">
 <h2>OAuth2 Authentication</h2>
 
-<div class="question">1. What is OAuth2?</div>
+<div class="question">1. What is OAuth 2.0?</div>
 <div class="answer">
-OAuth2 is an authorization framework that defines how tokens are issued, refreshed, and used.
+OAuth 2.0 is an authorization framework that allows third-party applications to access user resources without sharing the user's credentials (username & password).
 </div>
 
-<div class="question">2. Core Concepts in OAuth2</div>
+<div class="question">2. Why OAuth 2.0 is used?</div>
 <div class="answer">
-Resource Owner → User<br>
-Client → Web/Mobile App<br>
-Authorization Server → Issues Tokens<br>
-Resource Server → API that validates tokens
+<p>To provide secure and controlled access to APIs without exposing user credentials.</p>
+<p>Example: Login with Google, Facebook, GitHub.</p>
 </div>
 
-<div class="question">3. Common OAuth2 Flows</div>
+<div class="question">3. Core Concepts / Key Roles in OAuth 2.0</div>
 <div class="answer">
-Authorization Code (Most secure & common)<br>
-Client Credentials (Machine-to-machine)<br>
-Password Grant (Legacy / Discouraged)<br>
-Refresh Token Flow
+<p><strong>1. Resource Owner</strong> -> User</p>
+<p><strong>2. Client</strong> -> Application requesting access (Web/Mobile App)</p>
+<p><strong>3. Authorization Server</strong> -> Authenticates user and provides token (Issues Tokens)</p>
+<p><strong>4. Resource Server</strong> -> API that validates tokens</p>
 </div>
 
-<div class="question">4. OAuth2 Example Flow</div>
-
+<div class="question">4. OAuth 2.0 Process Flow (Simple Steps)?</div>
+<div class="answer">
+<p>1. User clicks "Login with Google".</p>
+<p>2. User is redirected to Authorization Server.</p>
+<p>3. User logs in and gives permission.</p>
+<p>4. Authorization Server sends Authorization code to the client.</p>
+<p>5. Client exchanges code for Access Token.</p>
+<p>6. Client uses token to access user data.</p>
+</div>
 <pre>
-1. User logs in via Authorization Server
-2. Authorization Server issues Access Token
-3. Client sends token to API
-4. API validates token and returns data
+Authorization Server = Google
+Client = App / Web
 </pre>
+<div class="question">5. What is Access Token?</div>
+<div class="answer">
+<p>A short-lived token used to access protected resources from APIs.</p>
+</div>
 
+<div class="question">6. What is Refresh Token?</div>
+<div class="answer">
+<p>A long-lived token used to get a new access token when the current one expires.</p>
+</div>
 </div>
 
 <!-- ================= JWT ================= -->
@@ -55,24 +66,28 @@ Refresh Token Flow
 <div class="section">
 <h2>JWT (JSON Web Token)</h2>
 
-<div class="question">5. What is JWT?</div>
+<div class="question">1. What is JWT?</div>
 <div class="answer">
-JWT is a secure token format used to carry authenticated user information in APIs.
+JWT (JSON Web Token) is a secure token format used for authentication and exchange information between client and server..
 </div>
 
-<div class="question">6. JWT Structure</div>
+<div class="question">2. Structure of JWT?</div>
 <div class="answer">
-HEADER.PAYLOAD.SIGNATURE
+<p>JWT consists of 3 parts:</p>
+<p><strong>1. Header</strong> -> Algorithm & token type</p>
+<p><strong>2. Payload</strong> -> User data & claims</p>
+<p><strong>3. Signature</strong> -> Security validation</p>
+<p>Format: <strong>Header.Payload.Signature</strong></p>
 </div>
 
-<div class="question">7. JWT Components</div>
+<div class="question">3. JWT Components</div>
 <div class="answer">
 Header → Algorithm & token type<br>
 Payload → Claims (id, role, exp, iss)<br>
 Signature → Ensures integrity and prevents tampering
 </div>
 
-<div class="question">8. Basic JWT Creation Example in PHP</div>
+<div class="question">4. Basic JWT Creation Example in PHP</div>
 
 <pre>
 $header = base64_encode(json_encode(["alg"=>"HS256","typ"=>"JWT"]));
@@ -85,6 +100,31 @@ $signature = hash_hmac("sha256", "$header.$payload", "secretKey", true);
 $jwt = "$header.$payload.".base64_encode($signature);
 echo $jwt;
 </pre>
+<div class="question">5. JWT Authentication Flow (Simple Steps)?</div>
+<div class="answer">
+<p>1. User logs in with username and password.</p>
+<p>2. Server validates credentials.</p>
+<p>3. Server generates JWT token.</p>
+<p>4. Token is sent to client.</p>
+<p>5. Client stores token (localStorage / cookies).</p>
+<p>6. Client sends token with every API request.</p>
+<p>7. Server verifies token and returns response.</p>
+</div>
+<div class="question">6. Where JWT is stored?</div>
+<div class="answer">
+<p>LocalStorage, SessionStorage, or Secure HTTP-only Cookies.</p>
+</div>
+
+<div class="question">7. Difference between Session and JWT?</div>
+<div class="answer">
+<p><strong>Session</strong> -> Stored on server, stateful.</p>
+<p><strong>JWT</strong> -> Stored on client, stateless.</p>
+</div>
+
+<div class="question">8. Advantages of JWT?</div>
+<div class="answer">
+<p>Stateless, scalable, faster authentication, microservice friendly.</p>
+</div>
 
 </div>
 
@@ -93,19 +133,14 @@ echo $jwt;
 <div class="section">
 <h2>OAuth2 vs JWT (Important Difference)</h2>
 
-<div class="question">9. Difference Between OAuth2 and JWT</div>
+<div class="question">1. Difference between OAuth 2.0 and JWT?</div>
 <div class="answer">
-OAuth2 → Authorization framework<br>
-JWT → Token format<br><br>
-
-OAuth2 defines flows & roles<br>
-JWT encodes user data<br><br>
-
-OAuth2 can use JWT or opaque tokens<br>
-JWT is often used inside OAuth2
+<p><strong>OAuth 2.0</strong> -> Authorization framework (process).</p>
+<p><strong>JWT</strong> -> Token format (data structure).</p>
+<p>OAuth uses JWT as access tokens in many systems.</p>
 </div>
 
-<div class="question">10. Important Notes</div>
+<div class="question">2. Important Notes</div>
 <div class="answer">
 • OAuth2 can exist without JWT<br>
 • JWT can exist without OAuth2

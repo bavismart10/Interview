@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHP CRUD</title>
+
+<link rel="stylesheet" href="public/style.css">
+<style>
+    code {
+        font-size: large;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>PHP CRUD - Full Source Code</h1>
+
+<!-- db.php -->
+<div class="section">
+<h2>db.php</h2>
+<pre><code class="language-php">
+&lt;?php
+$host = 'localhost';
+$dbname = 'php_crud';
+$user = 'root';
+$pass = '';
+
+try{
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;", $user, $pass);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected";
+} catch(Exception $e){
+    echo "Failed " . $e->getMessage();
+}
+?&gt;
+</code></pre>
+</div>
+
+<!-- create.php -->
+<div class="section">
+<h2>create.php</h2>
+<pre><code class="language-php">
+&lt;?php
+include "db.php";
+$courses = $conn->query("SELECT * FROM courses")->fetchAll();
+
+if(isset($_POST['submit'])){
+
+    $name = $_POST['name'];
+    $mobileno = $_POST['mobileno'];
+    $email = $_POST['email'];
+    $course_id = $_POST['course_id'];
+
+    $stmt = $conn->prepare("INSERT INTO students 
+        (name, mobileno, email, course_id)
+        VALUES (:name, :mobileno, :email, :course_id)");
+
+    $stmt->execute([
+        ':name' => $name,
+        ':mobileno' => $mobileno,
+        ':email' => $email,
+        ':course_id' => $course_id
+    ]);
+
+    echo '&lt;script&gt;
+        alert("Inserted Successfully");
+        window.location.href="index.php";
+    &lt;/script&gt;';
+}
+?&gt;
+</code></pre>
+</div>
+
+<!-- edit.php -->
+<div class="section">
+<h2>edit.php</h2>
+<pre><code class="language-php">
+&lt;?php
+require 'db.php';
+$id = $_GET['id'];
+
+if(isset($_POST['update'])){
+    $name = $_POST['name'];
+    $mobileno = $_POST['mobileno'];
+    $email = $_POST['email'];
+    $course_id = $_POST['course_id'];
+
+    $sql = "UPDATE students SET 
+            name=:name, mobileno=:mobileno, 
+            email=:email, course_id=:course_id 
+            WHERE id=:id";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([
+        ':name' => $name,
+        ':mobileno' => $mobileno,
+        ':email' => $email,
+        ':course_id' => $course_id,
+        ':id' => $id
+    ]);
+
+    echo "Student updated!";
+}
+
+$courses = $conn->query("SELECT * FROM courses")->fetchAll();
+
+$stmt = $conn->prepare("SELECT * FROM students WHERE id = :id");
+$stmt->execute([':id' => $id]);
+$student = $stmt->fetch();
+?&gt;
+</code></pre>
+</div>
+
+<!-- delete.php -->
+<div class="section">
+<h2>delete.php</h2>
+<pre><code class="language-php">
+&lt;?php
+require 'db.php';
+$id = $_GET['id'];
+
+$stmt = $conn->prepare("DELETE FROM students WHERE id = :id");
+$stmt->execute([':id' => $id]);
+
+header("Location: index.php");
+exit;
+?&gt;
+</code></pre>
+</div>
+
+<!-- index.php -->
+<div class="section">
+<h2>index.php</h2>
+<pre><code class="language-php">
+&lt;?php
+include "db.php";
+$stmt = $conn->query("SELECT s.id, s.name, s.mobileno, s.email, c.course_name 
+        FROM students s 
+        LEFT JOIN courses c ON s.course_id = c.id");
+$students = $stmt->fetchAll();
+?&gt;
+
+&lt;h2&gt;Students List&lt;/h2&gt;
+&lt;a href="create.php"&gt;Add Student&lt;/a&gt;
+&lt;table border="1"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;ID&lt;/th&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Mobile&lt;/th&gt;
+        &lt;th&gt;Email&lt;/th&gt;
+        &lt;th&gt;Course&lt;/th&gt;
+        &lt;th&gt;Actions&lt;/th&gt;
+    &lt;/tr&gt;
+
+    &lt;?php foreach($students as $index => $s) : ?&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;?= $index + 1 ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?= $s['name'] ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?= $s['mobileno'] ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?= $s['email'] ?&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;?= $s['course_name'] ?&gt;&lt;/td&gt;
+        &lt;td&gt;
+            &lt;a href="edit.php?id=&lt;?= $s['id'] ?&gt;"&gt;Edit&lt;/a&gt; |
+            &lt;a href="delete.php?id=&lt;?= $s['id'] ?&gt;" 
+               onclick="return confirm('Are you sure?')"&gt;Delete&lt;/a&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;?php endforeach; ?&gt;
+&lt;/table&gt;
+</code></pre>
+</div>
+</body>
+</html>

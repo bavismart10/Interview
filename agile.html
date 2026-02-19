@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PHPUnit & Agile Interview Questions</title>
+<title>Agile Interview Questions</title>
 
 <link rel="stylesheet" href="public/style.css">
 </head>
@@ -11,78 +11,19 @@
 <body>
 <div class="container">
 
-<h1>PHPUnit & Agile Interview Questions</h1>
-
-<!-- ================= PHPUnit ================= -->
-
-<div class="section">
-<h2>PHPUnit (Unit Testing)</h2>
-
-<div class="question">1. What is PHPUnit?</div>
-<div class="answer">
-PHPUnit is a unit testing framework for PHP used to test individual units like methods and classes.
-</div>
-
-<div class="question">2. Why is PHPUnit important?</div>
-<div class="answer">
-• Catches bugs early<br>
-• Improves code quality<br>
-• Makes refactoring safe<br>
-• Essential for CI/CD<br>
-• Shows maintainable code
-</div>
-
-<div class="question">3. What is Unit Testing?</div>
-<div class="answer">
-Testing small units of code (functions, methods) independently.
-</div>
-
-<div class="question">4. Basic PHPUnit Test Example</div>
-
-<pre>
-use PHPUnit\Framework\TestCase;
-
-class MathTest extends TestCase {
-
-    public function testAddition() {
-        $this->assertEquals(4, 2 + 2);
-    }
-}
-</pre>
-
-<div class="question">5. Common PHPUnit Assertions</div>
-<div class="answer">
-assertEquals()<br>
-assertTrue()<br>
-assertFalse()<br>
-assertNull()<br>
-assertCount()<br>
-assertInstanceOf()<br>
-expectException()
-</div>
-
-<div class="question">6. How to run PHPUnit?</div>
-<div class="answer">
-Run command in terminal:
-</div>
-
-<pre>
-vendor/bin/phpunit tests
-</pre>
-
-</div>
+<h1>Agile Interview Questions</h1>
 
 <!-- ================= Agile ================= -->
 
 <div class="section">
 <h2>Agile Methodology</h2>
 
-<div class="question">7. What is Agile?</div>
+<div class="question">1. What is Agile?</div>
 <div class="answer">
-Agile is a software development methodology based on iterative and incremental development.
+Agile is a software development approach that focuses on iterative development, continuous feedback, fast delivery, and customer collaboration.
 </div>
 
-<div class="question">8. Core Agile Concepts</div>
+<div class="question">2. Core Agile Concepts</div>
 <div class="answer">
 • Iterative Development<br>
 • Incremental Delivery<br>
@@ -90,17 +31,24 @@ Agile is a software development methodology based on iterative and incremental d
 • Adaptability to Change
 </div>
 
-<div class="question">9. What is Scrum?</div>
+<div class="question">3. What is Scrum?</div>
 <div class="answer">
-Scrum is a popular Agile framework that manages work in short cycles called Sprints.
+Scrum is an Agile framework used to develop, deliver, and maintain complex products using sprints, roles, and ceremonies.
 </div>
 
-<div class="question">10. What is a Sprint?</div>
+<div class="question">4. What are the roles in Scrum?</div>
 <div class="answer">
-A Sprint is a short time period (1–2 weeks) where a small set of work is completed.
+1. Product Owner - Manages product backlog and priorities.<br>
+2. Scrum Master - Facilitates scrum process and removes blockers.<br>
+3. Development Team - Builds and delivers the product.
 </div>
 
-<div class="question">11. Important Scrum Meetings</div>
+<div class="question">5. What is a Sprint?</div>
+<div class="answer">
+A Sprint is a short time period (2-4 weeks) where a small set of work is completed.
+</div>
+
+<div class="question">6. Important Scrum Meetings</div>
 <div class="answer">
 • Sprint Planning<br>
 • Daily Stand-up<br>
@@ -109,14 +57,70 @@ A Sprint is a short time period (1–2 weeks) where a small set of work is compl
 • Backlog Refinement
 </div>
 
-<div class="question">12. What is Product Backlog?</div>
+<div class="question">7. What is Product Backlog?</div>
 <div class="answer">
-A prioritized list of tasks/features to be completed in the project.
+Product Backlog is a prioritized list of features, requirements, and tasks maintained by the Product Owner.
+</div>
+<div class="question">8. What is Sprint Backlog?</div>
+<div class="answer">
+Sprint Backlog is the list of tasks selected from the product backlog for execution in the current sprint.
+</div>
+<div class="question">9. What is Daily Stand-up Meeting?</div>
+<div class="answer">
+A 15-minute daily meeting where team members discuss what they did yesterday, what they will do today, and any blockers.
+</div>
+<div class="question">10. What are Scrum ceremonies?</div>
+<div class="answer">
+Sprint Planning, Daily Stand-up, Sprint Review, and Sprint Retrospective.
+</div>
+<div class="question">11. What is Sprint Planning?</div>
+<div class="answer">
+Sprint Planning is a meeting where the team defines the sprint goal and selects backlog items for the sprint.
 </div>
 
-<div class="question">13. What is Retrospective?</div>
+<div class="question">12. What is Sprint Review?</div>
 <div class="answer">
-A meeting where the team discusses what went well and how to improve.
+Sprint Review is a meeting where the completed work is demonstrated to stakeholders and feedback is collected.
+</div>
+<div class="question">13. What is Sprint Retrospective?</div>
+<div class="answer">
+A meeting where the team discusses what went well and how to improve in the next sprint.
+</div>
+<div class="question">14. What is Increment?</div>
+<div class="answer">
+Increment is the sum of all completed product backlog items at the end of a sprint, representing working software.
+</div>
+
+<div class="question">15. What is Velocity?</div>
+<div class="answer">
+Velocity is the amount of work completed by the team in one sprint, measured using story points.
+</div>
+
+<div class="question">16. What is Story Point?</div>
+<div class="answer">
+Story point is a unit used to estimate the effort, complexity, and risk involved in completing a task.
+</div>
+<div class="question">17. What is the difference between Agile and Waterfall?</div>
+<div class="answer">
+Agile is iterative and flexible, while Waterfall is sequential and rigid. Agile supports frequent changes and continuous delivery.
+</div>
+<div class="question">18. How do you handle requirement changes in Agile?</div>
+<div class="answer">
+Requirement changes are added to the product backlog and prioritized for upcoming sprints.
+</div>
+
+<div class="question">19. What is your role in an Agile project as a developer?</div>
+<div class="answer">
+To develop features, write unit tests, fix bugs, participate in sprint meetings, and continuously improve product quality.
+</div>
+<div class="question">20. What is Definition of Done (DoD)?</div>
+<div class="answer">
+Definition of Done is a checklist that defines when a task or user story is considered complete.
+</div>
+
+<div class="question">21. What is a Burndown Chart?</div>
+<div class="answer">
+A burndown chart is a graphical representation showing remaining work versus time in a sprint.
 </div>
 
 </div>
@@ -126,18 +130,18 @@ A meeting where the team discusses what went well and how to improve.
 <div class="section">
 <h2>Agile + PHPUnit + CI/CD</h2>
 
-<div class="question">14. How does PHPUnit support Agile?</div>
+<div class="question">8. How does PHPUnit support Agile?</div>
 <div class="answer">
 Automated tests ensure quick feedback in every sprint.
 </div>
 
-<div class="question">15. What is CI/CD?</div>
+<div class="question">9. What is CI/CD?</div>
 <div class="answer">
 CI → Continuous Integration<br>
 CD → Continuous Delivery/Deployment
 </div>
 
-<div class="question">16. Why testing is important in CI/CD?</div>
+<div class="question">10. Why testing is important in CI/CD?</div>
 <div class="answer">
 Automated tests run before deployment to prevent production bugs.
 </div>

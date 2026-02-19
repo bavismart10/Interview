@@ -52,6 +52,33 @@ Non-Primitive: Object, Array, Function.
 Every JavaScript object can inherit properties and methods from another object through its prototype. (OR)</p>
 <p>Prototype is the mechanism in JavaScript that allows objects to inherit properties and methods from other objects.</p>
 </div>
+<div class="question">7. What is Event Propagation?</div>
+<div class="answer">
+<p>Event propagation is the mechanism that defines how events travel through the DOM, including capturing, target, and bubbling phases.</p>
+</div>
+<div class="question">8. What are the phases of Event Propagation?</div>
+<div class="answer">
+<p><strong>1. Capturing Phase</strong> -> Event moves from root to target element.</p>
+<p><strong>2. Target Phase</strong> -> Event reaches the target element.</p>
+<p><strong>3. Bubbling Phase</strong> -> Event bubbles from target back to root.</p>
+</div>
+<div class="question">9. What is Event Bubbling?</div>
+<div class="answer">
+<p>Event bubbling is when an event triggered on a child element propagates upward to its parent elements.</p>
+</div>
+<div class="question">10. What is Event Capturing?</div>
+<div class="answer">
+<p>Event capturing is when an event propagates from the root element down to the target element.</p>
+</div>
+<div class="question">11. How do you stop event propagation?</div>
+<div class="answer">
+<p>Using <strong>event.stopPropagation()</strong>.</p>
+</div>
+<div class="question">12. Difference between event.stopPropagation() and event.preventDefault()?</div>
+<div class="answer">
+<p><strong>stopPropagation()</strong> -> Stops event bubbling or capturing.</p>
+<p><strong>preventDefault()</strong> -> Prevents default browser behavior (eg: link navigation, form submit).</p>
+</div>
 
 </div>
 
