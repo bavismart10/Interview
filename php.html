@@ -21,6 +21,8 @@
 <div class="question">1. What is PHP?</div>
 <div class="answer">
 PHP (Hypertext Preprocessor) is an open-source, free, and powerful server-side scripting language used to build dynamic web applications.
+<p>PHP was created by Rasmus Lerdorf in 1994. Initially, PHP stood for "Personal Home Page", and it was publicly released in 1995.</p>
+<p>Examples : Facebook, Wikipedia, Wordpress</p>
 </div>
 
 <div class="question">2. What are the main features of PHP?</div>
@@ -166,23 +168,23 @@ echo $student["name"]; // Bavi
 <th>Example</th>
 </tr>
 <tr>
-<td>Notice</td>
-<td>Minor issue (non-critical errors), script continues</td>
-<td><code>echo $undefinedVar;</code></td>
-</tr>
-<tr>
 <td>Warning</td>
-<td>Non-fatal, script continues</td>
+<td>Non-fatal error, script continues (Including missing files)</td>
 <td><code>include("nofile.php");</code></td>
 </tr>
 <tr>
+<td>Notice</td>
+<td>Minor errors — informational messages. (non-critical errors), script continues (Using undefined variables, Accessing undefined indexes)</td>
+<td><code>echo $undefinedVar;</code></td>
+</tr>
+<tr>
 <td>Fatal Error</td>
-<td>Script stops execution</td>
+<td>Script stops execution (when Calling undefined functions, non-existing classes)</td>
 <td><code>undefinedFunction();</code></td>
 </tr>
 <tr>
 <td>Parse Error</td>
-<td>Syntax error, stops script</td>
+<td>Syntax error, stops script (Missing semicolon, currly braces)</td>
 <td><code>if(true { echo "Hi"; }</code></td>
 </tr>
 </table>
@@ -216,6 +218,8 @@ Session stores user data on the server across multiple pages.
 <div class="answer">
 PEAR stands for <b>PHP Extension and Application Repository. It is a framework
 and has collection of reusable PHP libraries and components used to simplify PHP development</b>.
+<p>It is used to install and manage PHP libraries. </p>
+<p>eg. Ready-made components - Database, Mail, Authentication (Auth). It is old now we are using composer.</p>
 </div>
 
 <div class="question">21. Explain the difference between $message and $$message.</div>
@@ -326,7 +330,7 @@ Composer is a dependency manager for PHP used to install and manage libraries.
 
 <div class="question">31. What is session_unset() in PHP?</div>
 <div class="answer">
-  The session_unset() function clears all session variables.
+  The session_unset() function clears all session variables but keeps the session alive or active.
 </div>
 
 <div class="question">32. What is session_destroy() in PHP?</div>
@@ -340,28 +344,33 @@ Composer is a dependency manager for PHP used to install and manage libraries.
 </div>
 <div class="question">34. What is the htmlspecialchars() function in PHP?</div>
 <div class="answer">
-  The htmlspecialchars() function converts special characters to HTML entities to prevent XSS attacks.
+  The htmlspecialchars() function converts only special characters to HTML entities to prevent XSS attacks.
 </div>
 <div class="question">35. What is htmlentities() in PHP?</div>
 <div class="answer">
-  The htmlentities() function converts all applicable characters to HTML entities.
+  The htmlentities() function converts all applicable characters to HTML entities to prevent XSS attacks.
 </div>
 
 <div class="question">36. What is stripslashes() in PHP?</div>
 <div class="answer">
-  The stripslashes() function removes backslashes from a string.
+  stripslashes() function removes backslashes (\) from a string that were added using addslashes().
 </div>
 
 <div class="question">37. What is REST API in PHP?</div>
 <div class="answer">
-  A REST API is a type of Web API that follows REST principles and uses HTTP methods like GET, POST, PUT, DELETE.
+A REST API is a type of Web API that follows REST principles and allows communication between the client and server using HTTP methods such as GET, POST, PUT, and DELETE.  
+<p>One Line - REST principles are rules like stateless, client-server, and using proper HTTP methods.</p>
 </div>
 
 <div class="question">38. What is Dependency Injection?</div>
 <div class="answer">
-<p>Passing dependencies into a class instead of creating them internally or inside the class.</p>
+<p>Passing objects / dependencies into a class instead of creating them inside the class is called Dependency Injection. Eg. Constructor</p>
 <pre>
-class DB { }
+class DB {
+  public function connect() {
+        echo "DB Connected";
+    }
+}
 class User {
     private $db;
     public function __construct(DB $db){ $this->db = $db; }
@@ -372,7 +381,15 @@ class User {
 
 <div class="question">39. What is Dependency Injection Container?</div>
 <div class="answer">
-  A Dependency Injection Container is a class/system that automatically creates and injects dependencies.
+A Dependency Injection Container is a system that automatically creates, manages, and injects object dependencies into classes.
+<p>Eg. Laravel Service Container</p>
+<pre>
+class UserController {
+    public function __construct(UserService $service) {
+        $this->service = $service;
+    }
+}
+</pre>
 </div>
 
 <div class="question">40. How to improve PHP performance?</div>
@@ -422,37 +439,43 @@ class User {
 <div class="question">4. Difference between interface and abstract class?</div>
 <div class="answer">
 <p><strong>In Short:</strong></p>
-<p>Interface → Only method declarations  but cannot provide method implementations; multiple inheritance.</p>
+<p>Interface → Only method declarations  but cannot provide method implementations; It supports multiple inheritance.</p>
 <p>Abstract class → Can have both method declaration and implementation; single inheritance.</p>
 
 <p><strong>Interface</strong> → Interfaces define methods that must be implemented by a class, but cannot provide method implementations.</p>
-
+<p>eg. Payment Gateway. Which is implement by paypal, gateway methods</p>
 <pre>
-interface Animal {
-    public function sound(); // Declaration
+interface PaymentGateway {
+    public function pay($amount); // Method Declaration
 }
 
-class Dog implements Animal {
-    public function sound() { // Implementation
-        echo "Bark";
+class Paypal implements PaymentGateway {
+    public function pay($amount) {
+        return "Paid $amount using PayPal";
+    }
+}
+
+class Stripe implements PaymentGateway {
+    public function pay($amount) {
+        return "Paid $amount using Stripe";
     }
 }
 </pre>
 
 <p><strong>Abstract Class</strong> → Abstract classes can define methods that must be implemented (abstract methods) and also provide method implementations (concrete methods).</p>
 <p><strong>Abstract class</strong>: Defines abstract methods (child must implement) and partial concrete methods (already implemented methods child can use)</p>
+<p>eg. Payment Gateway rules with base payment logic  </p>
 <pre>
-abstract class Animal {
-    abstract public function sound(); // Declaration
-
-    public function eat() { // Implementation
-        echo "Eating";
-    }
+abstract class Payment {
+    abstract public function pay($amount); // Method Declaration
+    public function log($msg) { // Method Implementation
+        return "Log: $msg";
+    }   
 }
 
-class Dog extends Animal {
-    public function sound() {
-        echo "Bark";
+class Paypal extends Payment {
+    public function pay($amount) {
+        return "Paid $amount using PayPal";
     }
 }
 </pre>
@@ -468,6 +491,7 @@ abstract class BaseLogger { public function format($msg){ return strtoupper($msg
 <div class="question">5. What is encapsulation?</div>
 <div class="answer">
 Encapsulation means wrapping (hiding internal) data and methods inside a class and restricting direct access using access modifiers.
+<p><b>In Login System</b> - Protect password handling.</p>
 </div>
 
 <div class="question">6. What is inheritance?</div>
@@ -478,6 +502,9 @@ Inheritance allows a class to use methods and properties of another class using 
 <div class="question">7. What is polymorphism?</div>
 <div class="answer">
 Polymorphism means same method name but different behavior depending on the object.
+<p>one interface, many implementations</p>
+<p>Logger Interface, has implementation like FileLogger implementations Logger, DB Loggler implementations Logger
+</p>
 </div>
 <div class="question">8. What is Abstraction?</div>
 <div class="answer">
@@ -515,8 +542,7 @@ function __destruct() {}
 
 <div class="question">13. What is Method Overriding?</div>
 <div class="answer">
-<p><b>Method Overriding</b> → When both the parent and child classes have the same method name, but the child overrides the parent's method behavior. (OR)</p> 
-<p><b>Method Overriding</b> → When both the parent and child classes have the same method name, but with different behavior.</p>
+<p><b>Method Overriding</b> →It is mechanism / technique, when both parent and child classes have the same method name, the child overrides the parent's method behavior.</p> 
 </div>
 
 <pre>
@@ -558,6 +584,15 @@ $obj->add(10, 20);
 <p>✅ Overriding = change the child behavior</p>
 <p>✅ Overloading = handling different number of parameters</p>
 
+<div class="question">15. Method Overriding vs Polymorphism?</div>
+<div class="answer">
+<p>Method overriding is the mechanism; polymorphism is the result.</p>
+<p>Polymorphism uses method overriding mechanism. Method overriding is the technique used to achieve polymorphism.</p>
+<p><strong>Method overriding</strong> -> Used to achieve polymorphism.</p>
+<p><strong>Polymorphism</strong> -> Result of method overriding.</p>
+</div>
+
+
 </div>
 
 <!-- ================= ADVANCED 3+ YEARS ================= -->
@@ -582,14 +617,28 @@ Xdebug is a PHP extension that provides debugging, profiling, and code coverage 
 
 <div class="question">What is Memory Limit in PHP?</div>
 <div class="answer">
-Memory Limit in PHP is the maximum amount of memory a script is allowed to allocate during execution, set by the <code>memory_limit</code> directive in php.ini.
-<pre>ini_get('memory_limit')</pre>
+Memory Limit in PHP is the maximum amount of memory a script is allowed to allocate during execution. 128M (commonly).
+<p>Memory limit is the maximum RAM a PHP script can use; default is usually 128M, and it can be increased via php.ini, .htaccess, or ini_set().</p>
+<pre>
+ini_get('memory_limit') // get
+ini_set('memory_limit', '512M'); // set
+</pre>
+
 </div>
 <div class="question">What is strict_types in PHP?</div>
 <div class="answer">
 In PHP, <code>strict_types</code> enforces strict type checking for function arguments and return values, preventing automatic type coercion.  
-It is enabled by adding 
-<pre>declare(strict_types=1);</pre>
+It is enabled by adding .
+<p>It   checking for scalar type hints (like int, float, string, bool) in function calls.</p>
+<pre>
+declare(strict_types=1);
+  function add(int $a, int $b): int {
+    return $a + $b;
+}
+
+echo add(2, 3);    // Works ✅
+echo add(2, "3");  // Error ❌
+</pre>
 at the top of a PHP file.
 </div>
 <div class="question">Difference between Traits and Interfaces in PHP?</div>
@@ -597,15 +646,9 @@ at the top of a PHP file.
 Traits provide reusable method implementations to include in classes, while Interfaces only define method signatures that classes must implement.
 </div>
 
-
-<div class="question">What is PHP-FPM?</div>
-<div class="answer">
-PHP-FPM (FastCGI Process Manager) is a PHP handler that manages pools of PHP processes to improve performance and handle high traffic efficiently.
-</div>
-
 <div class="question">What is Generator and yield</div>
 <div class="answer">
-<p><strong>Generator -> </strong>A Generator is the special kind of function that can generate values one at a time.</p>
+<p><strong>Generator -> </strong>A Generator is the special kind of function that can generate values one at a time using yield keyword.</p>
 <p><strong>Yield -> </strong>yield is the keyword inside a generator that produces a value. 
 It's like return, but instead of stopping the function, it pauses it so the next value can be generated later.</p>
 <p>✅ Here, yield is giving the values one by one.</p>
@@ -827,7 +870,7 @@ echo $a; // 20
 
 <p><strong>SQL Injection</strong> → Prevent by using prepared statements (PDO / MySQLi) and parameter binding.</p>
 
-<p><strong>Cross-Site Scripting (XSS)</strong> → Prevent by escaping output using <code>htmlspecialchars()</code> or using template engines.</p>
+<p><strong>Cross-Site Scripting (XSS)</strong> → Prevent by escaping output using <code>htmlspecialchars(), htmlentities()</code> or using template engines.</p>
 
 <p><strong>Cross-Site Request Forgery (CSRF)</strong> → Prevent by using CSRF tokens in forms.</p>
 
