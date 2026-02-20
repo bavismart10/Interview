@@ -48,8 +48,8 @@ Non-Primitive: Object, Array, Function.
 
 <div class="question">6. What are Prototype?</div>
 <div class="answer">
+<p>In JavaScript, every object has a prototype(except Object.create(null)). So inherit properties and methods from other objects.</p>
 <p>A prototype is the mechanism JavaScript uses to implement inheritance.
-Every JavaScript object can inherit properties and methods from another object through its prototype. (OR)</p>
 <p>Prototype is the mechanism in JavaScript that allows objects to inherit properties and methods from other objects.</p>
 </div>
 <div class="question">7. What is Event Propagation?</div>
@@ -58,12 +58,13 @@ Every JavaScript object can inherit properties and methods from another object t
 </div>
 <div class="question">8. What are the phases of Event Propagation?</div>
 <div class="answer">
-<p><strong>1. Capturing Phase</strong> -> Event moves from root to target element.</p>
+<p><strong>1. Capturing Phase</strong> -> Event moves from root of the DOM to target element.</p>
 <p><strong>2. Target Phase</strong> -> Event reaches the target element.</p>
-<p><strong>3. Bubbling Phase</strong> -> Event bubbles from target back to root.</p>
+<p><strong>3. Bubbling Phase</strong> -> Event bubbles from target back to root of DOM.</p>
 </div>
 <div class="question">9. What is Event Bubbling?</div>
 <div class="answer">
+<p>Event Bubbling is one of the phases of event propagation in JavaScript. The event “bubbles up” from the inner element to outer elements in the DOM (root of the DOM).</p>
 <p>Event bubbling is when an event triggered on a child element propagates upward to its parent elements.</p>
 </div>
 <div class="question">10. What is Event Capturing?</div>
@@ -265,7 +266,9 @@ States: Pending, Fulfilled, Rejected.
 
 <div class="question">5. What are async and await?</div>
 <div class="answer">
-Keywords used to handle promises in a cleaner synchronous-looking way.
+Async and await are used together to handle asynchronous operations in a cleaner way instead of using .then() and .catch().
+<p>The async keyword is used before a function. It automatically makes the function return a Promise.</p>
+<p>await can only be used inside an async function. It pauses execution of the async function until the Promise is resolved.</p>
 </div>
 
 </div>
@@ -348,6 +351,8 @@ console.log(part); // [2,3]
 
 <p><strong>splice()</strong> → Adds/removes elements at a specific index.</p>
 <pre>
+splice(start, deleteCount, item1, item2, ...)
+
 const arr = [1,2,3,4];
 arr.splice(1,2,9,10);
 console.log(arr); // [1,9,10,4]
@@ -464,8 +469,8 @@ const mergedObj2 = Object.assign({}, obj1, obj2);
 
 <div class="question">8. How to check if a variable is an array or object?</div>
 <div class="answer">
-<p><strong>Array:</strong> Array.isArray(arr) → true/false</p>
-<p><strong>Object:</strong> typeof obj === "object" && obj !== null && !Array.isArray(obj)</p>
+<p><strong>Array:</strong> console.log(Array.isArray(arr)) → true/false</p>
+<p><strong>Object:</strong> console.log(typeof obj === "object" && obj !== null && !Array.isArray(obj)) → true/false</p>
 </div>
 
 <div class="question">9. Difference between shallow copy and deep copy?</div>
@@ -620,8 +625,8 @@ console.log(str.slice(0,5)); // "Hello"
 
 <p><strong>split()</strong> → Splits string into an array.</p>
 <pre>
-const str = "a,b,c";
-console.log(str.split(",")); // ["a","b","c"]
+const str = "Hello";
+console.log(str.split(",")); // ["H","e","l","l","o"]
 </pre>
 
 <p><strong>replace()</strong> → Replaces part of string with another.</p>
@@ -739,7 +744,7 @@ Uses backticks (`) and allows string interpolation using ${}.
 
 <div class="question">2. What is Spread Operator?</div>
 <div class="answer">
-The spread operator (...) is used to expand an array or object into individual elements/properties.
+The spread operator (...) is used to expand an array or object into individual elements/properties. (Constructing / Expand)
 <pre>
 const mergedArr = [...arr1, ...arr2];
 
@@ -749,7 +754,7 @@ const mergedObj = { ...obj1, ...obj2 };
 
 <div class="question">3. What is Rest Operator?</div>
 <div class="answer">
-The rest operator is used to collect remaining elements/properties into an array or object.
+The rest operator is used to collect remaining elements/properties into an array or object. (Destructing / Collecting)
 <pre>
 const numbers = [1, 2, 3, 4, 5];
 const [first, second, ...rest] = numbers;
@@ -800,13 +805,18 @@ document.getElementById("menu").addEventListener("click", function(e) {
 </div>
 <div class="question">3. What is Event Loop?</div>
 <div class="answer">
-Event Loop handles asynchronous operations by pushing callbacks 
-from the callback queue to the call stack when it becomes empty.
+<p>The callback function is stored in the callback queue.
+The event loop checks whether the call stack is empty.
+If it is empty, it moves the callback from the queue to the call stack for execution</p>
+<p>The Event Loop is a process that continuously checks the Call Stack and moves asynchronous callbacks from the Queue to the Stack when it's empty.</p>
 </div>
 <div class="question">4. Difference between Microtask and Macrotask?</div>
 <div class="answer">
 Microtask → Promise, queueMicrotask (Higher priority).<br>
 Macrotask → setTimeout, setInterval, DOM events.
+
+<p>Microtask Queue (Promises - higher priority)</p>
+<p>Callback Queue (setTimeout, setInterval, events)</p>
 </div>
 
 <div class="question">5. What is Debouncing and Throttling?</div>
