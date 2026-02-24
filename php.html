@@ -16,8 +16,10 @@
 <!-- ================= BASIC ================= -->
 
 <div class="section">
+<div style="display: flex; justify-content: space-between;">
 <h2>Basic PHP Interview Questions</h2>
-
+<a href="#" onclick="func_question()">Questions</a>
+</div>
 <div class="question">1. What is PHP?</div>
 <div class="answer">
 PHP (Hypertext Preprocessor) is an open-source, free, and powerful server-side scripting language used to build dynamic web applications.
@@ -1917,5 +1919,12 @@ echo implode("", array_unique(str_split($str)));
 </div>
 
 </div>
+
+<script>
+  function func_question() {
+    document.querySelectorAll('.answer, pre').forEach(a => a.style.display = 'none');
+    return;
+  }
+</script>
 </body>
 </html>
