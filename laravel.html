@@ -32,12 +32,21 @@ Controller → Handles request & response.
 
 <div class="question">3. What is Artisan?</div>
 <div class="answer">
-Artisan is Laravel's command line tool.
+Artisan is Laravel's built-in command-line interface (CLI). It is used to create controllers, models, migrations, and run tasks.
 </div>
 
 <pre>
-php artisan make:controller UserController
-php artisan make:model User -m
+# Create a model
+php artisan make:model User
+
+# Create a model with migration
+php artisan make:model User -m 
+
+# Run migrations
+php artisan migrate
+
+#Model + Controller + Resource
+php artisan make:mcr Post
 </pre>
 
 <div class="question">4. What is Composer?</div>
@@ -90,15 +99,15 @@ $users = User::where('status',1)->get();
 
 <div class="question">8. find() vs first() vs get()</div>
 <div class="answer">
-find() → By primary key.<br>
-first() → First matching record.<br>
-get() → Multiple records.
+find() → Used to fetch a record by primary key.<br>
+first() → Used to fetch the first record from the query based on a condition.<br>
+get() → Used to fetch all records matching the query.
 </div>
 
 <pre>
-User::find(1);
-User::where('status',1)->first();
-User::where('status',1)->get();
+User::find(1);  (OR)  SELECT * FROM users WHERE id = 1 LIMIT 1;
+User::where('status',1)->first();  (OR)  SELECT * FROM users WHERE email = 'test@example.com' LIMIT 1;
+User::where('status',1)->get();   (OR)   SELECT * FROM users WHERE status = 'active';
 </pre>
 
 <div class="question">9. N+1 Problem?</div>
@@ -155,28 +164,63 @@ Using csrf tokens to Prevents unauthorized form submissions.
 <div class="section">
 <h2>Queue & Jobs</h2>
 
-<div class="question">12. What is Queue?</div>
+<div class="question">12. What is Queue, Job, Dispatch, Queue Worker, and Handle?</div>
 <div class="answer">
-Queues process background tasks like emails.
-</div>
+
+<b>Job:</b> A class that defines a task to be executed by the queue.  
+<b>Example:</b> Sending an email to a user.
 
 <pre>
+// Create a Job
 php artisan make:job SendEmailJob
+
+File location: app/Jobs/SendEmailJob.php
 </pre>
+
+<b>Dispatch:</b> Sends the job to the queue for background processing.  
+<b>Example:</b> Dispatch the email job after user registration.
+
+<pre>
+SendEmailJob::dispatch();
+</pre>
+
+<b>Queue:</b> Queue is a system where jobs (tasks) are stored and run in the background asynchronously.  <br>
+<b>Example:</b> Sending emails or generating reports without making the user wait.
+
+<pre>
+Queue stores tasks until a worker processes them in the background.
+
+Config: config/queue.php
+Database (for database driver): database/migrations/xxxx_xx_xx_create_jobs_table.php
+</pre>
+
+<b>Queue Worker:</b> A background process that continuously checks the queue for new jobs and executes them.  
+<b>Example:</b> Worker picks jobs from the queue and runs them.
+
+<pre>
+php artisan queue:work
+</pre>
+
+<b>Handle:</b> The method inside the job class that contains the actual logic to perform the task.  
+<b>Example:</b> Sending the email, generating report, or logging info.
 
 <pre>
 class SendEmailJob implements ShouldQueue
 {
-    public function handle(){
+    public function handle() {
         \Log::info('Email sent');
     }
 }
 </pre>
 
-Dispatch Job:
+<b>Process Flow:</b>
+
 <pre>
-SendEmailJob::dispatch();
+1. Create a Job -> 2. Dispatch the Job -> 3. Store in Queue -> 
+4. Queue Worker Picks Job -> 5. Job Execution (handle()) -> 6. Job Completion
 </pre>
+
+</div>
 
 </div>
 
@@ -213,19 +257,51 @@ php artisan route:cache
 <div class="section">
 <h2>Advanced Concepts</h2>
 
-<div class="question">15. What is Dependency Injection?</div>
+<div class="question">1. What is Dependency Injection and Dependency Injection Container in Laravel?</div>
 <div class="answer">
-<p>Laravel automatically injects class dependencies.</p>
-<p>Dependency Injection is a technique where a class receives its dependencies from outside instead of creating them inside the class.</p>
-</div>
+
+<b>Dependency Injection (DI):</b>  
+In Laravel, a class <b>receives dependencies from outside</b> instead of creating them inside.  
+<b>Example:</b>
 
 <pre>
-public function __construct(UserService $service){
-    $this->service = $service;
+class UserController extends Controller
+{
+    protected $mailer;
+
+    public function __construct(Mailer $mailer)
+    {
+        $this->mailer = $mailer; // dependency injected
+    }
+
+    public function notify()
+    {
+        $this->mailer->send("Welcome User!");
+    }
 }
 </pre>
 
-<div class="question">16. What is Soft Delete?</div>
+<b>Dependency Injection Container (Service Container):</b>  
+In Laravel, a system (the container) <b>automatically creates and manages dependencies</b> and injects them wherever needed.
+<b>Example:</b>
+
+<pre>
+namespace App\Http\Controllers;
+use App\Services\UserService;
+
+// Laravel automatically resolves UserService and injects it
+public function __construct(UserService $service){
+    $this->service = $service;
+}
+public function index() {
+    $this->service->doSomething();
+}
+
+</pre>
+
+</div>
+
+<div class="question">2. What is Soft Delete?</div>
 <div class="answer">
 Soft delete marks record using deleted_at column instead of deleting permanently.
 </div>
@@ -236,23 +312,86 @@ User::withTrashed()->get();
 User::restore();
 </pre>
 
-<div class="question">17. What is Database Transaction?</div>
+<div class="question">3. What is Database Transaction?</div>
 <div class="answer">
-Ensures all queries succeed or rollback.
+A database transaction is a sequence of one or more database operations that are treated as a single unit. Ensures all queries succeed or rollback.
 </div>
 
 <pre>
-DB::transaction(function(){
-    Order::create([...]);
-    Payment::create([...]);
+use Illuminate\Support\Facades\DB;
+
+DB::beginTransaction();
+
+try {
+    DB::table('accounts')->where('id', 1)->decrement('balance', 100);
+    DB::table('accounts')->where('id', 2)->increment('balance', 100);
+
+    // If all queries succeed
+    DB::commit();
+} catch (\Exception $e) {
+    // If any query fails
+    DB::rollBack();
+    \Log::error('Transaction failed: ' . $e->getMessage());
+}
+</pre>
+<div class="question">4. How do you measure performance in Laravel?</div>
+<div class="answer">
+
+<p>
+<strong>Laravel Debugbar :</strong> - Shows execution time, SQL queries, memory usage, route info, and more in the browser. <br>
+<strong>Purpose :</strong> Queries with execution time, memory usage, and performance issues during development.
+</p>
+
+<pre>
+// Install Debugbar (only in dev)
+composer require barryvdh/laravel-debugbar --dev
+
+use Debugbar;
+
+\Debugbar::info('This is debug info');
+\Debugbar::startMeasure('loading', 'Loading users');
+
+$users = User::all();
+
+\Debugbar::stopMeasure('loading');
+\Debugbar::warning('Loaded ' . count($users) . ' users');
+</pre>
+
+<p>
+<strong>Benchmark Helper :</strong> - Benchmark in Laravel is a built-in helper used to measure the execution time of a piece of code and dump the result with timing information. <br>
+<strong>Purpose :</strong> Analyze performance of individual operations to optimize code.
+</p>
+
+<pre>
+// Using microtime
+$start = microtime(true);
+
+// Code to benchmark
+$users = User::all();
+
+$end = microtime(true);
+\Log::info('Execution time: ' . ($end - $start) . ' seconds');
+</pre>
+
+<p>
+<strong>DB::listen :</strong> - Logs all executed SQL queries with their execution time. <br>
+<strong>Purpose :</strong> Identify slow queries and optimize database performance.
+</p>
+
+<pre>
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+DB::listen(function ($query) {
+    Log::info(
+        $query->sql . ' [' . implode(',', $query->bindings) . '] - ' . $query->time . 'ms'
+    );
 });
 </pre>
-<div class="question">18. How do you measure performance in Laravel?</div>
-<div class="answer">
-Benchmark Helper.
+
 </div>
 
-<div class="question">19. What is Benchmark in Laravel?</div>
+<div class="question">5. What is Benchmark in Laravel?</div>
 <div class="answer">
 Benchmark in Laravel is a built-in helper used to measure the execution time of a piece of code and dump the result with timing information.
 <br>
@@ -264,9 +403,14 @@ use Illuminate\Support\Benchmark;
 Benchmark::dd(function () {
     return User::all();
 });
+
+Benchmark::dd([
+    'users_all' => fn () => User::all(),
+    'users_active' => fn () => User::where('status', 'active')->get(),
+]);
 </pre>
 
-<div class="question">20. Explain the lifecycle of a Laravel request?</div>
+<div class="question">6. Explain the lifecycle of a Laravel request?</div>
 <div class="answer">
 
 <p><strong>1. Entry Point</strong> → All requests enter through <code>public/index.php</code>.</p>
@@ -286,7 +430,7 @@ Benchmark::dd(function () {
 <p><strong>8. Send Response</strong> → Response is sent back to the browser.</p>
 
 </div>
-<div class="question">21. What's the difference between a Service Container and a Service Provider in Laravel?</div>
+<div class="question">7. What's the difference between a Service Container and a Service Provider in Laravel?</div>
 <div class="answer">
 
 <p><strong>Service Container</strong> → The dependency injection container that manages class dependencies and resolves objects automatically.</p>
