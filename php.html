@@ -144,7 +144,9 @@ Parser converts PHP code into machine-readable format before execution.
 
 <div class="question">14. Types of arrays in PHP?</div>
 <div class="answer">
-Indexed, Associative, Multidimensional.
+<p>Indexed -> Arrays with numeric keys (0, 1, 2 …).</p>
+<p>Associative -> Arrays with string keys.</p>
+<p>Multidimensional -> Arrays containing arrays as elements</p>
 </div>
 
 <div class="question">15. What is the difference between an indexed array and an associative array in PHP?</div>
@@ -408,7 +410,8 @@ class User {
 
 <div class="question">39. What is Dependency Injection Container?</div>
 <div class="answer">
-A Dependency Injection Container is a system that automatically creates, manages, and injects object dependencies into classes.
+<p>A Dependency Injection Container is a system that automatically creates, manages, and injects object dependencies into classes.</p>
+<p>A Dependency Injection Container is a tool/class that automatically manages object creation and their dependencies.</p>
 <p>Eg. Laravel Service Container</p>
 <pre>
 class UserController {
@@ -421,8 +424,8 @@ class UserController {
 
 <div class="question">40. How to improve PHP performance?</div>
 <div class="answer">
-  Use caching, optimize queries, use indexes, enable OPcache, reduce DB
-  calls, and avoid unnecessary loops.
+  Use Latest PHP Version, Use caching, Optimize database queries, use indexes, enable OPcache, reduce DB
+  calls, Optimize Loops and Algorithms, Avoid Unnecessary Includes/Requires, Output Buffering, and avoid unnecessary loops.
 </div>
 <div class="question">41. Difference between PUT, PATCH, POST?</div>
 <div class="answer">
@@ -437,8 +440,16 @@ class UserController {
 </div>
 <div class="question">43. Difference between Error and Exception?</div>
 <div class="answer">
-  <p><strong>Error:</strong> Fatal runtime problem (E.g., parse errors, type errors)</p>
-  <p><strong>Exception:</strong> Recoverable issues using try-catch</p>
+  <p><strong>Error:</strong> A serious runtime problem in PHP itself (PHP engine issue) that usually stops script execution.</p>
+  <p><em>Examples:</em> Parse error, Type error, Fatal error</p>
+  <p><strong>Exception:</strong> Occurs when a problem in your program logic is thrown and can be handled using a try-catch block. (E.g., File not found, Invalid argument)</p>
+  <p><em>Examples:</em> File not found, Invalid argument</p>
+</div>
+
+<div class="question">44. How do you handle Error and Exception in PHP?</div>
+<div class="answer">
+  <p><strong>Error:</strong> Traditionally handled using <b>error_reporting()</b> and <b>set_error_handler()</b>. In PHP 7+, Errors implement <b>Throwable</b> and can be caught with <b>try-catch</b>.</p>
+  <p><strong>Exception:</strong> Handled using <b>try-catch</b> blocks. Both Exceptions and Errors can be caught together via <b>catch (Throwable $t)</b>.</p>
 </div>
 
 </div>
@@ -530,7 +541,7 @@ Inheritance allows a class to use methods and properties of another class using 
 <div class="answer">
 Polymorphism means same method name but different behavior depending on the object.
 <p>one interface, many implementations</p>
-<p>Logger Interface, has implementation like FileLogger implementations Logger, DB Loggler implementations Logger
+<p>A Payment Interface, can have multiple implementations like like CreditCard, Cash, UPI. Each implements the <b>pay()</b> method differently.
 </p>
 </div>
 <div class="question">8. What is Abstraction?</div>
@@ -644,8 +655,8 @@ Xdebug is a PHP extension that provides debugging, profiling, and code coverage 
 
 <div class="question">What is Memory Limit in PHP?</div>
 <div class="answer">
-Memory Limit in PHP is the maximum amount of memory a script is allowed to allocate during execution. 128M (commonly).
-<p>Memory limit is the maximum RAM a PHP script can use; default is usually 128M, and it can be increased via php.ini, .htaccess, or ini_set().</p>
+  <p><strong>Memory Limit:</strong> The maximum amount of memory a PHP script can use during execution. Default is usually 128M.</p>
+  <p>You can increase it via <code>php.ini</code>, <code>.htaccess</code>, or <code>ini_set()</code>.</p>
 <pre>
 ini_get('memory_limit') // get
 ini_set('memory_limit', '512M'); // set
@@ -654,9 +665,7 @@ ini_set('memory_limit', '512M'); // set
 </div>
 <div class="question">What is strict_types in PHP?</div>
 <div class="answer">
-In PHP, <code>strict_types</code> enforces strict type checking for function arguments and return values, preventing automatic type coercion.  
-It is enabled by adding .
-<p>It   checking for scalar type hints (like int, float, string, bool) in function calls.</p>
+strict_types=1 ensures function arguments and return types are exact, reducing bugs from implicit type conversions. If mismatch means php throws PHP throws a TypeError.
 <pre>
 declare(strict_types=1);
   function add(int $a, int $b): int {
@@ -692,56 +701,67 @@ File handling allows PHP to create, read, write, append, and delete files on the
 <tr>
 <th>Function</th>
 <th>Description</th>
+<th>Example</th>
 </tr>
 
 <tr>
 <td>fopen()</td>
 <td>Opens a file.</td>
+<td>$handle = fopen("file.txt", "r");</td>
 </tr>
 
 <tr>
 <td>fclose()</td>
 <td>Closes an open file.</td>
+<td>fclose($handle);</td>
 </tr>
 
 <tr>
 <td>fread()</td>
 <td>Reads from a file.</td>
+<td>$data = fread($handle, 100);</td>
 </tr>
 
 <tr>
 <td>fwrite()</td>
 <td>Writes to a file.</td>
+<td>fwrite($handle, "Hello");</td>
 </tr>
 
 <tr>
 <td>file_get_contents()</td>
-<td>Reads entire file into a string.</td>
+<td>Reads entire file content into a string.</td>
+<td>$content = file_get_contents("file.txt");</td>
 </tr>
 
 <tr>
 <td>file_put_contents()</td>
-<td>Writes data to a file.</td>
+<td>Writes data to a file (creates/overwrites).</td>
+<td>file_put_contents("file.txt", "Hello World");</td>
 </tr>
 
 <tr>
 <td>unlink()</td>
 <td>Deletes a file.</td>
+<td>unlink("file.txt");</td>
 </tr>
 
 <tr>
 <td>file_exists()</td>
-<td>Checks if file exists.</td>
+<td>Checks if a file exists.</td>
+<td>file_exists("file.txt");</td>
 </tr>
 
 <tr>
 <td>filesize()</td>
-<td>Returns file size.</td>
+<td>Returns file size in bytes.</td>
+<td>filesize("file.txt");</td>
 </tr>
 
 <tr>
 <td>move_uploaded_file()</td>
 <td>Moves uploaded file to target directory.</td>
+<td>move_uploaded_file($_FILES['file']['tmp_name'], "uploads/file.txt");</td>
 </tr>
 
 </table>
@@ -804,8 +824,7 @@ File handling allows PHP to create, read, write, append, and delete files on the
 
 <div class="question">What is Output Buffering?</div>
 <div class="answer">
-<p>It is feature in PHP. That</p>
-<p>Output Buffering = temporarily storing PHP output in memory instead of sending it immediately to the browser, so you can modify or control it before sending.</p>
+<p>Output Buffering is a mechanism that stores the output of your PHP script in a internal memory buffer instead of sending it immediately to the browser. You can then manipulate, modify, or flush it later.</p>
 <pre>
 ob_start();
 echo "Hello";
@@ -822,8 +841,7 @@ ob_end_flush();
 
 <div class="question">What is the purpose of @ in PHP?</div>
 <div class="answer">
-In PHP, @ is used for suppressing error messages. If any runtime error occurs on the
-line which consists @ symbol at the beginning, then the error will be handled by PHP.
+In PHP, @ is used to suppress error messages. It prevents PHP from displaying errors or warnings. The error still occurs internally, but it's not shown.
 <pre>@$file = fopen("test.txt","r");
 </pre>
 </div>
@@ -860,7 +878,8 @@ echo $result; // 16
 </div>
 <div class="question">What are References (&) in PHP?</div>
 <div class="answer">
-<p><strong>Reference (&)</strong> → It allows two variables to point to the same value in memory.</p>
+<p><strong>Reference (&)</strong> → A reference allows two variables to point to the same memory location, so changing one variable also changes the other.</p>
+<p>References allow two variables to share the same memory, making changes to one affect the other.</p>
 <p><strong>Example:</strong></p>
 <pre>
 $a = 10;
@@ -935,6 +954,15 @@ try {
     throw new Exception("Error occurred");
 } catch (Exception $e) {
     echo $e->getMessage();
+}
+</pre>
+<p><strong>5. PHP 7+</strong> → Catch both Errors and Exceptions using <code>Throwable</code>.</p>
+<pre>
+try {
+    throw new Exception("This is an Exception"); // Throws Exception
+    undefinedFunction(); // triggers Error
+} catch (Throwable $t) {
+    echo "Caught " . get_class($t) . ": " . $t->getMessage();
 }
 </pre>
 
