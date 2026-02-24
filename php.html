@@ -149,12 +149,12 @@ Indexed, Associative, Multidimensional.
 
 <div class="question">15. What is the difference between an indexed array and an associative array in PHP?</div>
 <div class="answer">
-<p><strong>Indexed Array</strong> → Uses numerical index (0,1,2...).</p>
+<p><strong>Indexed Array</strong> → Uses numerical index (0,1,2...). It is accessed by numberical indexes.</p>
 <pre>
 $fruits = ["Apple", "Banana"];
 echo $fruits[1]; // Banana
 </pre>
-<p><strong>Associative Array</strong> → Uses named keys.</p>
+<p><strong>Associative Array</strong> → Uses named keys. It is accessed by array keys.</p>
 <pre>
 $student = ["name" => "Bavi", "age" => 22];
 echo $student["name"]; // Bavi
@@ -203,10 +203,35 @@ Constant → Value cannot change once defined.
 
 <div class="question">18. What are Traits in PHP, and when should you use them?</div>
 <div class="answer">
-A mechanism for code reuse in PHP. It allows you to reuse methods in multiple classes without using inheritance. Example: logging, caching, timestamping
+<p>A mechanism for code reuse in PHP. It allows you to reuse methods in multiple classes without using inheritance.</p>
+<p>Traits avoid code duplication</p>
+Example: logging, DateFormatter, caching, timestamping
 <pre>
-trait Hello { public function sayHello(){ echo "Hello"; } }
-class Greet { use Hello; }
+trait Logger {
+    public function log($message) {
+        echo "[" . date('Y-m-d H:i:s') . "] " . $message . "<br>";
+    }
+}
+
+class User {
+    use Logger;
+    public function createUser($name) {
+        $this->log("User $name created");
+    }
+}
+
+class Product {
+    use Logger;
+    public function addProduct($name) {
+        $this->log("Product $name added");
+    }
+}
+
+$user = new User();
+$user->createUser("John");
+
+$product = new Product();
+$product->addProduct("Laptop");
 </pre>
 </div>
 
@@ -221,7 +246,7 @@ Session stores user data on the server across multiple pages.
 PEAR stands for <b>PHP Extension and Application Repository. It is a framework
 and has collection of reusable PHP libraries and components used to simplify PHP development</b>.
 <p>It is used to install and manage PHP libraries. </p>
-<p>eg. Ready-made components - Database, Mail, Authentication (Auth). It is old now we are using composer.</p>
+<p>eg. Ready-made components - Database, Mail, Authentication (Auth). It is old / deprecated now we are using composer.</p>
 </div>
 
 <div class="question">21. Explain the difference between $message and $$message.</div>
