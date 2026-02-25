@@ -16,8 +16,13 @@
 <div class="section">
     <div class="question">1. What is PHPUnit?</div>
 <div class="answer">
-<p>PHPUnit is a unit testing framework for PHP used to test individual units (functions or methods) of code.</p>
-<p><b>One Line</b> : Framework for unit testing in PHP.</p>
+<p>PHPUnit is a testing framework for PHP used to write and run unit tests to verify that application code works as expected.</p>
+<p><b>One Line</b> : Framework for unit testing in PHP. (vendor/bin/phpunit)</p>
+<p>PHPUnit is used in real projects to test application logic automatically before deployment.</p>
+<p>Example : In my projects, I use PHPUnit to test backend logic like API validation, database operations, and business rules. It helps catch bugs early and ensures stability before deployment, especially when integrated with CI/CD pipelines</p>
+<pre>
+To install PHPUnit, I use Composer: composer require --dev phpunit/phpunit. Then I create a test class extending TestCase and write test methods using assertions like assertEquals() to validate expected output
+</pre>
 </div>
 
 <div class="question">2. Why is PHPUnit used?</div>
@@ -66,29 +71,30 @@ class SampleTest extends TestCase {
 
 <div class="question">9. What is setUp() method?</div>
 <div class="answer">
-<p>Runs before each test method to initialize test data.</p>
+<p>The setUp() method is a special method in PHPUnit that runs before every test method to initialize test data. It is used to clean up resources created during the test.</p>
+<p>Example: Close database connections, Delete temporary files, Reset variables.</p>
 </div>
 
 <div class="question">10. What is tearDown() method?</div>
 <div class="answer">
-<p>Runs after each test method to clean up resources.</p>
+<p>tearDown() is a special method that runs after every test method..</p>
 </div>
 
 <div class="question">11. What is Mocking?</div>
 <div class="answer">
-<p>Mocking is creating fake objects to test code behavior without real dependencies.</p>
+<p>Mocking is a testing technique where we create a fake object to simulate the behavior of a real object.</p>
 <p><b>One Line</b> : Creating fake objects to isolate tests.</p>
 </div>
 
 <div class="question">12. Why use Mock objects?</div>
 <div class="answer">
-<p>To isolate unit tests and avoid database, API, and external service dependencies.</p>
+<p>To isolate unit tests and avoid database, API, and external service dependencies. Eg. Sends email</p>
 </div>
 
 <div class="question">13. What is Code Coverage?</div>
 <div class="answer">
-<p>Measures how much of application code is tested.</p>
-<p><b>One Line</b> : Measures test coverage percentage.</p>
+<p>It measures how much of application code is tested by your test cases.</p>
+<p><b>One Line</b> : It shows the percentage of code executed when running tests.</p>
 </div>
 
 <div class="question">14. How to generate code coverage report?</div>
@@ -105,6 +111,7 @@ class SampleTest extends TestCase {
 <div class="question">16. What is Data Provider?</div>
 <div class="answer">
 <p>Used to pass multiple test data sets to a single test method.</p>
+<p>It allows you to run the same test multiple times with different input values.</p>
 </div>
 
 <div class="question">17. Data Provider Example?</div>
@@ -129,6 +136,16 @@ public function sumProvider() {
 <div class="question">18. What is PHPUnit configuration file?</div>
 <div class="answer">
 <p>phpunit.xml is used to configure test execution and settings.</p>
+<pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;phpunit bootstrap="vendor/autoload.php"&gt;
+    &lt;testsuites&gt;
+        &lt;testsuite name="Application Test Suite"&gt;
+            &lt;directory&gt;tests&lt;/directory&gt;
+        &lt;/testsuite&gt;
+    &lt;/testsuites&gt;
+&lt;/phpunit&gt;
+</pre>
 </div>
 
 <div class="question">19. How to run PHPUnit tests?</div>
