@@ -96,6 +96,8 @@ $payload = base64_encode(json_encode([
     "role"=>"admin",
     "exp"=>time()+3600
 ]));
+
+// $signature ensures the token cannot be changed by anyone without knowing secretKey.
 $signature = hash_hmac("sha256", "$header.$payload", "secretKey", true);
 $jwt = "$header.$payload.".base64_encode($signature);
 echo $jwt;

@@ -227,8 +227,31 @@ Controls content overflow: visible, hidden, scroll, auto.
 
 <div class="question">25. What is difference between em and rem?</div>
 <div class="answer">
-em → Relative to parent font-size.<br>
-rem → Relative to root (html) font-size.
+em → Relative to parent font-size (or) relative to parent element<br>
+rem → Relative to root (html) font-size. (or) relative to root html element.
+<pre>
+/* em */
+div {
+  font-size: 20px;
+}
+span {
+  font-size: 1.5em; /* 30px */
+}
+span small {
+  font-size: 0.5em; /* 0.5 x 30px = 15px */
+}
+
+/* rem */
+html {
+  font-size: 16px; /* Default is 16px */
+}
+p {
+  font-size: 2rem; /* 2 x 18px = 36px */
+}
+div p {
+  font-size: 1rem; /* 1 x 18px = 18px, still relative to root */
+}
+</pre>
 </div>
 
 <div class="question">26. What is the difference between defer and async in script tag?</div>
@@ -243,9 +266,9 @@ It is the process browser follows to convert HTML, CSS, and JS into pixels on sc
 
 <div class="question">28. What is the difference between cookies, localStorage, and sessionStorage?</div>
 <div class="answer">
-Cookies → Sent with every HTTP request.<br>
-localStorage → Stored in browser permanently.<br>
-sessionStorage → Stored until tab closes.
+Cookies → Stored on the browser and sent to the server with every HTTP request..<br>
+localStorage → Stored in browser permanently; not sent to the server.<br>
+sessionStorage → Stored in the browser until tab closes; not sent to the server.
 </div>
 
 <div class="question">29. What is Web Accessibility (a11y)?</div>
@@ -517,8 +540,13 @@ Inline (1000 Points) > ID (100 Points) > Class (10 Points) > Element (1 Point).
 <div class="question">5. What is BEM methodology?</div>
 <div class="answer">
 <p>BEM (Block, Element, Modifier) </p>
-<p>Block Element Modifier is a naming convention for writing scalable and maintainable CSS. </p>
+<p>Block Element Modifier is a naming convention for writing scalable and maintainable CSS. It is avoids CSS conflicts.</p>
 Example: card__title--active
+<pre>
+menu
+menu__item
+menu__item--active
+</pre>
 </div>
 
 <div class="question">6. What is the difference between Flexbox and Grid?</div>

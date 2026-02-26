@@ -31,7 +31,14 @@ JavaScript is a client-side scripting language used to make web pages interactiv
 
 <div class="question">3. What is Hoisting?</div>
 <div class="answer">
-Hoisting moves variable and function declarations to the top of their scope before code execution.
+Hoisting moves variable and function declarations to the top of their scope before code execution. Only declarations are hoisted, not initializations.
+<pre>
+console.log(a); // undefined
+var a = 10;
+
+console.log(b); // ReferenceError: Cannot access 'b' before initialization
+let b = 20;
+</pre>
 </div>
 
 <div class="question">4. What Temporal Dead Zone (TDZ)?</div>
@@ -242,6 +249,7 @@ Event bubbling means an event moves from child element to parent element.
 
 <div class="question">1. What is Asynchronous JavaScript?</div>
 <div class="answer">
+<p>Asynchronous JavaScript allows code to run in the background without blocking the main thread.</p>
 It allows tasks like API calls to run in the background without blocking the main thread.
 </div>
 
@@ -756,12 +764,25 @@ const mergedObj = { ...obj1, ...obj2 };
 <div class="answer">
 The rest operator is used to collect remaining elements/properties into an array or object. (Destructing / Collecting)
 <pre>
+1. Using Rest in Function Parameters
+
+function sum(...numbers) {
+  // numbers is an array of all arguments
+  return numbers.reduce((total, num) => total + num, 0);
+}
+console.log(sum(1, 2, 3, 4)); // Output: 10
+
+2. Using Rest with Array Destructuring
+
 const numbers = [1, 2, 3, 4, 5];
 const [first, second, ...rest] = numbers;
+
+3. Using Rest with Object Destructuring
 
 const user = { name: "Bavi", age: 25, city: "Chennai" };
 const { name, ...others } = user;
 </pre>
+<p>Spread = expand, Rest = collect.</p>
 </div>
 
 <div class="question">4. localStorage vs sessionStorage?</div>
@@ -772,7 +793,14 @@ sessionStorage → Stores data until browser closes.
 
 <div class="question">5. What is CORS?</div>
 <div class="answer">
-CORS controls how resources are shared between different domains.
+CORS (Cross-Origin Resource Sharing): controls how resources are shared between different domains.
+<pre>
+Access-Control-Allow-Origin: * → allows any origin
+
+Access-Control-Allow-Methods: GET, POST → allowed HTTP methods
+
+Access-Control-Allow-Headers: Content-Type → allowed headers
+</pre>
 </div>
 
 <div class="question">6. Is JavaScript synchronous or asynchronous?</div>
